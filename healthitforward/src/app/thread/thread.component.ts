@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'hif-thread',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThreadComponent implements OnInit {
 
+  @Input()
+  items: any[] = [];
   constructor() { }
 
   ngOnInit() {
