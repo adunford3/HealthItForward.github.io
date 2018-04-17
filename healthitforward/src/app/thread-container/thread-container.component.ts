@@ -7,11 +7,6 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ThreadContainerComponent implements OnInit {
 
-  items: any[] = [
-    { title: 'Thread 1' },
-    { title: 'Thread 2' },
-    { title: 'Thread 3' }
-  ];
   constructor() { }
 
   ngOnInit() {

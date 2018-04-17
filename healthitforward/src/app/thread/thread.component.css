@@ -1,0 +1,8 @@
+.outer-div {
+  border:1px solid black;
+  padding: 0px 10px 10px 10px;
+}
+
+.thread-list {
+  list-style-type: none;
+}

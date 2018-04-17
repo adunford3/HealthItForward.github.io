@@ -1,5 +1,10 @@
-<ul>
-  <li *ngFor="let item of items">
-    {{ item.title}}
-  </li>
-</ul>
+<div class="outer-div">
+  <h2>Threads</h2>
+  <ul>
+    <li class="thread-list" *ngFor="let thread of threads">
+      <h3>{{thread.title}}</h3>
+      <span clas="badge">{{ thread.id}}</span>
+      <span>{{thread.content}} </span>
+    </li>
+  </ul>
+</div>
