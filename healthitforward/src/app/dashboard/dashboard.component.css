@@ -1,0 +1,14 @@
+.group-div {
+  border:1px solid black;
+  padding: 0px 10px 10px 10px;
+  width: 50%;
+  float: right;
+}
+
+.p-group-button {
+  width: 100px;
+  height: 100px;
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline-block;
+}
