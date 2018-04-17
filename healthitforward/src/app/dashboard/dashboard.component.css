@@ -5,6 +5,13 @@
   float: right;
 }
 
+.outer-div {
+  border:1px solid black;
+  padding: 0px 10px 10px 10px;
+  float: left;
+  width: 40%;
+}
+
 .p-group-button {
   width: 100px;
   height: 100px;

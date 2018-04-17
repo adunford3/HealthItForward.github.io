@@ -34,4 +34,13 @@ export class ThreadComponent implements OnInit {
   getThreads(): void {
     this.threadService.getThread().subscribe(threads => this.threads = threads);
   }
+
+  add(title: string): void {
+    title = title.trim();
+    if (!title) { return; }
+    this.threadService.addThread({ title } as Thread)
+      .subscribe(thread => {
+        this.threads.push(thread);
+      })
+  }
 }

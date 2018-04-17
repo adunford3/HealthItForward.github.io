@@ -1,5 +1,4 @@
-<div class="outer-div">
-  <h2>Recently Viewed Threads</h2>
+<div>
   <ul class="threads">
     <li *ngFor="let thread of threads"
         [class.selected]="thread === selectedThread"
@@ -7,4 +6,12 @@
       <span class="badge">{{ thread.id}} </span> {{thread.title}}
     </li>
   </ul>
+</div>
+
+<div>
+  <label> Thread Title:
+    <input #threadTitle>
+  </label>
+  <button (click)="add(threadTitle.value); threadTitle.value=''">Create
+    Thread</button>
 </div>
