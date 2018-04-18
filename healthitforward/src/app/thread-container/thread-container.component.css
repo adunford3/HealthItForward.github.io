@@ -1,0 +1,30 @@
+.new-thread {
+  width: 25%;
+}
+
+.title-input {
+  display: block;
+  width: 100%;
+}
+
+.content-textbox {
+  height: 100px;
+  width: 100%;
+  display: block;
+}
+
+.create-button {
+  color: #336699;
+  height: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  float: right;
+}
+
+.back-button {
+  width: 105px;
+  height: 50px;
+  background: #336699;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}

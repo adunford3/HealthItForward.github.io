@@ -1,4 +1,19 @@
 <h2>Parkinson's Patient Group</h2>
 <h3>Threads</h3>
-<hif-thread></hif-thread>
-<button routerLink="/dashboard">Back</button>
+<hif-thread #threadComponent></hif-thread>
+<div class="new-thread">
+  <label> Thread Title:
+    <input #threadTitle class="title-input">
+  </label>
+  <br>
+  <label>Thread Body:
+    <textarea #threadContent class="content-textbox"></textarea>
+  </label>
+  <div>
+    <br>
+    <button routerLink="/dashboard" class="back-button">Back</button>
+    <button class="create-button"
+            (click)="threadComponent.add(threadTitle.value, threadContent.value); threadTitle.value=''; threadContent.value=''">Create
+      Thread</button>
+  </div>
+</div>

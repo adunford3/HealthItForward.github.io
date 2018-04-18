@@ -40,7 +40,7 @@ export class ThreadService {
   /** POST: add a new thread to the server */
   addThread(thread: Thread): Observable<Thread> {
     return this.http.post<Thread>(this.threadsUrl, thread, httpOptions).pipe(
-      tap((thread: Thread) => this.log(`added thread w/ id=${thread.id}`)),
+      tap((thread: Thread) => this.log(`added thread w/ body: ${thread.content}`)),
       catchError(this.handleError<Thread>('addThread'))
     );
   }
