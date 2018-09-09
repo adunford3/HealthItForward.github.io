@@ -14,6 +14,7 @@ import {InMemoryDataService} from "./services/in-memory-data.service";
 import {ThreadService} from "./services/thread.service";
 import {MessagesComponent} from './messages/messages.component';
 import {MessageService} from './message.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
@@ -41,6 +42,7 @@ import {RegisterComponent} from './register/register.component';
     LoginComponent,
     UserComponent,
     RegisterComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

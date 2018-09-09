@@ -9,7 +9,7 @@ import {FirebaseUserModel} from '../core/user.model';
 @Component({
   selector: 'hif-user',
   templateUrl: 'user.component.html',
-  styleUrls: ['user.scss']
+  styleUrls: ['user.css']
 })
 export class UserComponent implements OnInit{
 
