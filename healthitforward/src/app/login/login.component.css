@@ -1,3 +1,41 @@
+.row {
+  margin-top: 10px;
+  left: 10px;
+}
+
+.error {
+  color: red;
+}
+
+/* Add a black background color to the top navigation */
+.top-logo {
+    background-color: #EEE;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.top-logo a {
+    float: left;
+    color: #607D8B;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+/* Change the color of links on hover */
+.top-logo a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.top-logo a.active {
+    background-color: #607D8B;
+    color: white;
+}
+
+
 /*@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,300,600);
 
 *{box-sizing:border-box;}
@@ -118,15 +156,6 @@ transform: translate(0%,0%);
   }
 
 } */
-
-/*.row {
-  margin-top: 10px;
-  left: 10px;
-}
-
-.error {
-  color: red;
-}*/
 
 
 /* I tried to play around the design and I swear I just made it look worse...I'm so sorry guys */
