@@ -1,0 +1,59 @@
+<h1 class="header"></h1>
+<div class="top-logo">
+  <a class="active" href="#home">HealthItForward</a>
+</div>
+<div class="container">
+  <div class="row">
+    <label>Thanks for joining HealthItForward! Please fill out an initial health survey so you can track your health.</label>
+  </div>
+<form novalidate [formGroup]="myform" (ngSubmit)="onSubmit()">
+
+  <div formGroupName="name">
+    <div class="form-group">
+      <label>What is your height? (in inches)</label>
+      <input type="text"
+             class="form-control"
+             formControlName="height">
+    </div>
+
+    <div class="form-group">
+    <label>What is your weight? (in pounds)</label>
+    <input type="text"
+           class="form-control"
+           formControlName="weight">
+    </div>
+
+    <div class="form-group">
+      <label>What is your blood pressure? (Systolic/Diastolic in mm Hg)</label>
+      <input type="text"
+             class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Do you smoke?</label>
+      <input type="text"
+             class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Do you drink alcohol?</label>
+      <input type="text"
+             class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>What medical conditions do you have?</label>
+      <input type="text"
+             class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>What alternative therapies have you used?</label>
+      <input type="text"
+             class="form-control">
+    </div>
+
+    <button class="submit-button" routerLink="/dashboard">Submit</button>
+  </div>
+</form>
+</div>

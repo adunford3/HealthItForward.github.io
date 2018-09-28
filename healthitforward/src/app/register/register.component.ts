@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../core/auth.service'
 import {Router, Params} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'hif-register',
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
    createForm() {
      this.registerForm = this.fb.group({
        email: ['', Validators.required ],
-       password: ['',Validators.required]
+       password: ['',Validators.required],
      });
    }
 

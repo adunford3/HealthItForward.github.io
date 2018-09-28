@@ -1,13 +1,15 @@
 import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/toPromise';
 import {AngularFireAuth} from 'angularfire2/auth';
+import {Router} from '@angular/router';
 import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthService {
 
 constructor(
-   public afAuth: AngularFireAuth
+   public afAuth: AngularFireAuth,
+   private router: Router
  ){}
 
   doRegister(value){
@@ -15,6 +17,7 @@ constructor(
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
       .then(res => {
         resolve(res);
+        this.router.navigate(['/', 'health-survey']);
       }, err => reject(err))
     })
   }

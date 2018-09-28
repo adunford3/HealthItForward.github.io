@@ -20,16 +20,13 @@
    display: inline-block;
  }
 
- .logout-button {
+ .profile-button {
    position: absolute;
    top: 5%;
-   right: 5%;
+   right: 15%;
    width: 50px;
    height: 30px;
    color: #369;
    font-family: Arial, Helvetica, sans-serif;
  }
 
-.logout-div {
-  padding: 10px 10px 10px 10px;
-}
