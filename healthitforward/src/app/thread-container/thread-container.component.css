@@ -28,3 +28,9 @@
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.threads {
+  padding: 0px 10px 10px 10px;
+  float: left;
+  width: 85%;
+}

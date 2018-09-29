@@ -17,7 +17,7 @@ import {InMemoryDataService} from "./services/in-memory-data.service";
 import {ThreadService} from "./services/thread.service";
 import {MessagesComponent} from './messages/messages.component';
 import {MessageService} from './message.service';
-import { NavbarComponent } from './navbar/navbar.component';
+import {NavbarComponent} from './navbar/navbar.component';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
@@ -34,8 +34,13 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './login/login.component';
 import {UserComponent} from './user/user.component';
 import {RegisterComponent} from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
-import { HealthSurveyComponent } from './health-survey/health-survey.component';
+
+import {ProfileComponent} from './profile/profile.component';
+import {HealthSurveyComponent} from './health-survey/health-survey.component';
+
+import {VerticalNavbarComponent} from './vertical-navbar/vertical-navbar.component';
+import {GroupsPageComponent} from './groups-page/groups-page.component';
+
 
 
 @NgModule({
@@ -51,6 +56,9 @@ import { HealthSurveyComponent } from './health-survey/health-survey.component';
     NavbarComponent,
     ProfileComponent,
     HealthSurveyComponent,
+    VerticalNavbarComponent,
+    GroupsPageComponent,
+
   ],
   imports: [
     BrowserModule,
