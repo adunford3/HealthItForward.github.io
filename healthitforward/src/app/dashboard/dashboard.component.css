@@ -1,15 +1,16 @@
-.group-div {
-  border:1px solid black;
-  padding: 0px 10px 10px 10px;
-  width: 50%;
-  float: right;
-}
+/*.group-div {*/
+  /*border:1px solid black;*/
+  /*padding: 0px 10px 10px 10px;*/
+  /*width: 40%;*/
+  /*float: right;*/
+  /*margin-right: 10px*/
+/*}*/
 
 .outer-div {
   border:1px solid black;
   padding: 0px 10px 10px 10px;
   float: left;
-  width: 40%;
+  width: 85%;
 }
 
 .p-group-button {
@@ -20,7 +21,7 @@
    display: inline-block;
  }
 
- .logout-button {
+/* .logout-button {
    position: absolute;
    top: 5%;
    right: 5%;
@@ -32,4 +33,4 @@
 
 .logout-div {
   padding: 10px 10px 10px 10px;
-}
+}*/
