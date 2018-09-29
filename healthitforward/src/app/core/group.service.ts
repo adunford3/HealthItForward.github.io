@@ -12,9 +12,18 @@ export class GroupService {
   ) {}
 
   getGroups() {
-    //let groups = firebase.database().ref('groups/');
-    //groups.on('value', function(snapshot)); {
-    //}
+    let groups = firebase.database().ref('groups/');
+    groups.on('value', function(snapshot) {
+      let returnArr = [];
+      snapshot.forEach(function(childSnapshot) {
+        let item = childSnapshot.val();
+        item.key = childSnapshot.key;
+
+        returnArr.push(item);
+      });
+
+      return returnArr;
+    });
   }
 
 

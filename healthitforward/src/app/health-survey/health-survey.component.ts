@@ -12,7 +12,10 @@ import {Router} from '@angular/router';
 })
 export class HealthSurveyComponent implements OnInit {
 
-  myform: FormGroup;
+  //From button
+  //routerLink="/dashboard"
+
+  myForm: FormGroup;
   private userID: any;
 
   constructor(
@@ -21,9 +24,13 @@ export class HealthSurveyComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.myform = new FormGroup({
+    this.myForm = new FormGroup({
       height: new FormControl(),
       weight: new FormControl()
     });
+  }
+
+  updateUser(value) {
+    this.userService.updateUserHealthForum(value);
   }
 }

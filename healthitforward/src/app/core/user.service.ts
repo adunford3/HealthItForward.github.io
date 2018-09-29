@@ -49,6 +49,7 @@ constructor(public db: AngularFireDatabase,
         users: [firebase.auth().currentUser.uid]
       }).then( res => {
         resolve(res)
+        this.subscribeToGroup(newGroupIdKey, name);
       });
     });
   }
@@ -61,7 +62,9 @@ constructor(public db: AngularFireDatabase,
         //userListID: newUserIdKey,
         username: userName,
         email: Email,
-        password: Password
+        password: Password,
+        myGroups: ["test1", "test2"],
+        healthForm: ["height", "weight"]
       }).then(res => {
         resolve(res)
         this.userID = firebase.auth().currentUser.uid;
@@ -71,15 +74,34 @@ constructor(public db: AngularFireDatabase,
     });
   }
 
+  subscribeToGroup(newGroupIdKey, name) {
+    //firebase.database().ref('users/' + this.getUserID() + 'myGroups')
+    //let updates = {};
+    //updates['users/' + this.getUserID() + '/' + 'myGroups/' + "groupID"] = newGroupIdKey;
+    //return firebase.database().ref('users/' + this.getUserID() + '/' + 'myGroups/' + "groupID").set(updates);
+    let newGroup = firebase.database().ref('users/' + this.getUserID() + '/' + 'myGroups').push("GroupID");
+    newGroup.set(name);
+  }
+
+
+  updateUserHealthForum(value: any) {
+    return new Promise<any>( resolve => {
+      firebase.database().ref('users/' + this.getUserID() + '/' + 'healthForm').set({
+        healthForm: value
+      }).then( res => {
+        resolve(res)
+      });
+    });
+  }
+
+  getUser() {
+    let user = firebase.database().ref('users/' + this.getUserID()).once('value').then(function(snapshot) {
+
+    });
+  }
+
   getUserID() {
     return firebase.auth().currentUser.uid;
   }
 
-  getUserName() {
-    return this.userName;
-  }
-
-  getUserEmail() {
-    return this.userEmail;
-  }
 }
