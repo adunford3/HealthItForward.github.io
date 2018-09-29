@@ -79,9 +79,34 @@ constructor(public db: AngularFireDatabase,
     firebase.database().ref('users/' + this.getUserID() + '/' + 'myGroups').push().set(newGroupIdKey);
   }
 
+  unsubscribeFromGroup(groupIdKey) {
+    let arr = [];
+    let keyToRemove: string;
+    let myGroups = firebase.database().ref('users/' + this.getUserID() + '/myGroups');
+    myGroups.once('value', function(snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        let item = childSnapshot.val();
+        item.key = childSnapshot.key;
+
+        arr.push(item);
+      });
+    });
+    // iterate through arr of groups
+    for (let group in arr) {
+      if (group/*.value*/ == groupIdKey) {
+        keyToRemove = group/*.key*/;
+      }
+    }
+    if (keyToRemove != null) {
+      firebase.database().ref('users/' + this.getUserID() + '/myGroups/' + keyToRemove).remove();
+    } else {
+      //did not find group to remove
+    }
+  }
+
 
   //Work in Progress for userProfile and TrackmyHealth
-  updateUserHealthForum(value: any) {
+  updateUserHealthForum(value: String[]) {
     return new Promise<any>( resolve => {
       firebase.database().ref('users/' + this.getUserID() + '/' + 'healthForm').set({
         healthForm: value

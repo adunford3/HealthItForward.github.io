@@ -11,6 +11,7 @@ export class GroupService {
               public afAuth: AngularFireAuth
   ) {}
 
+  //Should return an array of key|value elements describing all the groups
   getGroups() {
     let groups = firebase.database().ref('groups/');
     groups.on('value', function(snapshot) {
