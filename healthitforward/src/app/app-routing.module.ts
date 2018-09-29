@@ -11,6 +11,7 @@ import {UserResolver} from './user/user.resolver';
 import {AuthGuard} from './core/auth.guard';
 import {ProfileComponent} from './profile/profile.component';
 import {HealthSurveyComponent} from './health-survey/health-survey.component';
+import {LandingPageComponent} from './landing-page/landing-page.component';
 
 export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -21,7 +22,8 @@ export const routes: Routes = [
   {path: 'health-survey', component: HealthSurveyComponent},
   {path: 'user', component: UserComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'landing-page', component: LandingPageComponent},
+  {path: '', redirectTo: '/landing-page', pathMatch: 'full'},
 ];
 
 @NgModule({

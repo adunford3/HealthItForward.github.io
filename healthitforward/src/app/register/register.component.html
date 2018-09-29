@@ -1,6 +1,6 @@
 <h1 class="header"></h1>
-<div class="top-logo">
-  <a class="active" href="#home">HealthItForward</a>
+<div>
+  <hif-pre-navbar></hif-pre-navbar>
 </div>
 <div class="container">
   <div class="row">
@@ -20,9 +20,6 @@
           <label class="error">{{errorMessage}}</label>
           <label class="success">{{successMessage}}</label>
         </div>
-        <!--<div>
-          <hif-health-survey></hif-health-survey>
-        </div>-->
         <button type="submit" (click)="tryRegister(registerForm.value)" class="reg-button">Register</button>
         <!--<pre>{{registerForm.value | json}}</pre>-->
       </form>

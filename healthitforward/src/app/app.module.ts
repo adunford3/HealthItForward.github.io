@@ -40,6 +40,8 @@ import {HealthSurveyComponent} from './health-survey/health-survey.component';
 
 import {VerticalNavbarComponent} from './vertical-navbar/vertical-navbar.component';
 import {GroupsPageComponent} from './groups-page/groups-page.component';
+import { PreNavbarComponent } from './pre-navbar/pre-navbar.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 
@@ -58,6 +60,8 @@ import {GroupsPageComponent} from './groups-page/groups-page.component';
     HealthSurveyComponent,
     VerticalNavbarComponent,
     GroupsPageComponent,
+    PreNavbarComponent,
+    LandingPageComponent,
 
   ],
   imports: [
