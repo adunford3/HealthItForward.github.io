@@ -74,16 +74,13 @@ constructor(public db: AngularFireDatabase,
     });
   }
 
+  //Subscribe to Group with name
   subscribeToGroup(newGroupIdKey, name) {
-    //firebase.database().ref('users/' + this.getUserID() + 'myGroups')
-    //let updates = {};
-    //updates['users/' + this.getUserID() + '/' + 'myGroups/' + "groupID"] = newGroupIdKey;
-    //return firebase.database().ref('users/' + this.getUserID() + '/' + 'myGroups/' + "groupID").set(updates);
-    let newGroup = firebase.database().ref('users/' + this.getUserID() + '/' + 'myGroups').push("GroupID");
-    newGroup.set(name);
+    firebase.database().ref('users/' + this.getUserID() + '/' + 'myGroups').push().set(newGroupIdKey);
   }
 
 
+  //Work in Progress for userProfile and TrackmyHealth
   updateUserHealthForum(value: any) {
     return new Promise<any>( resolve => {
       firebase.database().ref('users/' + this.getUserID() + '/' + 'healthForm').set({
@@ -94,6 +91,7 @@ constructor(public db: AngularFireDatabase,
     });
   }
 
+  //Work in progress to get User data
   getUser() {
     let user = firebase.database().ref('users/' + this.getUserID()).once('value').then(function(snapshot) {
 
