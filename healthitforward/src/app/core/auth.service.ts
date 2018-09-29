@@ -17,7 +17,6 @@ constructor(
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
       .then(res => {
         resolve(res);
-        this.router.navigate(['/', 'health-survey']);
       }, err => reject(err))
     })
   }

@@ -1,3 +1,6 @@
+import { Component } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database-deprecated';
+
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, provideRoutes} from '@angular/router';
@@ -17,7 +20,7 @@ import {MessageService} from './message.service';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import {AngularFireModule} from 'angularfire2';
-import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {environment} from '../environments/environment';
 import {FormsModule} from '@angular/forms';
@@ -57,7 +60,7 @@ import { HealthSurveyComponent } from './health-survey/health-survey.component';
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFireDatabaseModule,
     AngularFireAuthModule,
 
 
