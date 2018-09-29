@@ -46,7 +46,7 @@ constructor(public db: AngularFireDatabase,
         groupID: newGroupIdKey,
         groupName: name,
         threads: ["temporary1", "temporary2"],
-        users: ["tmpName"]
+        users: [firebase.auth().currentUser.uid]
       }).then( res => {
         resolve(res)
       });
@@ -54,16 +54,17 @@ constructor(public db: AngularFireDatabase,
   }
 
   addUser(userName: String, Email: String, Password: String) {
-    let newUserIdKey = firebase.database().ref().child('users').push().key;
+    //let newUserIdKey = firebase.database().ref().child('users').push().key;
     return new Promise<any>( resolve => {
-      firebase.database().ref('users/' + newUserIdKey).set({
-        userListID: newUserIdKey,
+      firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+        userID: firebase.auth().currentUser.uid,
+        //userListID: newUserIdKey,
         username: userName,
         email: Email,
         password: Password
       }).then(res => {
         resolve(res)
-        this.userID = newUserIdKey;
+        this.userID = firebase.auth().currentUser.uid;
         this.userName = userName;
         this.userEmail = Email;
       });
@@ -71,7 +72,7 @@ constructor(public db: AngularFireDatabase,
   }
 
   getUserID() {
-    return this.userID;
+    return firebase.auth().currentUser.uid;
   }
 
   getUserName() {
