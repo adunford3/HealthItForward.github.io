@@ -1,15 +1,8 @@
-.group-div {
-  border:1px solid black;
-  padding: 0px 10px 10px 10px;
-  width: 50%;
-  float: right;
-}
-
 .outer-div {
   border:1px solid black;
   padding: 0px 10px 10px 10px;
   float: left;
-  width: 40%;
+  width: 85%;
 }
 
 .p-group-button {
@@ -20,16 +13,13 @@
    display: inline-block;
  }
 
- .logout-button {
-   position: absolute;
-   top: 5%;
-   right: 5%;
-   width: 50px;
-   height: 30px;
-   color: #369;
-   font-family: Arial, Helvetica, sans-serif;
- }
-
-.logout-div {
-  padding: 10px 10px 10px 10px;
+.profile-button {
+  position: absolute;
+  top: 5%;
+  right: 15%;
+  width: 50px;
+  height: 30px;
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
 }
+

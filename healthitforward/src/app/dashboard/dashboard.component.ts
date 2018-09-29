@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../core/user.service';
 
 @Component({
   selector: 'hif-dashboard',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent {
 
-  constructor() { }
+  constructor(
+    public userService: UserService
+  ) { }
 
   ngOnInit() {
+
   }
 
 }
