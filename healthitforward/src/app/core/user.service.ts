@@ -15,7 +15,6 @@ constructor(public db: AngularFireDatabase,
   private userID: String;
   private userEmail: String;
 
-
   getCurrentUser(): any {
     return new Promise<any>((resolve, reject) => {
       let user = firebase.auth().onAuthStateChanged(function(user) {
@@ -40,11 +39,25 @@ constructor(public db: AngularFireDatabase,
     });
   }
 
+  createGroup(name: String) {
+    let newGroupIdKey = firebase.database().ref().child('groups').push().key;
+    return new Promise<any>(resolve => {
+      firebase.database().ref("groups/" + newGroupIdKey).set({
+        groupID: newGroupIdKey,
+        groupName: name,
+        threads: ["temporary1", "temporary2"],
+        users: ["tmpName"]
+      }).then( res => {
+        resolve(res)
+      });
+    });
+  }
+
   addUser(userName: String, Email: String, Password: String) {
     let newUserIdKey = firebase.database().ref().child('users').push().key;
     return new Promise<any>( resolve => {
       firebase.database().ref('users/' + newUserIdKey).set({
-        userID: newUserIdKey,
+        userListID: newUserIdKey,
         username: userName,
         email: Email,
         password: Password
@@ -54,18 +67,18 @@ constructor(public db: AngularFireDatabase,
         this.userName = userName;
         this.userEmail = Email;
       });
-      });
-    }
-
-    getUserID() {
-      return this.userID;
-    }
-
-    getUserName() {
-      return this.userName;
-    }
-
-    getUserEmail() {
-      return this.userEmail;
-    }
+    });
   }
+
+  getUserID() {
+    return this.userID;
+  }
+
+  getUserName() {
+    return this.userName;
+  }
+
+  getUserEmail() {
+    return this.userEmail;
+  }
+}

@@ -31,4 +31,5 @@ export class UserResolver implements Resolve<FirebaseUserModel> {
       })
     })
   }
+
 }

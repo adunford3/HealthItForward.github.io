@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../core/user.service';
 
 @Component({
   selector: 'hif-groups-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public userService: UserService,
+  ) {}
 
   ngOnInit() {
   }
 
+  createGroup(groupTitle: String) {
+    this.userService.createGroup(groupTitle);
+  }
 }
