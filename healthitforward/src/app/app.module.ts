@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database-deprecated';
+// import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database-deprecated';
 
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, provideRoutes} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
 
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {
+  HttpClientInMemoryWebApiModule,
+  InMemoryBackendConfigArgs
+} from 'angular-in-memory-web-api';
 
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -80,7 +83,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 // and returns simulated server responses.
 // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
+      InMemoryDataService, <InMemoryBackendConfigArgs>{dataEncapsulation: false}
     )
   ],
   providers: [

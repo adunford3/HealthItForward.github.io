@@ -17,9 +17,12 @@
 </div>
 <div class="new-group">
   <label> Group Title:
-    <input type="text" id="groupTitle" class="form-control">
+    <input type="text" #groupTitle class="form-control">
   </label>
   <div>
-    <button type="submit" (click)="createGroup('')" class="reg-button">Create Group</button>
+    <button type="submit"
+            (click)="createGroup(groupTitle.value); groupTitle.value='';"
+            class="reg-button">Create
+      Group</button>
   </div>
 </div>
