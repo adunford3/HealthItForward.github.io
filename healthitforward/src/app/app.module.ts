@@ -30,6 +30,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './login/login.component';
 import {UserComponent} from './user/user.component';
 import {RegisterComponent} from './register/register.component';
+import { VerticalNavbarComponent } from './vertical-navbar/vertical-navbar.component';
+import { GroupsPageComponent } from './groups-page/groups-page.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import {RegisterComponent} from './register/register.component';
     UserComponent,
     RegisterComponent,
     NavbarComponent,
+    VerticalNavbarComponent,
+    GroupsPageComponent,
   ],
   imports: [
     BrowserModule,
