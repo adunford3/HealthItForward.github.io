@@ -1,14 +1,38 @@
-.row {
-  margin-top: 10px;
-  left: 10px;
+
+* {
+    box-sizing: border-box;
 }
+
+/* Add padding to containers */
+ .container {
+   padding: 16px;
+ }
+
+ .row {
+   margin-top: 10px;
+   margin-bottom: 30px;
+ }
 
 .error {
   color: red;
 }
 
+.success {
+  color: green;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 /* Full-width input fields */
-input[type=text], input[type=email], input[type=password] {
+input[type=text], input[type=password] {
   width: 50%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -22,15 +46,14 @@ input[type=text]:focus, input[type=password]:focus {
   outline: none;
 }
 
-
 /* Overwrite default styles of hr */
-form-group {
+hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
 
 /* Set a style for the submit/register button */
-.login-button {
+.submit-button {
   background-color: #607D8B;
   color: white;
   padding: 16px 20px;
@@ -41,17 +64,8 @@ form-group {
   opacity: 0.9;
 }
 
-.login-button:hover {
+.submit-button:hover {
   opacity:1;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-/* Add padding to containers */
-.container {
-  padding: 16px;
 }
 
 button {
