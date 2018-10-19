@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ThreadContainerComponent} from "./thread-container/thread-container.component";
+import {GroupsPageComponent} from "./groups-page/groups-page.component";
 import {LoginComponent} from './login/login.component';
 import {UserComponent} from './user/user.component';
 import {RegisterComponent} from './register/register.component';
@@ -12,6 +13,7 @@ import {AuthGuard} from './core/auth.guard';
 export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'group-page', component: ThreadContainerComponent},
+  {path: 'groups-page', component: GroupsPageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'user', component: UserComponent},
