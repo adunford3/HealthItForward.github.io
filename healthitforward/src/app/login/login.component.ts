@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../core/auth.service'
 import {Router, Params} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../core/user.service';
 
 @Component({
   selector: 'hif-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public userService: UserService,
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
   tryLogin(value){
     this.authService.doLogin(value)
     .then(res => {
+      this.userService.getCurrentUser();
       this.router.navigate(['/dashboard']);
     }, err => {
       console.log(err);
