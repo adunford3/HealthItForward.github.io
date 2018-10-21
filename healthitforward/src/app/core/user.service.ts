@@ -3,6 +3,7 @@ import 'rxjs/add/operator/toPromise';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {AngularFireDatabase} from 'angularfire2/database';
+import {UserModel} from "./user.model";
 
 @Injectable()
 export class UserService {
@@ -120,6 +121,27 @@ constructor(public db: AngularFireDatabase,
   getUser() {
     let user = firebase.database().ref('users/' + this.getUserID()).once('value').then(function(snapshot) {
 
+    });
+  }
+
+  getUsers() {
+    return new Promise<UserModel[]>(resolve => {
+      let ref = firebase.database().ref('users/');
+      ref.once('value').then(function(snapshot) {
+        let users = [];
+        let i = 0;
+        snapshot.forEach(function (childSnapshot) {
+          let email = childSnapshot.child('email').val();
+          let myGroups = childSnapshot.child('myGroups').val();
+          let myThreads = childSnapshot.child('myThreads').val();
+          let password = childSnapshot.child('password').val();
+          let role = childSnapshot.child('role').val();
+          let userID = childSnapshot.child('userID').val();
+          let username = childSnapshot.child('username').val();
+          let u = new UserModel(email, myGroups, myThreads, password, role, userID, username);
+          users[i++] = u;
+        });
+      });
     });
   }
 

@@ -3,6 +3,7 @@ import 'rxjs/add/operator/toPromise';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {AngularFireDatabase} from 'angularfire2/database';
+import {GroupModel} from "./group.model";
 
 @Injectable()
 export class GroupService {
@@ -11,19 +12,26 @@ export class GroupService {
               public afAuth: AngularFireAuth
   ) {}
 
-  //Should return an array of key|value elements describing all the groups
   getGroups() {
-    let groups = firebase.database().ref('groups/');
-    groups.on('value', function(snapshot) {
-      let returnArr = [];
-      snapshot.forEach(function(childSnapshot) {
-        let item = childSnapshot.val();
-        item.key = childSnapshot.key;
+    return new Promise<GroupModel[]>((resolve) => {
+      let ref = firebase.database().ref('groups/');
+      ref.once('value').then(function (snapshot) {
+        let groups = [];
+        let i = 0;
+        snapshot.forEach(function (childSnapshot) {
+          let groupDescription = childSnapshot.child('groupDescription').val();
+          let groupID = childSnapshot.child('groupID').val();
+          let groupName = childSnapshot.child('groupName').val();
+          let mods = childSnapshot.child('mods').val();
+          let threads = childSnapshot.child('threads').val();
+          let users = childSnapshot.child('users').val();
+          let g = new GroupModel(groupDescription, groupID, groupName, mods, threads, users);
 
-        returnArr.push(item);
+          //console.log("Group: " + g.groupID);
+          groups[i++] = g;
+        });
+        resolve(groups);
       });
-
-      return returnArr;
     });
   }
 }

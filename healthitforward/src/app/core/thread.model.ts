@@ -6,9 +6,12 @@ export class ThreadModel {
   title: string;
   upvotes: string;
 
-  constructor(title: string, body: string, creatorID: string) {
-    this.title = title;
-    this.body = body;
-    this.creatorID = creatorID;
+  constructor(b: string, c: string, rC: string[], tID: string, t: string, upV: string) {
+    this.body = b;
+    this.creatorID = c;
+    this.replyChain = rC;
+    this.threadID = tID;
+    this.title = t;
+    this.upvotes = upV;
   }
 }

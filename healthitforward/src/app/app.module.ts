@@ -46,6 +46,7 @@ import {VerticalNavbarComponent} from './vertical-navbar/vertical-navbar.compone
 import {GroupsPageComponent} from './groups-page/groups-page.component';
 import { PreNavbarComponent } from './pre-navbar/pre-navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import {GroupService} from "./core/group.service";
 
 
 
@@ -92,6 +93,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     ThreadService,
     MessageService,
     AuthService,
+    GroupService,
     UserService,
     UserResolver,
     AuthGuard
