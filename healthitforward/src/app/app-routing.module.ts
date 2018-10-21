@@ -7,6 +7,7 @@ import {GroupsPageComponent} from "./groups-page/groups-page.component";
 import {LoginComponent} from './login/login.component';
 import {UserComponent} from './user/user.component';
 import {RegisterComponent} from './register/register.component';
+import {SurveysComponent} from './surveys/surveys.component';
 import {UserResolver} from './user/user.resolver';
 import {AuthGuard} from './core/auth.guard';
 import {ProfileComponent} from './profile/profile.component';
@@ -21,6 +22,7 @@ export const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'health-survey', component: HealthSurveyComponent},
   {path: 'user', component: UserComponent},
+  {path: 'surveys', component: SurveysComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'landing-page', component: LandingPageComponent},
   {path: '', redirectTo: '/landing-page', pathMatch: 'full'},

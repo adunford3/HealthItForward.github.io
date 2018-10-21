@@ -37,6 +37,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './login/login.component';
 import {UserComponent} from './user/user.component';
 import {RegisterComponent} from './register/register.component';
+import { SurveysComponent } from './surveys/surveys.component';
 
 import {ProfileComponent} from './profile/profile.component';
 import {HealthSurveyComponent} from './health-survey/health-survey.component';
@@ -63,6 +64,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     HealthSurveyComponent,
     VerticalNavbarComponent,
     GroupsPageComponent,
+    SurveysComponent,
     PreNavbarComponent,
     LandingPageComponent,
 
