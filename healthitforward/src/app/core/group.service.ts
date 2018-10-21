@@ -27,7 +27,6 @@ export class GroupService {
           let users = childSnapshot.child('users').val();
           let g = new GroupModel(groupDescription, groupID, groupName, mods, threads, users);
 
-          //console.log("Group: " + g.groupID);
           groups[i++] = g;
         });
         resolve(groups);
