@@ -4,7 +4,11 @@
 <div>
   <hif-vertical-navbar></hif-vertical-navbar>
 </div>
-<h2>Parkinson's Patient Group</h2>
+<div class="container">
+  <h2>Parkinson's Patient Group</h2>
+  <button id="subscribe" [disabled]="hasSubscribed()" class="subscribe-button" (click)="subscribeToGroup()">Subscribe</button>
+  <button id="unsubscribe" [disabled]="!hasSubscribed()" class="subscribe-button" (click)="unsubscribeFromGroup()">Unsubscribe</button>
+</div>
 <div class="threads">
   <h3>Threads</h3>
   <hif-thread #threadComponent></hif-thread>

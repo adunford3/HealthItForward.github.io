@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../core/auth.service';
+import {Router, Params} from '@angular/router';
 
 @Component({
   selector: 'hif-navbar',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  logout(){
+    this.authService.doLogout();
+    this.router.navigate(['/', 'login']);
   }
 
 }
