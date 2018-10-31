@@ -8,7 +8,7 @@ export class GroupModel {
 
   constructor(description: string, groupId: string, name: string, m: string[], t: string[], u: string[]) {
     this.groupDescription = description;
-    this.groupID;
+    this.groupID = groupId;
     this.groupName = name;
     this.mods = m;
     this.threads = t;

@@ -47,7 +47,7 @@ export class GroupService {
         threads: group.threads,
         users: group.users
       }).then (res => {
-        resolve(res)
+        resolve(res);
       });
     });
   }

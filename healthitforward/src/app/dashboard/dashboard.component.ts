@@ -17,7 +17,7 @@ export class DashboardComponent {
   ngOnInit() {
     const promise = this.groupService.getGroups().then(function(group) {
       console.log(group);
-      console.log("groupID: " + group[0].groupID);
+      console.log('groupID: ' + group[0].groupID);
       return group;
     });
   }
