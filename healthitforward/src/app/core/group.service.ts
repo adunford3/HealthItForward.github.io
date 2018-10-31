@@ -3,8 +3,7 @@ import 'rxjs/add/operator/toPromise';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {AngularFireDatabase} from 'angularfire2/database';
-import {GroupModel} from "./group.model";
-import {UserModel} from "./user.model";
+import {GroupModel} from './group.model';
 
 @Injectable()
 export class GroupService {

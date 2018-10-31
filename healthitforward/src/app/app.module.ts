@@ -48,6 +48,7 @@ import { PreNavbarComponent } from './pre-navbar/pre-navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {GroupService} from './core/group.service';
 import {SurveyService} from './core/survey.service';
+import {ThreadServices} from './core/thread.service';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import {SurveyService} from './core/survey.service';
     AuthService,
     GroupService,
     UserService,
+    ThreadServices,
     SurveyService,
     UserResolver,
     AuthGuard

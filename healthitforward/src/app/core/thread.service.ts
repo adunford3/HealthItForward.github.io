@@ -7,15 +7,15 @@ import {GroupModel} from './group.model';
 import {ThreadModel} from './thread.model';
 
 @Injectable()
-export class ThreadService {
+export class ThreadServices {
 
   constructor(public db: AngularFireDatabase,
               public afAuth: AngularFireAuth
   ) {}
 
   getThreads() {
-    return new Promise<GroupModel[]>((resolve) => {
-      const ref = firebase.database().ref('groups/');
+    return new Promise<ThreadModel[]>((resolve) => {
+      const ref = firebase.database().ref('threads/');
       ref.once('value').then(function (snapshot) {
         const threads = [];
         let i = 0;
@@ -26,7 +26,7 @@ export class ThreadService {
           const threadID = childSnapshot.child('threadID').val();
           const title = childSnapshot.child('title').val();
           const upvotes = childSnapshot.child('upvotes').val();
-          const t = new GroupModel(body, creatorID, replyChain, threadID, title, upvotes);
+          const t = new ThreadModel(body, creatorID, replyChain, threadID, title, upvotes);
 
           threads[i++] = t;
         });
