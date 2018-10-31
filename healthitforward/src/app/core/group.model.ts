@@ -6,9 +6,9 @@ export class GroupModel {
   threads: string[];
   users: string[];
 
-  constructor(description: string, groupid: string, name: string, m: string[], t: string[], u: string[]) {
+  constructor(description: string, groupId: string, name: string, m: string[], t: string[], u: string[]) {
     this.groupDescription = description;
-    this.groupID = groupid;
+    this.groupID;
     this.groupName = name;
     this.mods = m;
     this.threads = t;

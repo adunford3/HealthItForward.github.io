@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, Router} from "@angular/router";
+import {CanActivate, ActivatedRouteSnapshot, Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {UserService} from '../core/user.service';
 
@@ -21,7 +21,7 @@ constructor(
         return resolve(false);
       }, err => {
         return resolve(true);
-      })
-    })
+      });
+    });
   }
 }

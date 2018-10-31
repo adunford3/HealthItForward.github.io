@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../core/user.service';
-import {GroupService} from "../core/group.service";
+import {GroupService} from '../core/group.service';
 
 @Component({
   selector: 'hif-dashboard',
@@ -15,7 +15,7 @@ export class DashboardComponent {
   ) { }
 
   ngOnInit() {
-    let promise = this.groupService.getGroups().then(function(group) {
+    const promise = this.groupService.getGroups().then(function(group) {
       console.log(group);
       console.log("groupID: " + group[0].groupID);
       return group;

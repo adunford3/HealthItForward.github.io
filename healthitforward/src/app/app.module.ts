@@ -15,9 +15,9 @@ import {AppComponent} from './app.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ThreadContainerComponent} from './thread-container/thread-container.component';
 import {ThreadComponent} from './thread/thread.component';
-import {HttpClientModule} from "@angular/common/http";
-import {InMemoryDataService} from "./services/in-memory-data.service";
-import {ThreadService} from "./services/thread.service";
+import {HttpClientModule} from '@angular/common/http';
+import {InMemoryDataService} from './services/in-memory-data.service';
+import {ThreadService} from './services/thread.service';
 import {MessagesComponent} from './messages/messages.component';
 import {MessageService} from './message.service';
 import {NavbarComponent} from './navbar/navbar.component';
@@ -46,8 +46,8 @@ import {VerticalNavbarComponent} from './vertical-navbar/vertical-navbar.compone
 import {GroupsPageComponent} from './groups-page/groups-page.component';
 import { PreNavbarComponent } from './pre-navbar/pre-navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import {GroupService} from "./core/group.service";
-
+import {GroupService} from './core/group.service';
+import {SurveyService} from './core/survey.service';
 
 
 @NgModule({
@@ -95,6 +95,7 @@ import {GroupService} from "./core/group.service";
     AuthService,
     GroupService,
     UserService,
+    SurveyService,
     UserResolver,
     AuthGuard
   ],

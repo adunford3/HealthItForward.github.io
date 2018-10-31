@@ -18,6 +18,6 @@ export class GroupsPageComponent implements OnInit {
   createGroup(groupTitle: String) {
     this.userService.createGroup(groupTitle);
 
-    alert("New group created!");
+    alert('New group created!');
   }
 }

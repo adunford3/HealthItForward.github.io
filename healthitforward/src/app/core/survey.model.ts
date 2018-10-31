@@ -1,12 +1,15 @@
 export class SurveyModel {
-  url: string;
-  name: string;
-  surveyID: number;
-  clickCount: number;
+  clickCount: string;
+  groupTags: string[];
+  surveyID: string;
+  surveyName: string;
+  surveyURL: string;
 
-  constructor(name: string, url: string) {
-    this.name = name;
-    this.url = url;
-    this.clickCount = 0;
+  constructor(clickC: string, groupT: string[], surveyI: string, surveyN: string, surveyU: string) {
+    this.clickCount = clickC;
+    this.groupTags = groupT;
+    this.surveyID = surveyI;
+    this.surveyName = surveyN;
+    this.surveyURL = surveyU;
   }
 }
