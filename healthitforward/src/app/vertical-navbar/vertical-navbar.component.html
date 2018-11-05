@@ -1,4 +1,5 @@
 <div class="sidenav">
+<<<<<<< Updated upstream
   <div class="dropdown">
     <button class="dropbtn">Groups
       <i class="fa fa-caret-down"></i>
@@ -8,10 +9,68 @@
               <a href="#" routerLink="/group-page">{{group.groupName}}</a>
           </ng-container>
       </div>
+=======
+  <button class="dropdown-btn"><b>Groups</b> 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="#">Parkinson's</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+>>>>>>> Stashed changes
   </div>
-  <div class="dropdown">
-    <button class="dropbtn">Surveys
-      <i class="fa fa-caret-down"></i>
-    </button>
+  <button class="dropdown-btn"><b>Surveys</b> 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
   </div>
 </div>
+
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+</script>
+
+<!-- <div class="sidenav">
+  <table>
+    <tr>
+      <td>
+        <div class="dropdown">
+          <button class="dropbtn" routerLink="/groups-page">Groups
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#" routerLink="/group-page">Parkinson's</a>
+            <a href="#">Group 2</a>
+            <a href="#">Group 3</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="dropdown">
+          <button class="dropbtn">Surveys
+            <i class="fa fa-caret-down"></i>
+          </button>
+        </div>
+      </td>
+    </tr> 
+  </table>
+</div> -->

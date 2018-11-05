@@ -11,6 +11,32 @@ label {
   width: 550px;
   height: 40px;
   padding: 16px;
-  float: right;
+  float: left;
 }
 
+
+.video {
+    float: left;
+    padding: 20px 30px;
+}
+
+.header {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 50px;
+    color: white;
+    margin-top: 20px;
+}
+
+.subtext {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    /*color: #c4ebff;*/
+    color: white;
+}
+
+.text {
+  background: #1c73a1;
+  border-radius: 25px;
+  padding: 0px 5px 10px 10px;
+}
