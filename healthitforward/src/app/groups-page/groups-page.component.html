@@ -10,7 +10,9 @@
 <div class="group-div">
   <h2>Your Groups</h2>
   <ul class="groups">
-    <li *ngFor="let group of groups | async">
+    <li *ngFor="let group of groups | async"
+        [class.selected]="group === selectedGroup"
+        (click)="onSelect(group)">
       <span class="badge">{{group.index}} </span> {{group.groupName}}
     </li>
   </ul>

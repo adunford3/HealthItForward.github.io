@@ -1,13 +1,13 @@
 <div class="sidenav">
   <div class="dropdown">
-    <button class="dropbtn" routerLink="/groups-page">Groups
+    <button class="dropbtn">Groups
       <i class="fa fa-caret-down"></i>
     </button>
-    <div class="dropdown-content">
-      <a href="#" routerLink="/group-page">Parkinson's</a>
-      <a href="#">Group 2</a>
-      <a href="#">Group 3</a>
-    </div>
+      <div class="dropdown-content">
+          <ng-container *ngFor="let group of groups | async">
+              <a href="#" routerLink="/group-page">{{group.groupName}}</a>
+          </ng-container>
+      </div>
   </div>
   <div class="dropdown">
     <button class="dropbtn">Surveys

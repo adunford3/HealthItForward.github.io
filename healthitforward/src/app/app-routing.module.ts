@@ -13,6 +13,7 @@ import {AuthGuard} from './core/auth.guard';
 import {ProfileComponent} from './profile/profile.component';
 import {HealthSurveyComponent} from './health-survey/health-survey.component';
 import {LandingPageComponent} from './landing-page/landing-page.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -26,6 +27,7 @@ export const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'landing-page', component: LandingPageComponent},
   {path: '', redirectTo: '/landing-page', pathMatch: 'full'},
+    {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

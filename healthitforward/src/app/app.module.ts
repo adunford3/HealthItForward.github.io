@@ -49,6 +49,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import {GroupService} from './core/group.service';
 import {SurveyService} from './core/survey.service';
 import {ThreadServices} from './core/thread.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import {ThreadServices} from './core/thread.service';
     SurveysComponent,
     PreNavbarComponent,
     LandingPageComponent,
+    PageNotFoundComponent,
 
   ],
   imports: [

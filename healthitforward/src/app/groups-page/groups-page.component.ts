@@ -11,6 +11,7 @@ import {GroupModel} from "../core/group.model";
 export class GroupsPageComponent implements OnInit {
 
   groups;
+  selectedGroup: GroupModel;
 
   constructor(
     public userService: UserService,
@@ -25,9 +26,12 @@ export class GroupsPageComponent implements OnInit {
       return groups;
     });
     this.groups = Promise.resolve(g);
-
-    console.log(this.groups);
   }
+
+    onSelect(group: GroupModel): void {
+        this.selectedGroup = group;
+        console.log(this.selectedGroup);
+    }
 
   createGroup(groupTitle: String) {
     this.userService.createGroup(groupTitle);

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 import {ThreadComponent} from "../thread/thread.component";
+import {GroupModel} from '../core/group.model';
 
 @Component({
   selector: 'hif-thread-container',
@@ -10,6 +11,7 @@ import {ThreadComponent} from "../thread/thread.component";
 export class ThreadContainerComponent implements OnInit {
 
   subscribed: boolean;
+  group: GroupModel;
 
 
   constructor() { }
