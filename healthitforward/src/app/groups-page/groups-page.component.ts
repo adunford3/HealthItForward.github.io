@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../core/user.service';
-import {GroupService} from "../core/group.service";
-import {GroupModel} from "../core/group.model";
+import {GroupService} from '../core/group.service';
+import {GroupModel} from '../core/group.model';
 
 @Component({
   selector: 'hif-groups-page',
