@@ -8,7 +8,12 @@
   <h2>User Groups</h2>
 </div>
 <div class="group-div">
-  <h2>Your Groups</h2>
+  <div class="filter-div">
+    <h2>Your Groups</h2>
+    <button (click)="sortByPopular()">Popular</button>
+    <button (click)="sortByAlphabetical()">Alphabetical</button>
+    <button (click)="sortByDefault()">Old to New</button>
+  </div>
   <ul class="groups">
     <li *ngFor="let group of groups | async"
         [class.selected]="group === selectedGroup"
