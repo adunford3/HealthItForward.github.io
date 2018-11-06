@@ -35,6 +35,23 @@ export class ThreadServices {
     });
   }
 
+  getThread(threadId: string) {
+    return new Promise<ThreadModel>((resolve) => {
+      const ref = firebase.database().ref('threads/' + threadId);
+      ref.once('value').then(function(snapshot) {
+        const body = snapshot.child('body').val();
+        const creatorID = snapshot.child('creatorID').val();
+        const replyChain = snapshot.child('replyChain').val();
+        const threadID = snapshot.child('threadID').val();
+        const title = snapshot.child('title').val();
+        const upvotes = snapshot.child('upvotes').val();
+        const t = new ThreadModel(body, creatorID, replyChain, threadID, title, upvotes);
+
+        resolve(t);
+      });
+    });
+  }
+
   // Takes a ThreadModel Object, creates a new Key and writes to the database
   addThread(thread: ThreadModel) {
     return new Promise<any>( resolve => {
