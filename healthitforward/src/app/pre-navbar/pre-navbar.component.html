@@ -26,7 +26,7 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <form>
+      <form [formGroup]="loginForm">
         <input type="email" formControlName="email" class="form-control" name="username" placeholder="email@email.com">
         <input type="password" name="password" formControlName="password" clas="form-control" placeholder="password">
       </form>

@@ -4,12 +4,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {SurveyModel} from './survey.model';
+import {UserService} from './user.service';
 
 @Injectable()
 export class SurveyService {
 
   constructor(public db: AngularFireDatabase,
-              public afAuth: AngularFireAuth
+              public afAuth: AngularFireAuth,
+              public userService: UserService
   ) {
   }
 
@@ -32,6 +34,14 @@ export class SurveyService {
         });
         resolve(surveys);
       });
+    });
+  }
+
+  getUserSurveys() {
+    const surveys = this.getSurveys();
+    const user = this.userService.getUser();
+    Promise.all([surveys, user]).then(function(values) {
+      console.log(values);
     });
   }
 

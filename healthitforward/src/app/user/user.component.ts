@@ -4,7 +4,7 @@ import {AuthService} from '../core/auth.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserModel} from '../core/user.model';
+//import {UserModel} from '../core/user.model';
 
 @Component({
   selector: 'hif-user',
@@ -13,14 +13,14 @@ import {UserModel} from '../core/user.model';
 })
 export class UserComponent implements OnInit{
 
-  user: UserModel;
+  //user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
 
   constructor(
     public userService: UserService,
     public authService: AuthService,
     private route: ActivatedRoute,
-    private location: Location,
+    private location : Location,
     private fb: FormBuilder
   ) {
 
@@ -30,8 +30,8 @@ export class UserComponent implements OnInit{
     this.route.data.subscribe(routeData => {
       let data = routeData['data'];
       if (data) {
-        this.user = data;
-        this.createForm(this.user.username);
+        //this.user = data;
+        //this.createForm(this.user.name);
       }
     })
   }
