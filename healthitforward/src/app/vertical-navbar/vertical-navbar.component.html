@@ -5,17 +5,8 @@
     </button>
       <div class="dropdown-content">
           <ng-container *ngFor="let group of groups | async">
-              <a href="#" routerLink="/group-page">{{group.groupName}}</a>
+              <a [routerLink]="['group-page', group.groupID]">{{group.groupName}}</a>
           </ng-container>
       </div>
-=======
-  <button class="dropdown-btn"><b>Groups</b>
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown-container">
-    <a href="#">Parkinson's</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
->>>>>>> Stashed changes
   </div>
 </div>

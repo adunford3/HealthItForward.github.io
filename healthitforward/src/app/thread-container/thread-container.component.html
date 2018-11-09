@@ -4,8 +4,8 @@
 <div>
   <hif-vertical-navbar></hif-vertical-navbar>
 </div>
-<div class="container">
-  <h2>groupName</h2>
+<div class="container" *ngIf="group | async as group">
+  <h2>{{group.groupName}}</h2>
   <button id="subscribe" [disabled]="hasSubscribed()" class="subscribe-button" (click)="subscribeToGroup()">Subscribe</button>
   <button id="unsubscribe" [disabled]="!hasSubscribed()" class="subscribe-button" (click)="unsubscribeFromGroup()">Unsubscribe</button>
 </div>

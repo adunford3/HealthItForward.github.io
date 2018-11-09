@@ -2,6 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 
 import {ThreadComponent} from "../thread/thread.component";
 import {GroupModel} from '../core/group.model';
+import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {GroupService} from '../core/group.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'hif-thread-container',
@@ -11,12 +15,32 @@ import {GroupModel} from '../core/group.model';
 export class ThreadContainerComponent implements OnInit {
 
   subscribed: boolean;
-  group: GroupModel;
+  // group: GroupModel;
+  group;
 
 
-  constructor() { }
+  constructor(
+      private route: ActivatedRoute,
+      private router: Router,
+      private service: GroupService
+  ) {
+      this.route.params.subscribe(params => console.log(params));
+  }
 
   ngOnInit() {
+      const g = this.service.getGroup('-LNbI5b4ST0Ytwldnjky').then(function(group) {
+          // console.log('Vertical Navbar groups loaded');
+          return group;
+      });
+      // this.group = Promise.resolve(g);
+      const f = this.route.paramMap.pipe(
+          switchMap((params: ParamMap) =>
+              Promise.resolve(this.service.getGroup(params.get('id')).then(function(group) {
+                  return group;
+              })))
+      );
+      this.group = f;
+      console.log(this.group);
     this.subscribed = false;
     document.getElementById("unsubscribe").style.backgroundColor = "gray";
   }
