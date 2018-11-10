@@ -4,6 +4,16 @@
 <div>
   <hif-vertical-navbar></hif-vertical-navbar>
 </div>
+<div>
+  <h2>Recent Surveys</h2>
+</div>
+<div class="survey-div">
+  <ul class="survey">
+    <li *ngFor="let survey of surveys | async"> {{survey.surveyName}}
+      <span class="badge" *ngFor="let tag of survey.groupTags">{{tag}}</span>
+    </li>
+  </ul>
+</div>
 <div class="container">
   <h2>Post a Survey</h2>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">

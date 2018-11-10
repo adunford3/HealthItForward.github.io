@@ -10,6 +10,7 @@ import {SurveyService} from "../core/survey.service";
 })
 export class SurveysComponent implements OnInit {
 
+  surveys;
   form: FormGroup;
 
   groupTags = [
@@ -33,7 +34,15 @@ export class SurveysComponent implements OnInit {
   }
 
   ngOnInit() {
+    const s = this.surveyService.getSurveys().then(function(surveys) {
+      console.log('Survey Stuff Here:');
+      console.log(surveys);
+      console.log('SurveyName: ' + surveys[0].surveyName);
+      return surveys;
+    });
+    this.surveys = Promise.resolve(s);
 
+    console.log(this.surveys);
   }
 
   onSubmit() {
