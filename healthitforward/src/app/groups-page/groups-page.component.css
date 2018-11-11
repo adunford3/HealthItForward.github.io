@@ -1,9 +1,46 @@
 .group-div {
-  border:1px solid black;
   padding: 0px 10px 10px 10px;
   width: 85%;
   float: left;
   margin-right: 10px
+}
+
+.button {
+  font-size: 20px;
+  font-family: inherit;
+  padding: 10px 10px;
+  width: 15%;
+  margin-bottom: 15px;
+  color: white;
+  background-color: #1c73a1;
+  text-decoration: none;
+  border: none;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+input[type=text] {
+    padding: 11px 11px 11px 11px;
+    width: 13%;
+}
+
+.subButton {
+  font-size: 20px;
+  font-family: inherit;
+  padding: 9.75px;
+  width: 15%;
+  margin-bottom: 15px;
+  color: white;
+  background-color: #1c73a1;
+  text-decoration: none;
+  border: none;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  vertical-align: top;
+}
+
+.button:hover, .subButton:hover{
+  background-color: #ffb83b;
 }
 
 .p-group-button {

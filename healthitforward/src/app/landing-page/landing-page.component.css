@@ -1,6 +1,7 @@
 label {
-    font: normal 16px arial !important;
-    color: black;
+  display: block;
+  font: italic 12px Arial;
+  color: darkgray;
 }
 
 .container {
@@ -8,16 +9,15 @@ label {
 }
 
 .about {
-  width: 550px;
+  width: 30px;
   height: 40px;
-  padding: 16px;
+  padding: 20px;
   float: left;
 }
 
-
 .video {
     float: left;
-    padding: 20px 30px;
+    padding: 20px 5px;
 }
 
 .header {
@@ -32,11 +32,15 @@ label {
     font-family: Arial, sans-serif;
     font-size: 16px;
     /*color: #c4ebff;*/
+    width: 90%;
+    text-align: left;
     color: white;
+    margin-left: 20px;
 }
 
 .text {
   background: #1c73a1;
   border-radius: 25px;
-  padding: 0px 5px 10px 10px;
+  padding-top: 5px;
+  padding-bottom: 30px;
 }
