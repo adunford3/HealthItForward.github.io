@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {GroupModel} from './group.model';
 import {ThreadModel} from './thread.model';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Injectable()
 export class ThreadServices {
@@ -35,7 +36,7 @@ export class ThreadServices {
     });
   }
 
-  getThread(threadId: string) {
+  async getThread(threadId: string) {
     return new Promise<ThreadModel>((resolve) => {
       const ref = firebase.database().ref('threads/' + threadId);
       ref.once('value').then(function(snapshot) {
@@ -50,6 +51,38 @@ export class ThreadServices {
         resolve(t);
       });
     });
+  }
+
+  getGroupThreads(threadIds: string[]) {
+    return new Promise<ThreadModel[]>((resolve) => {
+      let threads = [];
+      let i = 0;
+      threadIds.forEach(function(threadId) {
+        const ref = firebase.database().ref('threads/' + threadId);
+        ref.once('value').then(function(snapshot) {
+          const body = snapshot.child('body').val();
+          const creatorID = snapshot.child('creatorID').val();
+          const replyChain = snapshot.child('replyChain').val();
+          const threadID = snapshot.child('threadID').val();
+          const title = snapshot.child('title').val();
+          const upvotes = snapshot.child('upvotes').val();
+          const t = new ThreadModel(body, creatorID, replyChain, threadID, title, upvotes);
+
+          threads[i++] = t;
+          resolve(threads);
+        });
+      });
+      resolve(threads);
+    });
+
+    // let threads = [];
+    // let i = 0;
+    // const self = this;
+    // threadIds.forEach(async function(threadId) {
+    //   const threadPromise = await self.getThread((threadId));
+    //   threads[i++] = await Promise.resolve((threadPromise));
+    // });
+    // return threads;
   }
 
   // Takes a ThreadModel Object, creates a new Key and writes to the database

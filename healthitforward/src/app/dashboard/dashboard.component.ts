@@ -26,7 +26,27 @@ export class DashboardComponent {
     const testGroup = this.groupService.getGroup('-LNbI5b4ST0Ytwldnjky').then(function(g) {
       console.log(g);
       return g;
-    })
+    });
+
+    this.userService.unsubscribeFromGroup('-LNbI5b4ST0Ytwldnjky');
+
+    const thing1 = this.groupService.getGroupThreadIds('GroupID').then(function(v) {
+      console.log(v[0]);
+    });
+
+    // this.threadService.getGroupThreads(['Thread', 'Thread']).then(function(v) {
+    //   console.log(v[0]);
+    // });
+
+    this.surveyService.updateClickCount('-LR3DYpnHjNn-5AuJ1Lc', 0).then(function(s) {
+      console.log(s);
+    });
+
+    // this.threadService.getThread(('Thread')).then(function(t) {
+    //   console.log(t);
+    // });
+
+    // this.threadService.getThread('Thread');
     // const user = this.userService.getUser().then(function(U) {
     //   console.log('=======User TEST===========');
     //   console.log(U);

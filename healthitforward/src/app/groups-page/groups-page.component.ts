@@ -3,6 +3,7 @@ import {UserService} from '../core/user.service';
 import {GroupService} from '../core/group.service';
 import {GroupModel} from '../core/group.model';
 import {Router} from '@angular/router';
+import {ThreadService} from '../services/thread.service';
 
 @Component({
   selector: 'hif-groups-page',

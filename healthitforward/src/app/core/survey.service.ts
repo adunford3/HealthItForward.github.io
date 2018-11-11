@@ -45,6 +45,14 @@ export class SurveyService {
     });
   }
 
+  updateClickCount(surveyId: string, oldcount: number) {
+    return new Promise<any>(resolve => {
+      const surveyRef = firebase.database().ref('surveys/' + surveyId + '/clickCount');
+      surveyRef.set(oldcount + 1).then(res => {
+        resolve(res);
+      });
+    });
+  }
 
   addSurvey(survey: SurveyModel) {
     return new Promise<any>(resolve => {

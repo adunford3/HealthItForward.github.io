@@ -115,10 +115,9 @@ constructor(
 
   unsubscribeFromGroup(groupIdKey) {
     const userPromise = this.getUser().then(function(u) {
+      console.log(u);
       return u;
     });
-    let user = Promise.resolve(userPromise);
-    console.log(user);
 
     // const arr = [];
     // let keyToRemove: string;

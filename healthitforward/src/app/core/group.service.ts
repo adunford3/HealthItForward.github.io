@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {GroupModel} from './group.model';
 import {UserService} from './user.service';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Injectable()
 export class GroupService {
@@ -53,6 +54,20 @@ export class GroupService {
     });
   }
 
+  getGroupThreadIds(groupId: string) {
+    return new Promise<string[]>((resolve) => {
+      const ref = firebase.database().ref('groups/' + groupId + '/threads');
+      ref.once('value').then(function(snapshot) {
+        let threadIds = [];
+        let i = 0;
+        snapshot.forEach(function(childSnapshot) {
+          threadIds[i++] = childSnapshot.val();
+        });
+        resolve(threadIds);
+      });
+    });
+  }
+
   addGroup(group: GroupModel) {
     return new Promise<any>( resolve => {
       const groupId = firebase.database().ref().child('groups').push().key;
@@ -68,6 +83,12 @@ export class GroupService {
         resolve(res);
         this.userService.subscribeToGroup(groupId);
       });
+    });
+  }
+
+  updateThreads(group: GroupModel, threadID: string) {
+    return new Promise<any>( resolve => {
+      const ref = firebase.database().ref
     });
   }
 }
