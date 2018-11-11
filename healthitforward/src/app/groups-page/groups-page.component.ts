@@ -36,7 +36,7 @@ export class GroupsPageComponent implements OnInit {
     onSelect(group: GroupModel): void {
         this.selectedGroup = group;
         console.log(this.selectedGroup);
-        this.router.navigate(['groups-page/group-page', group.groupID])
+        this.router.navigate(['/group-page', group.groupID])
     }
 
   createGroup(groupTitle: String) {
