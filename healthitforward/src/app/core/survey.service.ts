@@ -38,10 +38,21 @@ export class SurveyService {
   }
 
   getUserSurveys() {
-    const surveys = this.getSurveys();
     const user = this.userService.getUser();
-    Promise.all([surveys, user]).then(function(values) {
-      console.log(values);
+    const surveys = this.getSurveys();
+    return Promise.all([user, surveys]).then(function(values) {
+      let userSurveys = [];
+      let i = 0;
+      values[1].forEach(function(surveyAll) {
+        values[0].mySurveys.forEach(function(surveyUser) {
+          if (surveyUser === surveyAll.surveyID) {
+            console.log('FOUND A MATCH');
+            userSurveys[i++] = surveyAll;
+          }
+        });
+      });
+      // console.log(userSurveys);
+      this.resolve(userSurveys);
     });
   }
 

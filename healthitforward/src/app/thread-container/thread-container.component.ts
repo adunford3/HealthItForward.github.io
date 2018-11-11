@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {GroupService} from '../core/group.service';
 import {switchMap} from 'rxjs/operators';
+import {UserService} from '../core/user.service';
 
 @Component({
   selector: 'hif-thread-container',
@@ -22,7 +23,8 @@ export class ThreadContainerComponent implements OnInit {
   constructor(
       private route: ActivatedRoute,
       private router: Router,
-      private service: GroupService
+      private service: GroupService,
+      private userService: UserService
   ) {
       this.route.params.subscribe(params => console.log(params));
   }
@@ -47,8 +49,10 @@ export class ThreadContainerComponent implements OnInit {
 
   subscribeToGroup() {
     this.subscribed = true;
-    document.getElementById("subscribe").style.backgroundColor = "gray";
-    document.getElementById("unsubscribe").style.backgroundColor = "#336699";
+    document.getElementById('subscribe').style.backgroundColor = 'gray';
+    document.getElementById('unsubscribe').style.backgroundColor = '#336699';
+    console.log(this.group.groupID);
+    this.userService.subscribeToGroup(this.group.groupID);
     alert("Subscribed to Parkinson's Patient Group!");
   }
 

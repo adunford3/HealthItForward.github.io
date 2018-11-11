@@ -34,13 +34,11 @@ export class DashboardComponent {
       console.log(v[0]);
     });
 
-    // this.threadService.getGroupThreads(['Thread', 'Thread']).then(function(v) {
-    //   console.log(v[0]);
+    // let testThread = this.threadService.getGroupThreads(['Thread', 'Thread']).then(function(t) {
+    //   console.log(t);
     // });
 
-    this.surveyService.updateClickCount('-LR3DYpnHjNn-5AuJ1Lc', 0).then(function(s) {
-      console.log(s);
-    });
+    // this.surveyService.getUserSurveys();
 
     // this.threadService.getThread(('Thread')).then(function(t) {
     //   console.log(t);

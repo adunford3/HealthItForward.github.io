@@ -18,7 +18,7 @@ export class ThreadServices {
     return new Promise<ThreadModel[]>((resolve) => {
       const ref = firebase.database().ref('threads/');
       ref.once('value').then(function (snapshot) {
-        const threads = [];
+        let threads = [];
         let i = 0;
         snapshot.forEach(function (childSnapshot) {
           const body = childSnapshot.child('body').val();
@@ -53,37 +53,18 @@ export class ThreadServices {
     });
   }
 
-  getGroupThreads(threadIds: string[]) {
-    return new Promise<ThreadModel[]>((resolve) => {
-      let threads = [];
-      let i = 0;
-      threadIds.forEach(function(threadId) {
-        const ref = firebase.database().ref('threads/' + threadId);
-        ref.once('value').then(function(snapshot) {
-          const body = snapshot.child('body').val();
-          const creatorID = snapshot.child('creatorID').val();
-          const replyChain = snapshot.child('replyChain').val();
-          const threadID = snapshot.child('threadID').val();
-          const title = snapshot.child('title').val();
-          const upvotes = snapshot.child('upvotes').val();
-          const t = new ThreadModel(body, creatorID, replyChain, threadID, title, upvotes);
-
-          threads[i++] = t;
-          resolve(threads);
-        });
-      });
-      resolve(threads);
-    });
-
-    // let threads = [];
-    // let i = 0;
-    // const self = this;
-    // threadIds.forEach(async function(threadId) {
-    //   const threadPromise = await self.getThread((threadId));
-    //   threads[i++] = await Promise.resolve((threadPromise));
-    // });
-    // return threads;
-  }
+  // async getGroupThreads(threadIds: string[]) {
+  //   let threads = [];
+  //   let i = 0;
+  //   const self = this;
+  //   threadIds.forEach(async function(threadId) {
+  //     const threadPromise = await self.getThread((threadId));
+  //     threads[i++] = await Promise.resolve((threadPromise));
+  //     console.log(await Promise.resolve((threadPromise)));
+  //   });
+  //   let newThread = await threads;
+  //   return newThread;
+  // }
 
   // Takes a ThreadModel Object, creates a new Key and writes to the database
   addThread(thread: ThreadModel) {

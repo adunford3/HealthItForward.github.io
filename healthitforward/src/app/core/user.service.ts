@@ -49,12 +49,13 @@ constructor(
         snapshot.forEach(function (childSnapshot) {
           const email = childSnapshot.child('email').val();
           const myGroups = childSnapshot.child('myGroups').val();
+          const mySurveys = childSnapshot.child('mySurveys').val();
           const myThreads = childSnapshot.child('myThreads').val();
           const password = childSnapshot.child('password').val();
           const role = childSnapshot.child('role').val();
           const userID = childSnapshot.child('userID').val();
           const username = childSnapshot.child('username').val();
-          const u = new UserModel(email, myGroups, myThreads, password, role, userID, username);
+          const u = new UserModel(email, myGroups, mySurveys, myThreads, password, role, userID, username);
           users[i++] = u;
         });
         resolve(users);
@@ -76,12 +77,13 @@ constructor(
         let user: UserModel;
         const email = snapshot.child('email').val();
         const myGroups = snapshot.child('myGroups').val();
+        const mySurveys = snapshot.child('mySurveys').val();
         const myThreads = snapshot.child('myThreads').val();
         const password = snapshot.child('password').val();
         const role = snapshot.child('role').val();
         const userID = snapshot.child('userID').val();
         const username = snapshot.child('username').val();
-        user = new UserModel(email, myGroups, myThreads, password, role, userID, username);
+        user = new UserModel(email, myGroups, mySurveys, myThreads, password, role, userID, username);
 
         resolve(user);
       });
@@ -97,6 +99,7 @@ constructor(
       firebase.database().ref('users/' + userId).set({
         email: user.email,
         myGroups: user.myGroups,
+        mySurveys: user.mySurveys,
         myThreads: user.myThreads,
         password: user.password,
         role: user.role,
@@ -110,6 +113,7 @@ constructor(
 
   // Subscribe to Group with group Id Key
   subscribeToGroup(newGroupIdKey) {
+    console.log('newGroupIdKey: ' + newGroupIdKey);
     firebase.database().ref('users/' + this.getUserID() + '/' + 'myGroups').push().set(newGroupIdKey);
   }
 
