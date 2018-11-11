@@ -50,6 +50,7 @@ import {GroupService} from './core/group.service';
 import {SurveyService} from './core/survey.service';
 import {ThreadServices} from './core/thread.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PreNavbarComponent,
     LandingPageComponent,
     PageNotFoundComponent,
+    SearchBarComponent,
 
   ],
   imports: [

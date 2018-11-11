@@ -1,15 +1,14 @@
-/* Add padding to containers */
-.container {
-  padding: 16px;
+.search {
+  display: inline;
 }
 
 .survey-div {
-  border:1px solid black;
   padding: 0px 10px 10px 10px;
   width: 85%;
   float: left;
   margin-right: 10px;
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  margin-top: 20px
 }
 
 .survey {
@@ -31,7 +30,7 @@
 }
 
 .survey li.selected:hover {
-  background-color: #BBD8DC !important;
+  background-color: #BBD8DC;
   color: white;
 }
 
@@ -62,6 +61,16 @@
   border-radius: 0 0 0 0;
 }
 
+.survey .counter {
+  float: right;
+}
+
+/* Add padding to containers */
+.container {
+  margin-top: 200px;
+  padding: 16px;
+}
+
 /* Full-width input fields */
 input[type=text] {
   width: 40%;
@@ -86,11 +95,9 @@ input[type=checkbox] {
   display: block;
 }
 
-
 .submit-button:hover {
   opacity:1;
 }
-
 
 .row {
 }

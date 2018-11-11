@@ -7,10 +7,16 @@
 <div>
   <h2>Recent Surveys</h2>
 </div>
+<div class="search">
+  Search for Survey: <hif-search-bar></hif-search-bar>
+</div>
 <div class="survey-div">
   <ul class="survey">
-    <li *ngFor="let survey of surveys | async"> {{survey.surveyName}}
+    <li *ngFor="let survey of surveys | async"
+        [class.selected]="survey === selectedSurvey"
+        (click)="linkClick(survey)"> {{survey.surveyName}}
       <span class="badge" *ngFor="let tag of survey.groupTags">{{tag}}</span>
+      <span class="counter">Views: {{survey.clickCount}}</span>
     </li>
   </ul>
 </div>

@@ -10,6 +10,7 @@ import {SurveyService} from "../core/survey.service";
 })
 export class SurveysComponent implements OnInit {
 
+  selectedSurvey;
   surveys;
   form: FormGroup;
 
@@ -45,12 +46,19 @@ export class SurveysComponent implements OnInit {
     console.log(this.surveys);
   }
 
+  linkClick(survey: SurveyModel) {
+    this.selectedSurvey = survey
+    this.surveyService.updateClickCount(survey.surveyID, Number(survey.clickCount));
+    location.reload(true);
+  }
+
   onSubmit() {
     const selectedOrderIds = this.form.value.groupTags
       .map((v, i) => v ? this.groupTags[i].name : null)
       .filter(v => v !== null);
     let mySurvey = new SurveyModel("0", selectedOrderIds, "", this.form.value.name, this.form.value.url);
     this.surveyService.addSurvey(mySurvey);
+    location.reload(true);
     alert("Your survey '" + this.form.value.name + "' has been posted!");
   }
 }
