@@ -17,7 +17,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'groups-page/group-page/:id', component: ThreadContainerComponent},
+  {path: 'group-page/:id', component: ThreadContainerComponent},
   {path: 'groups-page', component: GroupsPageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},

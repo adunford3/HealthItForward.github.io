@@ -5,7 +5,7 @@
     </button>
       <div class="dropdown-content">
           <ng-container *ngFor="let group of groups | async">
-              <a [routerLink]="['group-page', group.groupID]">{{group.groupName}}</a>
+              <a [routerLink]="['/group-page', group.groupID]">{{group.groupName}}</a>
           </ng-container>
       </div>
   </div>
