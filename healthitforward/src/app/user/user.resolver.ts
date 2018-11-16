@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, Resolve, Router} from "@angular/router";
+import {ActivatedRouteSnapshot, Resolve, Router} from '@angular/router';
 import {UserService} from '../core/user.service';
 import {UserModel} from '../core/user.model';
 
@@ -29,8 +29,8 @@ export class UserResolver implements Resolve<UserModel> {
                 }, err => {
                     this.router.navigate(['/login']);
                     return reject(err);
-                })
-        })
+                });
+        });
     }
 
 }

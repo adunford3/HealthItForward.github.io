@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
                 //this.user = data;
                 //this.createForm(this.user.name);
             }
-        })
+        });
     }
 
     createForm(name) {
@@ -45,7 +45,7 @@ export class UserComponent implements OnInit {
         this.userService.updateCurrentUser(value)
             .then(res => {
                 console.log(res);
-            }, err => console.log(err))
+            }, err => console.log(err));
     }
 
     logout() {
@@ -53,7 +53,7 @@ export class UserComponent implements OnInit {
             .then((res) => {
                 this.location.back();
             }, (error) => {
-                console.log("Logout error", error);
+                console.log('Logout error', error);
             });
     }
 }

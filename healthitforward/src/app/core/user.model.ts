@@ -1,7 +1,7 @@
 export class UserModel {
     email: string;
     myGroups: string[];
-    mySurveys: string[]
+    mySurveys: string[];
     myThreads: string[];
     password: string;
     role: string;

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../core/auth.service'
+import {AuthService} from '../core/auth.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../core/user.service';
@@ -37,20 +37,20 @@ export class RegisterComponent implements OnInit {
         this.authService.doRegister(value)
             .then(res => {
                 console.log(res);
-                this.errorMessage = "";
-                this.successMessage = "Your account has been created";
+                this.errorMessage = '';
+                this.successMessage = 'Your account has been created';
                 this.registerToDatabase();
             }, err => {
                 console.log(err);
                 this.errorMessage = err.message;
-                this.successMessage = "";
-            })
+                this.successMessage = '';
+            });
     }
 
     registerToDatabase() {
-        this.userService.addUser(this.registerForm.controls["username"].value,
-            this.registerForm.controls["email"].value,
-            this.registerForm.controls["password"].value);
+        this.userService.addUser(this.registerForm.controls['username'].value,
+            this.registerForm.controls['email'].value,
+            this.registerForm.controls['password'].value);
         this.router.navigate(['/', 'health-survey']);
     }
 

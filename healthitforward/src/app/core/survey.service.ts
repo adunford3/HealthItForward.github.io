@@ -9,11 +9,11 @@ import {UserService} from './user.service';
 @Injectable()
 export class SurveyService {
 
-  constructor(public db: AngularFireDatabase,
-              public afAuth: AngularFireAuth,
-              public userService: UserService
-  ) {
-  }
+    constructor(public db: AngularFireDatabase,
+                public afAuth: AngularFireAuth,
+                public userService: UserService
+    ) {
+    }
 
     /**
      * Returns a new promise with an array of all the surveyModels stored on the database

@@ -106,7 +106,7 @@ export class GroupService {
 
     updateThreads(group: GroupModel, threadID: string) {
         return new Promise<any>(resolve => {
-            const ref = firebase.database().ref
+            const ref = firebase.database().ref;
         });
     }
 }

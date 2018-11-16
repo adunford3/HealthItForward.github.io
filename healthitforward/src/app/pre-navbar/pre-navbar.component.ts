@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../core/auth.service";
-import {UserService} from "../core/user.service";
-import {Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../core/auth.service';
+import {UserService} from '../core/user.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'hif-pre-navbar',
@@ -39,7 +39,7 @@ export class PreNavbarComponent implements OnInit {
             }, err => {
                 console.log(err);
                 this.errorMessage = err.message;
-            })
+            });
     }
 
 }

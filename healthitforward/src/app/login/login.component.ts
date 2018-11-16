@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../core/auth.service'
+import {AuthService} from '../core/auth.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../core/user.service';
@@ -40,6 +40,6 @@ export class LoginComponent implements OnInit {
             }, err => {
                 console.log(err);
                 this.errorMessage = err.message;
-            })
+            });
     }
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Thread} from "./thread";
-import {ThreadService} from "../services/thread.service";
+import {Thread} from './thread';
+import {ThreadService} from '../services/thread.service';
 
 // import { THREADS } from "../mock-threads";
 
@@ -44,6 +44,6 @@ export class ThreadComponent implements OnInit {
         this.threadService.addThread(({title, content}) as Thread)
             .subscribe(thread => {
                 this.threads.push(thread);
-            })
+            });
     }
 }

@@ -1,15 +1,15 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
-import {Observable} from "rxjs/Observable";
-import {of} from "rxjs/observable/of";
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs/observable/of';
 
-import {Thread} from "../thread/thread";
+import {Thread} from '../thread/thread';
 
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {catchError, tap} from 'rxjs/operators';
 
-import {MessageService} from "../message.service";
+import {MessageService} from '../message.service';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

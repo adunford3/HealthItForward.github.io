@@ -179,12 +179,12 @@ export class UserService {
         });
     }
 
-  /**
-   * An older add user Method that writes a new user to the database with hard coded information
-   * @param userName The username of the new user
-   * @param Email The email of the new user
-   * @param Password The password of the new user
-   */
+    /**
+     * An older add user Method that writes a new user to the database with hard coded information
+     * @param userName The username of the new user
+     * @param Email The email of the new user
+     * @param Password The password of the new user
+     */
     // Older add User method used for testing
     addUser(userName: String, Email: String, Password: String) {
         const userId = firebase.auth().currentUser.uid;
