@@ -12,6 +12,9 @@ export class UserService {
                 public afAuth: AngularFireAuth) {
     }
 
+    /**
+     * Returns a promise that resolves or rejects the firebase call requesting the currently logged in user
+     */
     // Methods from one of first tutorials //
     getCurrentUser(): any {
         return new Promise<any>((resolve, reject) => {
@@ -176,6 +179,12 @@ export class UserService {
         });
     }
 
+  /**
+   * An older add user Method that writes a new user to the database with hard coded information
+   * @param userName The username of the new user
+   * @param Email The email of the new user
+   * @param Password The password of the new user
+   */
     // Older add User method used for testing
     addUser(userName: String, Email: String, Password: String) {
         const userId = firebase.auth().currentUser.uid;
@@ -194,49 +203,3 @@ export class UserService {
         });
     }
 }
-
-// // Work in Progress for userProfile and TrackmyHealth
-// updateUserHealthForum(value: String[]) {
-//   return new Promise<any>( resolve => {
-//     firebase.database().ref('users/' + this.getUserID() + '/' + 'healthForm').set({
-//       healthForm: value
-//     }).then( res => {
-//       resolve(res);
-//     });
-//   });
-// }
-
-// // A method that lets a user create a new group and subscribes them to the new group
-// // TODO: Will need checking to verify they have authority to create a group
-// createGroup(name: String) {
-//   const newGroupIdKey = firebase.database().ref().child('groups').push().key;
-//   return new Promise<any>(resolve => {
-//     firebase.database().ref('groups/' + newGroupIdKey).set({
-//       groupID: newGroupIdKey,
-//       groupName: name,
-//       threads: ['temporary1', 'temporary2'],
-//       users: [firebase.auth().currentUser.uid]
-//     }).then( res => {
-//       resolve(res);
-//       this.subscribeToGroup(newGroupIdKey);
-//     });
-//   });
-// }
-
-// // Older add User method used for testing
-// addUser(userName: String, Email: String, Password: String) {
-//   const userId = firebase.auth().currentUser.uid;
-//   return new Promise<any>( resolve => {
-//     firebase.database().ref('users/' + userId).set({
-//       userID: firebase.auth().currentUser.uid,
-//       // userListID: newUserIdKey,
-//       username: userName,
-//       email: Email,
-//       password: Password,
-//       myGroups: ['test1', 'test2'],
-//       healthForm: ['height', 'weight']
-//     }).then(res => {
-//       resolve(res);
-//     });
-//   });
-// }

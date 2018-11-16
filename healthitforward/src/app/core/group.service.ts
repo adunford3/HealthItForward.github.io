@@ -14,6 +14,10 @@ export class GroupService {
                 public userService: UserService) {
     }
 
+    /**
+     * Returns a promise of all the groups currently saved to the database
+     * @return Promise of a groupModel array
+     */
     getGroups() {
         return new Promise<GroupModel[]>((resolve) => {
             const ref = firebase.database().ref('groups/');
@@ -36,6 +40,11 @@ export class GroupService {
         });
     }
 
+    /**
+     * Returns a promise containing a specific groupModel
+     * @param groupId A string of the groupId of the desired group
+     * @return A promise containing a groupModel of the desired data
+     */
     getGroup(groupId: string) {
         return new Promise<GroupModel>((resolve) => {
             const ref = firebase.database().ref('groups/' + groupId);
@@ -53,6 +62,11 @@ export class GroupService {
         });
     }
 
+    /**
+     * Returns a promise containing an array of threadIds of the passed in group
+     * @param groupId A string containing the ID of the group looked at for threadIds
+     * @return A promise containing an array of threadIds for a specific group
+     */
     getGroupThreadIds(groupId: string) {
         return new Promise<string[]>((resolve) => {
             const ref = firebase.database().ref('groups/' + groupId + '/threads');
@@ -67,6 +81,11 @@ export class GroupService {
         });
     }
 
+    /**
+     * Return a promise resolving the Firebase call to write a new group element into the database
+     * @param group The groupModel to written into the database
+     * @return a promise resolving the call made to the database
+     */
     addGroup(group: GroupModel) {
         return new Promise<any>(resolve => {
             const groupId = firebase.database().ref().child('groups').push().key;

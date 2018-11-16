@@ -12,6 +12,9 @@ export class ThreadServices {
                 public afAuth: AngularFireAuth) {
     }
 
+    /**
+     * Returns a promise containing an array of all of the threads currently saved in the database
+     */
     getThreads() {
         return new Promise<ThreadModel[]>((resolve) => {
             const ref = firebase.database().ref('threads/');
@@ -34,6 +37,10 @@ export class ThreadServices {
         });
     }
 
+    /**
+     * Returns a promise containing a single threadModel of a specific threadId that is passed in
+     * @param threadId The threadId of the desired thread
+     */
     async getThread(threadId: string) {
         return new Promise<ThreadModel>((resolve) => {
             const ref = firebase.database().ref('threads/' + threadId);
@@ -64,6 +71,10 @@ export class ThreadServices {
     //   return newThread;
     // }
 
+    /**
+     * Returns a promise that resolves the firebase call to write a new thread into the database
+     * @param thread The threadModel of the thread to be written to the database
+     */
     // Takes a ThreadModel Object, creates a new Key and writes to the database
     addThread(thread: ThreadModel) {
         return new Promise<any>(resolve => {
