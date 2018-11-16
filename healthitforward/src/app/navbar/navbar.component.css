@@ -1,5 +1,5 @@
 .navbar {
-    position:fixed;
+    position: fixed;
     top: 0px;
     left: 0px;
     height: 144px;
@@ -58,7 +58,7 @@ img {
 }
 
 .navbar .logout-button {
-    position:fixed;
+    position: fixed;
     float: right;
     left: 86%;
     height: 144px;

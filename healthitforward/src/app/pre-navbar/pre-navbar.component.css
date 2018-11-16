@@ -1,5 +1,5 @@
 .navbar {
-    position:fixed;
+    position: fixed;
     top: 0px;
     left: 0px;
     height: 144px;
@@ -50,7 +50,7 @@ img {
 }
 
 .dropdown .dropbtn {
-    font-size: 30px;    
+    font-size: 30px;
     border: none;
     outline: none;
     color: white;
@@ -98,7 +98,6 @@ img {
     background-color: #ffb83b;
 }
 
-
 .dropdown-content {
     right: 0;
     display: none;
@@ -106,7 +105,7 @@ img {
     background-color: #c4ebff;
     color: black;
     width: 20%;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 10px;
     z-index: 1;
 }

@@ -1,31 +1,32 @@
 <div>
-  <hif-navbar></hif-navbar>
+    <hif-navbar></hif-navbar>
 </div>
 <div>
-  <hif-vertical-navbar></hif-vertical-navbar>
+    <hif-vertical-navbar></hif-vertical-navbar>
 </div>
 <div>
-  <h2>User Groups</h2>
+    <h2>User Groups</h2>
 </div>
 <div class="group-div">
-  <div class="filter-div">
-    <h2>Your Groups</h2>
-    <button class="button" (click)="sortByPopular()">Popular</button>
-    <button class="button" (click)="sortByAlphabetical()">Alphabetical</button>
-    <button class="button" (click)="sortByDefault()">Old to New</button>
-  </div>
-  <ul class="groups">
-    <li *ngFor="let group of groups | async"
-        [class.selected]="group === selectedGroup"
-        (click)="onSelect(group)">
-      <span class="badge">{{group.index}} </span> {{group.groupName}}
-    </li>
-  </ul>
+    <div class="filter-div">
+        <h2>Your Groups</h2>
+        <button class="button" (click)="sortByPopular()">Popular</button>
+        <button class="button" (click)="sortByAlphabetical()">Alphabetical</button>
+        <button class="button" (click)="sortByDefault()">Old to New</button>
+    </div>
+    <ul class="groups">
+        <li *ngFor="let group of groups | async"
+            [class.selected]="group === selectedGroup"
+            (click)="onSelect(group)">
+            <span class="badge">{{group.index}} </span> {{group.groupName}}
+        </li>
+    </ul>
 </div>
 <div class="new-group">
-  <h2>Create a Group</h2>
-  <input type="text" #groupTitle class="form-control" placeholder="Group Title">
-  <button type="submit"
-    (click)="createGroup(groupTitle.value); groupTitle.value='';"
-    class="subButton">Create Group</button>
+    <h2>Create a Group</h2>
+    <input type="text" #groupTitle class="form-control" placeholder="Group Title">
+    <button type="submit"
+            (click)="createGroup(groupTitle.value); groupTitle.value='';"
+            class="subButton">Create Group
+    </button>
 </div>

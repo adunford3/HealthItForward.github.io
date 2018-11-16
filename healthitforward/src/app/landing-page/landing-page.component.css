@@ -1,18 +1,18 @@
 label {
-  display: block;
-  font: italic 12px Arial;
-  color: darkgray;
+    display: block;
+    font: italic 12px Arial;
+    color: darkgray;
 }
 
 .container {
-  padding: 16px;
+    padding: 16px;
 }
 
 .about {
-  width: 30px;
-  height: 40px;
-  padding: 20px;
-  float: left;
+    width: 30px;
+    height: 40px;
+    padding: 20px;
+    float: left;
 }
 
 .video {
@@ -39,8 +39,8 @@ label {
 }
 
 .text {
-  background: #1c73a1;
-  border-radius: 25px;
-  padding-top: 5px;
-  padding-bottom: 30px;
+    background: #1c73a1;
+    border-radius: 25px;
+    padding-top: 5px;
+    padding-bottom: 30px;
 }

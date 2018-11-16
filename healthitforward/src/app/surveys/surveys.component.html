@@ -1,37 +1,40 @@
 <div>
-  <hif-navbar></hif-navbar>
+    <hif-navbar></hif-navbar>
 </div>
 <div>
-  <hif-vertical-navbar></hif-vertical-navbar>
+    <hif-vertical-navbar></hif-vertical-navbar>
 </div>
 
 <div>
-  <h2>Recent Surveys</h2>
+    <h2>Recent Surveys</h2>
 </div>
 <div class="search">
-  Search for Survey: <hif-search-bar></hif-search-bar>
+    Search for Survey:
+    <hif-search-bar></hif-search-bar>
 </div>
 <h2>Recent Surveys</h2>
 <div class="survey-div">
-  <ul class="survey">
-    <li *ngFor="let survey of surveys | async"
-        [class.selected]="survey === selectedSurvey"
-        (click)="linkClick(survey)"> {{survey.surveyName}}
-      <span class="badge" *ngFor="let tag of survey.groupTags">{{tag}}</span>
-      <span class="counter">Views: {{survey.clickCount}}</span>
-    </li>
-  </ul>
-  <h2>Post a Survey</h2>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <input type="text" placeholder="Group Name" #name class="form-control" formControlName="name">
-    <input type="text" #url placeholder="Survey URL" class="form-control" formControlName="url">
-    <h2 style="font-size: 20px;">Group Tags</h2>
-    <label class="tags" formArrayName="groupTags" *ngFor="let tag of form.controls.groupTags.controls; let i = index">
-      <input type="checkbox" [formControlName]="i"> {{groupTags[i].name}}
-    </label>
-    <button type="submit" class="submit-button">Post</button>
-    <div class="how-to">
-      <label>To post a survey, please use a third-party site such as Google Forms or Survey Monkey to create your survey, then copy and paste the link into this form.</label>
-    </div>
-  </form>
+    <ul class="survey">
+        <li *ngFor="let survey of surveys | async"
+            [class.selected]="survey === selectedSurvey"
+            (click)="linkClick(survey)"> {{survey.surveyName}}
+            <span class="badge" *ngFor="let tag of survey.groupTags">{{tag}}</span>
+            <span class="counter">Views: {{survey.clickCount}}</span>
+        </li>
+    </ul>
+    <h2>Post a Survey</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="Group Name" #name class="form-control" formControlName="name">
+        <input type="text" #url placeholder="Survey URL" class="form-control" formControlName="url">
+        <h2 style="font-size: 20px;">Group Tags</h2>
+        <label class="tags" formArrayName="groupTags"
+               *ngFor="let tag of form.controls.groupTags.controls; let i = index">
+            <input type="checkbox" [formControlName]="i"> {{groupTags[i].name}}
+        </label>
+        <button type="submit" class="submit-button">Post</button>
+        <div class="how-to">
+            <label>To post a survey, please use a third-party site such as Google Forms or Survey Monkey to create your
+                survey, then copy and paste the link into this form.</label>
+        </div>
+    </form>
 </div>

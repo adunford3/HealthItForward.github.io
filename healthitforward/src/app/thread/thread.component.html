@@ -1,9 +1,9 @@
 <div>
-  <ul class="threads">
-    <li *ngFor="let thread of threads"
-        [class.selected]="thread === selectedThread"
-        (click)="onSelect(thread)">
-      <span class="badge">{{ thread.id}} </span> {{thread.title}}
-    </li>
-  </ul>
+    <ul class="threads">
+        <li *ngFor="let thread of threads"
+            [class.selected]="thread === selectedThread"
+            (click)="onSelect(thread)">
+            <span class="badge">{{ thread.id}} </span> {{thread.title}}
+        </li>
+    </ul>
 </div>
