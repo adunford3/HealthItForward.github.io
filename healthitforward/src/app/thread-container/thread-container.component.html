@@ -12,9 +12,15 @@
     <button id="unsubscribe" [disabled]="!hasSubscribed()" class="subscribe-button" (click)="unsubscribeFromGroup()">
         Unsubscribe
     </button>
-</div>
-<div class="threads">
-    <h3>Threads</h3>
+    <div class="threads">
+        <h3>Threads</h3>
+        <ul class="threads">
+            <li *ngFor="let thread of group.threads">
+                <span class="badge"></span>
+                {{thread}}
+            </li>
+        </ul>
+    </div>
 </div>
 <div class="new-thread">
     <label> Thread Title:
