@@ -2,7 +2,7 @@
     padding: 0px 10px 10px 10px;
     width: 85%;
     float: left;
-    margin-right: 10px;
+    margin-right: 10px
 }
 
 .button {
@@ -69,45 +69,26 @@ input[type=text] {
     margin-top: 7px;
 }
 
-.groups {
-    margin: 0 0 0em 0;
-    list-style-type: none;
-    padding: 0px;
-    /*width: 15em;*/
-}
-
 .groups li {
     cursor: pointer;
     position: relative;
     left: 0;
-    background-color: #c4ebff;
+    background-color: #EEE;
     margin: .5em;
     padding: .3em 0;
-    height: 5em;
+    height: 1.6em;
     border-radius: 4px;
-    color: black;
-    font-weight: bold;
-    width: 85%;
 }
 
 .groups li.selected:hover {
-    background-color: #585858 !important;
+    background-color: #BBD8DC !important;
     color: white;
 }
 
-.groups li.selected:hover {
-    -webkit-transition-duration: 0.7s; /* Safari */
-    transition-duration: 0.7s;
-}
-
 .groups li:hover {
-    color: black;
-    background-color: #ffd791;
-}
-
-.groups li:hover {
-    -webkit-transition-duration: 0.7s; /* Safari */
-    transition-duration: 0.7s;
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
 }
 
 .groups .text {
@@ -119,13 +100,13 @@ input[type=text] {
     display: inline-block;
     font-size: small;
     color: white;
-    padding: 0.85em 0.7em 0em 0.7em;
-    background-color: #1c73a1;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #607D8B;
     line-height: 1em;
     position: relative;
     left: -1px;
-    top: -4.8px;
-    height: 6.05em;
+    top: -4px;
+    height: 1.8em;
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
 }
