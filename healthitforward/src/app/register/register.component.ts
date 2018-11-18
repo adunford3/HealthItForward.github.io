@@ -25,6 +25,9 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
     }
 
+    /**
+     * Creates the register form for the user to enter their email, username, and password.
+     */
     createForm() {
         this.registerForm = this.fb.group({
             email: ['', Validators.required],
@@ -33,6 +36,11 @@ export class RegisterComponent implements OnInit {
         });
     }
 
+    /**
+     * Attempts to authenticate the user to register..
+     * @param value The user input taken from the registration form containing their email, username,
+     * and password.
+     */
     tryRegister(value) {
         this.authService.doRegister(value)
             .then(res => {
@@ -47,6 +55,9 @@ export class RegisterComponent implements OnInit {
             });
     }
 
+    /**
+     * Adds the newly registered user to the database.
+     */
     registerToDatabase() {
         this.userService.addUser(this.registerForm.controls['username'].value,
             this.registerForm.controls['email'].value,
