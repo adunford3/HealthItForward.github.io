@@ -1,17 +1,17 @@
 export class GroupModel {
-  groupDescription: string;
-  groupID: string;
-  groupName: string;
-  mods: string[];
-  threads: string[];
-  users: string[];
+    groupDescription: string;
+    groupID: string;
+    groupName: string;
+    mods: string[];
+    threads: string[];
+    users: string[];
 
-  constructor(description: string, groupId: string, name: string, m: string[], t: string[], u: string[]) {
-    this.groupDescription = description;
-    this.groupID = groupId;
-    this.groupName = name;
-    this.mods = m;
-    this.threads = t;
-    this.users = u;
-  }
+    constructor(description: string, groupId: string, name: string, m: string[], t: string[], u: string[]) {
+        this.groupDescription = description;
+        this.groupID = groupId;
+        this.groupName = name;
+        this.mods = m;
+        this.threads = t;
+        this.users = u;
+    }
 }

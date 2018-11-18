@@ -1,85 +1,56 @@
-/* Fixed sidenav, full height */
 .sidenav {
-  height: 600px;
-  width: 150px;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #EEE;
-  overflow-x: hidden;
-  float: right;
-  margin-top: 10px
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 23.5%;
+    left: 85%;
+    background-color: #1c73a1;
+    overflow-x: hidden;
+    padding-top: 20px;
 }
 
-/* Style the sidenav links and the dropdown button */
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #607D8B;
-  display: block;
-  border: none;
-  background: none;
-  width:100%;
-  text-align: left;
-  cursor: pointer;
-  font-family: Arial, Helvetica, sans-serif;
-  outline: none;
+/* Dropdown Button */
+.dropbtn {
+    background-color: #1c73a1;
+    color: white;
+    font-size: 30px;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 10px;
 }
 
-/* The dropdown container */
+/* The container <div> - needed to position the dropdown content */
 .dropdown {
-  float: left;
-  overflow: hidden;
+    display: inline-block;
 }
 
-/* Dropdown button */
-.dropdown .dropbtn {
-  font-size: 20px;
-  text-align: left;
-  border: none;
-  outline: none;
-  color: #607D8B;
-  padding: 6px 8px 6px 16px;
-  background-color: inherit;
-  font-family: Arial, Helvetica, sans-serif; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
-}
-
-/* Add a background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #ddd;
-  width: 150px;
-}
-
-/* Dropdown content (hidden by default) */
+/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  width: 150px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  float: none;
-  color: #607D8B;
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
-/* Add a grey background color to dropdown links on hover */
+/* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: #ddd;
-  width: 126px;
+    background-color: #ddd
 }
 
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-  width: 150px;
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
 }

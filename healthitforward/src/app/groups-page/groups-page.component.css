@@ -1,33 +1,116 @@
 .group-div {
-  border:1px solid black;
-  padding: 0px 10px 10px 10px;
-  width: 85%;
-  float: left;
-  margin-right: 10px
+    padding: 0px 10px 10px 10px;
+    width: 85%;
+    float: left;
+    margin-right: 10px
+}
+
+.button {
+    font-size: 20px;
+    font-family: inherit;
+    padding: 10px 10px;
+    width: 15%;
+    margin-bottom: 15px;
+    color: white;
+    background-color: #1c73a1;
+    text-decoration: none;
+    border: none;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+input[type=text] {
+    padding: 11px 11px 11px 11px;
+    width: 13%;
+}
+
+.subButton {
+    font-size: 20px;
+    font-family: inherit;
+    padding: 9.75px;
+    width: 15%;
+    margin-bottom: 15px;
+    color: white;
+    background-color: #1c73a1;
+    text-decoration: none;
+    border: none;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    vertical-align: top;
+}
+
+.button:hover, .subButton:hover {
+    background-color: #ffb83b;
 }
 
 .p-group-button {
-  width: 100px;
-  height: 100px;
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  display: inline-block;
+    width: 100px;
+    height: 100px;
+    color: #369;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
 }
 
 .new-group {
-  margin-top: 250px;
+    margin-top: 250px;
 }
 
 .title-input {
-  display: block;
-  width: 20%;
+    display: block;
+    width: 20%;
 }
 
 .create-button {
-  color: #336699;
-  height: 30px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  float: left;
-  margin-top: 7px;
+    color: #336699;
+    height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    float: left;
+    margin-top: 7px;
+}
+
+.groups li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+}
+
+.groups li.selected:hover {
+    background-color: #BBD8DC !important;
+    color: white;
+}
+
+.groups li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+}
+
+.groups .text {
+    position: relative;
+    top: -3px;
+}
+
+.groups .badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #607D8B;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -4px;
+    height: 1.8em;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+}
+
+.filter-div {
+    display: inline;
 }

@@ -1,16 +1,46 @@
 label {
-    font: normal 16px arial !important;
-    color: black;
+    display: block;
+    font: italic 12px Arial;
+    color: darkgray;
 }
 
 .container {
-  padding: 16px;
+    padding: 16px;
 }
 
 .about {
-  width: 550px;
-  height: 40px;
-  padding: 16px;
-  float: right;
+    width: 30px;
+    height: 40px;
+    padding: 20px;
+    float: left;
 }
 
+.video {
+    float: left;
+    padding: 20px 5px;
+}
+
+.header {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 50px;
+    color: white;
+    margin-top: 20px;
+}
+
+.subtext {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    /*color: #c4ebff;*/
+    width: 90%;
+    text-align: left;
+    color: white;
+    margin-left: 20px;
+}
+
+.text {
+    background: #1c73a1;
+    border-radius: 25px;
+    padding-top: 5px;
+    padding-bottom: 30px;
+}
