@@ -4,6 +4,7 @@ import {GroupService} from '../core/group.service';
 import {switchMap} from 'rxjs/operators';
 import {UserService} from '../core/user.service';
 import {ThreadServices} from "../core/thread.service";
+import {ThreadModel} from '../core/thread.model';
 
 @Component({
     selector: 'hif-thread-container',
@@ -28,48 +29,48 @@ export class ThreadContainerComponent implements OnInit {
                 private userService: UserService,
                 private threadService: ThreadServices) {
         this.route.params.subscribe(params => this.paramGroupID = params["id"]);
+        const g = this.service.getGroup(this.paramGroupID).then(function (group) {
+            // console.log(group);
+            return group;
+        });
+        this.group = Promise.resolve(g);
+        const tIds = this.service.getGroupThreadIds(this.paramGroupID).then(function(threadIds) {
+            // console.log("Group threadIds: " + threadIds);
+            return threadIds;
+        });
+        this.threadIds = Promise.resolve(tIds);
     }
 
     ngOnInit() {
-        const g = this.service.getGroup(this.paramGroupID).then(function (group) {
-            console.log(group);
-            return group;
-        });
-        // this.group = Promise.resolve(g);
-        // const f = this.route.paramMap.pipe(
-        //     switchMap((params: ParamMap) =>
-        //         Promise.resolve(this.service.getGroup(params.get('id')).then(function (group) {
-        //             return group;
-        //         })))
-        // );
-        this.group = Promise.resolve(g);
-        this.threadIds = this.group.threads;
-        // this.threads = this.getThreads();
-        console.log("paramGroupID: " + this.paramGroupID);
+        console.log("threadIds = " + this.threadIds.then(threads => this.threads = this.getGroupThreads(threads)));
+        // console.log(this.threads);
         this.subscribed = false;
-        document.getElementById('unsubscribe').style.backgroundColor = 'gray';
+        // this.threads = this.getGroupThreads(this.threadIds.then(threads => threads));
+        // console.log("NgOnInit thread call: " + this.threads);
+        // document.getElementById('unsubscribe').style.backgroundColor = 'gray';
     }
 
-    // getThreads() {
-    //     let threads: any[];
-    //     new Promise(this.threadIds.forEach(thread => {
-    //             const t = this.threadService.getThread(thread).then(function(thread) {
-    //                 return thread;
-    //             });
-    //             let currThread = Promise.resolve(t);
-    //             threads.push(currThread);
-    //         });
-    //     )
-    //     console.log(threads);
-    //     return threads;
-    // }
+    async getGroupThreads(threadIds: string[]) {
+        console.log("getGroupThreads: " + threadIds);
+      let threads = [];
+      let i = 0;
+      const self = this;
+      threadIds.forEach(async function(threadId) {
+        const threadPromise = await self.threadService.getThread((threadId));
+        threads[i++] = await Promise.resolve((threadPromise));
+        console.log("Thread is: " + await Promise.resolve((threadPromise)));
+      });
+      let newThread = await threads;
+      console.log("nweArray: " + await newThread);
+      return newThread;
+    }
 
     subscribeToGroup() {
         this.subscribed = true;
         document.getElementById('subscribe').style.backgroundColor = 'gray';
         document.getElementById('unsubscribe').style.backgroundColor = '#336699';
-        console.log(this.group.groupID);
-        this.userService.subscribeToGroup(this.group.groupID);
+        console.log(this.paramGroupID);
+        this.userService.subscribeToGroup(this.paramGroupID);
         alert('Subscribed to Parkinson\'s Patient Group!');
     }
 
@@ -82,5 +83,11 @@ export class ThreadContainerComponent implements OnInit {
 
     hasSubscribed() {
         return this.subscribed;
+    }
+
+    addThread(body: string, creatorID: string, replyChain: string[], threadID: string, title: string, upvotes: string) {
+        let newThread = new ThreadModel(body, creatorID, replyChain, threadID, title, upvotes);
+        this.threadService.addThread(newThread);
+        console.log("New Thread created");
     }
 }
