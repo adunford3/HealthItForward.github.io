@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
     }
 
-
+    /**
+     * Creates the login form for the user to enter their email and password.
+     */
     createForm() {
         this.loginForm = this.fb.group({
             email: ['', Validators.required],
@@ -32,6 +34,10 @@ export class LoginComponent implements OnInit {
         });
     }
 
+    /**
+     * Attempts to authenticate the user to login.
+     * @param value The user input taken from the login form containing their email and password.
+     */
     tryLogin(value) {
         this.authService.doLogin(value)
             .then(res => {

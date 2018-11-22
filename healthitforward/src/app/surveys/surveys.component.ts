@@ -34,6 +34,10 @@ export class SurveysComponent implements OnInit {
         });
     }
 
+    /**
+     * On initialization calls getSurveys(), this retrieves an array of all the
+     * surveyModels stored on the database
+     */
     ngOnInit() {
         const s = this.surveyService.getSurveys().then(function (surveys) {
             console.log('Survey Stuff Here:');
@@ -46,6 +50,10 @@ export class SurveysComponent implements OnInit {
         console.log(this.surveys);
     }
 
+    /**
+     * On click calls updateClickCount(), this update a specific survey's clickCount by one
+     * @param survey A surveyModel containing the clickCount of a survey
+     */
     linkClick(survey: SurveyModel) {
         this.selectedSurvey = survey;
         this.surveyService.updateClickCount(survey.surveyID, Number(survey.clickCount));
