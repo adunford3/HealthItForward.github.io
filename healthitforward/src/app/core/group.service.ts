@@ -104,9 +104,11 @@ export class GroupService {
         });
     }
 
-    updateThreads(group: GroupModel, threadID: string) {
+    updateThreads(groupID: string, threadID: string) {
         return new Promise<any>(resolve => {
-            const ref = firebase.database().ref;
+            const ref = firebase.database().ref();
+            ref.child('groups/' + groupID + '/threads/' + threadID).setValue(threadID);
         });
     }
+
 }

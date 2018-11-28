@@ -58,11 +58,21 @@ export class ThreadContainerComponent implements OnInit {
       threadIds.forEach(async function(threadId) {
         const threadPromise = await self.threadService.getThread((threadId));
         threads[i++] = await Promise.resolve((threadPromise));
-        console.log("Thread is: " + await Promise.resolve((threadPromise)));
+        console.log("Thread is: " + Promise.resolve((threadPromise)).toString());
       });
-      let newThread = await threads;
-      console.log("nweArray: " + await newThread);
-      return newThread;
+        return Promise.all(threads).then(function(values) {
+            console.log(values);
+            let threadArr = [];
+            let i = 0;
+            values.forEach(function() {
+                threadArr[i++] = values[i];
+                console.log(values[i]);
+            });
+            this.resolve(threadArr);
+        });
+      // let newThread = await threads;
+      // console.log("nweArray: " + await newThread);
+      // return newThread;
     }
 
     subscribeToGroup() {
