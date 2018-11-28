@@ -42,37 +42,29 @@ export class ThreadContainerComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("threadIds = " + this.threadIds.then(threads => this.threads = this.getGroupThreads(threads)));
-        // console.log(this.threads);
         this.subscribed = false;
-        // this.threads = this.getGroupThreads(this.threadIds.then(threads => threads));
-        // console.log("NgOnInit thread call: " + this.threads);
-        // document.getElementById('unsubscribe').style.backgroundColor = 'gray';
+        this.getGroupThreads();
     }
 
-    async getGroupThreads(threadIds: string[]) {
-        console.log("getGroupThreads: " + threadIds);
-      let threads = [];
-      let i = 0;
-      const self = this;
-      threadIds.forEach(async function(threadId) {
-        const threadPromise = await self.threadService.getThread((threadId));
-        threads[i++] = await Promise.resolve((threadPromise));
-        console.log("Thread is: " + Promise.resolve((threadPromise)).toString());
-      });
-        return Promise.all(threads).then(function(values) {
-            console.log(values);
-            let threadArr = [];
-            let i = 0;
-            values.forEach(function() {
-                threadArr[i++] = values[i];
-                console.log(values[i]);
-            });
-            this.resolve(threadArr);
+    getGroupThreads() {
+        let tService = this.threadService;
+        let gThreads = this.group.then((group: any) => {
+            return group.threads;
         });
-      // let newThread = await threads;
-      // console.log("nweArray: " + await newThread);
-      // return newThread;
+        this.threads = gThreads.then((threads) => {
+            console.log(threads);
+            let tArr = [];
+            for (let i = 0; i < threads.length; i++) {
+                tService.getThread(threads[i]).then(function(thread) {
+                    tArr.push(thread);
+                });
+            }
+            return tArr;
+        })
+            .then((threads) => {
+                console.log(threads);
+                return threads;
+            });
     }
 
     subscribeToGroup() {
