@@ -106,23 +106,26 @@ export class ThreadContainerComponent implements OnInit {
     }
 
     addThread(body: string, creatorID: string, replyChain: string[], threadID: string, title: string, upvotes: string) {
-        let newThread = new ThreadModel(body, creatorID, replyChain, threadID, title, upvotes);
-        let test = this.threadService.addThread(newThread);
-        // console.log(Promise.resolve(test));
+        // let newThread = new ThreadModel(body, creatorID, replyChain, threadID, title, upvotes);
         const self = this;
-        this.threadIds.then(function(ids) {
-            test.then(function(threadId) {
-                self.service.updateThreads(self.paramGroupID, ids.length, threadId);
-                // console.log("Testing here: " + threadId);
-                // console.log('maybewillwork: '+ ids.length);
-                return threadId;
+        this.userService.getUser().then(function(user) {
+            const newThread = new ThreadModel(body, user.userID, replyChain, threadID, title, '0');
+            const test = self.threadService.addThread(newThread);
+            // console.log(Promise.resolve(test));
+            self.threadIds.then(function(ids) {
+                test.then(function(threadId) {
+                    self.service.updateThreads(self.paramGroupID, ids.length, threadId);
+                    // console.log("Testing here: " + threadId);
+                    // console.log('maybewillwork: '+ ids.length);
+                    return threadId;
+                })
+                // console.log(ids.length);
+                return ids.length;
             })
-            // console.log(ids.length);
-            return ids.length;
-        })
-            .then((length) => { return length; });
-        // this.service.updateThreads(this.paramGroupID, ids);
-        console.log("New Thread created");
-        location.reload(true);
+                .then((length) => { return length; });
+            // this.service.updateThreads(this.paramGroupID, ids);
+            console.log('New Thread created');
+            location.reload(true);
+        });
     }
 }

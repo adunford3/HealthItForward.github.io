@@ -68,8 +68,8 @@ export class UserService {
     // Work in progress to get User data
     getUser() {
         return new Promise<UserModel>(resolve => {
-            this.getUserID().then(function(userID) {
-                const userId = userID;
+            this.getUserID().then(function(uID) {
+                const userId = uID;
                 const ref = firebase.database().ref('users/' + userId);
                 ref.once('value').then(function (snapshot) {
                     let user: UserModel;
@@ -122,11 +122,33 @@ export class UserService {
         // return firebase.auth().currentUser.uid;
     }
 
+    subscribeToSurvey(surveyId: string) {
+        this.getUser().then(function(user) {
+            let subbed = false;
+            for (let i = 0; i < user.mySurveys.length; i++) {
+                if (user.mySurveys[i] === surveyId) {
+                    subbed = true;
+                    break;
+                } else {
+                    subbed = false;
+                }
+            }
+            if (!subbed) {
+                console.log('should subscribe: ' + surveyId);
+                firebase.database().ref().child('users/' + user.userID + '/mySurveys/' + user.mySurveys.length).set(surveyId);
+                location.reload(true);
+            } else {
+                console.log('already subbed');
+                location.reload(true);
+            }
+        });
+    }
+
     // Subscribe to Group with group Id Key
     subscribeToGroup(newGroupIdKey: string, length: number) {
         console.log('newGroupIdKey: ' + newGroupIdKey);
-        this.getUserID().then(function(uID) {
-            firebase.database().ref().child('users/' + uID + '/' + 'myGroups/' + length).set(newGroupIdKey);
+        this.getUser().then(function(user) {
+            firebase.database().ref().child('users/' + user.userID + '/myGroups/' + user.myGroups.length).set(newGroupIdKey);
         });
     }
 
@@ -169,50 +191,6 @@ export class UserService {
             });
         });
     }
-
-    // getUserSurveys() {
-    //     const user = this.userService.getUser();
-    //     const surveys = this.getSurveys();
-    //     return Promise.all([user, surveys]).then(function (values) {
-    //         let userSurveys = [];
-    //         let i = 0;
-    //         values[1].forEach(function (surveyAll) {
-    //             values[0].mySurveys.forEach(function (surveyUser) {
-    //                 if (surveyUser === surveyAll.surveyID) {
-    //                     console.log('FOUND A MATCH');
-    //                     userSurveys[i++] = surveyAll;
-    //                 }
-    //             });
-    //         });
-    //         // console.log(userSurveys);
-    //         this.resolve(userSurveys);
-    //     });
-    // }
-
-
-        // const arr = [];
-        // let keyToRemove: string;
-        // const myGroups = firebase.database().ref('users/' + this.getUserID() + '/myGroups');
-        // myGroups.once('value', function(snapshot) {
-        //   snapshot.forEach(function (childSnapshot) {
-        //     const item = childSnapshot.val();
-        //     item.key = childSnapshot.key;
-        //
-        //     arr.push(item);
-        //   });
-        // });
-        // // iterate through arr of groups
-        // for (const group in arr) {
-        //   if (group /* .value */ === groupIdKey) {
-        //     keyToRemove = group/*.key*/;
-        //   }
-        // }
-        // if (keyToRemove != null) {
-        //   firebase.database().ref('users/' + this.getUserID() + '/myGroups/' + keyToRemove).remove();
-        // } else {
-        //   // did not find group to remove
-        // }
-    // }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 

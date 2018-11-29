@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {SurveyModel} from '../core/survey.model';
 import {SurveyService} from '../core/survey.service';
 import {GroupService} from '../core/group.service';
+import {UserService} from '../core/user.service';
 
 @Component({
     selector: 'hif-surveys',
@@ -20,16 +21,12 @@ export class SurveysComponent implements OnInit {
         groupTags: new FormArray([])
     });
 
-    groupTags = [
-        {id: 100, name: 'Parkinsons'},
-        {id: 200, name: 'Diabetes'},
-        {id: 300, name: 'Yoga'},
-        {id: 400, name: 'General Health'}
-    ];
+    groupTags = [];
 
     constructor(private formBuilder: FormBuilder,
                 public surveyService: SurveyService,
-                public groupService: GroupService) {
+                public groupService: GroupService,
+                public userService: UserService) {
         const self = this;
         this.groupService.getGroups().then(async function(groups) {
             let i = 0;
@@ -76,7 +73,8 @@ export class SurveysComponent implements OnInit {
         this.selectedSurvey = survey;
         window.open(this.selectedSurvey.surveyURL, "_blank");
         this.surveyService.updateClickCount(survey.surveyID, Number(survey.clickCount));
-        location.reload(true);
+        this.userService.subscribeToSurvey(survey.surveyID);
+        // location.reload(true);
     }
 
     onSubmit() {
@@ -85,7 +83,7 @@ export class SurveysComponent implements OnInit {
             .filter(v => v !== null);
         let mySurvey = new SurveyModel('0', selectedOrderIds, '', this.form.value.name, this.form.value.url);
         this.surveyService.addSurvey(mySurvey);
-        location.reload(true);
         alert('Your survey \'' + this.form.value.name + '\' has been posted!');
+        // location.reload(true);
     }
 }
