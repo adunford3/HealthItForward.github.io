@@ -56,6 +56,7 @@ export class SurveysComponent implements OnInit {
      */
     linkClick(survey: SurveyModel) {
         this.selectedSurvey = survey;
+        window.open(this.selectedSurvey.surveyURL, "_blank");
         this.surveyService.updateClickCount(survey.surveyID, Number(survey.clickCount));
         location.reload(true);
     }
