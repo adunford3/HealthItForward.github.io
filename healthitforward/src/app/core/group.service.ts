@@ -98,7 +98,10 @@ export class GroupService {
                 threads: group.threads,
                 users: group.users
             });
-            this.userService.subscribeToGroup(groupId);
+            const self = this;
+            this.userService.getUser().then(function(user) {
+                self.userService.subscribeToGroup(groupId, user.myGroups.length);
+            });
             resolve(groupId);
         });
     }

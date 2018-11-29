@@ -43,7 +43,7 @@ export class GroupsPageComponent implements OnInit {
      * @param groupTitle The title of the group being created.
      */
     createGroup(groupTitle: String) {
-        this.userService.createGroup(groupTitle);
+        // this.userService.createGroup(groupTitle);
         location.reload(true);
         alert('New group created!');
     }

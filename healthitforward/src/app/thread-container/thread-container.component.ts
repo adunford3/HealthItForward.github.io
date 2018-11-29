@@ -42,7 +42,20 @@ export class ThreadContainerComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.subscribed = false;
+        const self = this;
+        this.service.userService.userCheckSubscribe(this.paramGroupID).then(function(subbed) {
+            self.subscribed = subbed;
+            console.log(subbed);
+            if (subbed === true) {
+                document.getElementById('subscribe').style.backgroundColor = 'gray';
+                document.getElementById('unsubscribe').style.backgroundColor = '#336699';
+            } else {
+                document.getElementById('subscribe').style.backgroundColor = '#336699';
+                document.getElementById('unsubscribe').style.backgroundColor = 'gray';
+            }
+        });
+        // this.subscribed = false;
+        console.log(this.subscribed);
         this.getGroupThreads();
     }
 
@@ -72,7 +85,11 @@ export class ThreadContainerComponent implements OnInit {
         document.getElementById('subscribe').style.backgroundColor = 'gray';
         document.getElementById('unsubscribe').style.backgroundColor = '#336699';
         console.log(this.paramGroupID);
-        this.userService.subscribeToGroup(this.paramGroupID);
+        const self = this;
+        this.userService.getUser().then(function(user) {
+           console.log('here: ' + user.myGroups.length);
+            self.userService.subscribeToGroup(self.paramGroupID, user.myGroups.length);
+        });
         alert('Subscribed to Parkinson\'s Patient Group!');
     }
 
@@ -80,6 +97,7 @@ export class ThreadContainerComponent implements OnInit {
         this.subscribed = false;
         document.getElementById('unsubscribe').style.backgroundColor = 'gray';
         document.getElementById('subscribe').style.backgroundColor = '#336699';
+        this.userService.unsubscribeFromGroup(this.paramGroupID);
         alert('Unsubscribed from Parkinson\'s Patient Group.');
     }
 

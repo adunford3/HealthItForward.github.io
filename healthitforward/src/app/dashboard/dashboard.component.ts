@@ -29,11 +29,12 @@ export class DashboardComponent {
             return g;
         });
 
-        this.userService.unsubscribeFromGroup('-LNbI5b4ST0Ytwldnjky');
+        // this.userService.unsubscribeFromGroup('-LNbI5b4ST0Ytwldnjky');
 
         const thing1 = this.groupService.getGroupThreadIds('GroupID').then(function (v) {
             console.log(v[0]);
         });
+        console.log(this.userService.getUser());
 
         // let testThread = this.threadService.getGroupThreads(['Thread', 'Thread']).then(function(t) {
         //   console.log(t);

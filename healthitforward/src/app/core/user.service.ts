@@ -123,16 +123,72 @@ export class UserService {
     }
 
     // Subscribe to Group with group Id Key
-    subscribeToGroup(newGroupIdKey) {
+    subscribeToGroup(newGroupIdKey: string, length: number) {
         console.log('newGroupIdKey: ' + newGroupIdKey);
-        firebase.database().ref('users/' + this.getUserID() + '/' + 'myGroups').push().set(newGroupIdKey);
+        this.getUserID().then(function(uID) {
+            firebase.database().ref().child('users/' + uID + '/' + 'myGroups/' + length).set(newGroupIdKey);
+        });
     }
 
     unsubscribeFromGroup(groupIdKey) {
-        const userPromise = this.getUser().then(function (u) {
-            console.log(u);
-            return u;
+        console.log(groupIdKey);
+        const self = this;
+        this.getUserID().then(function (uID) {
+            self.getUser().then(function (user) {
+                let removeRef = null;
+                for (let i = 0; i < user.myGroups.length; i++) {
+                    if (user.myGroups[i] === groupIdKey) {
+                        removeRef = firebase.database().ref('users/' + uID + '/' + 'myGroups/' + i);
+                    }
+                    if (removeRef !== null) {
+                        removeRef.remove()
+                            .then(function () {
+                                // console.log('was unsubscribed');
+                            })
+                            .catch(function (error) {
+                                console.log('error: ' + error);
+                            });
+                    }
+                }
+            });
         });
+    }
+
+    userCheckSubscribe(groupID: string) {
+        return new Promise<boolean>( resolve => {
+            this.getUser().then(function(user) {
+                let sub = false;
+                console.log('UserGROUPS: ' + user.myGroups.length);
+                for (let i = 0; i < user.myGroups.length; i++) {
+                    if (user.myGroups[i] === groupID) {
+                        console.log('is subbed');
+                        sub = true;
+                    }
+                }
+                resolve(sub);
+            });
+        });
+    }
+
+    // getUserSurveys() {
+    //     const user = this.userService.getUser();
+    //     const surveys = this.getSurveys();
+    //     return Promise.all([user, surveys]).then(function (values) {
+    //         let userSurveys = [];
+    //         let i = 0;
+    //         values[1].forEach(function (surveyAll) {
+    //             values[0].mySurveys.forEach(function (surveyUser) {
+    //                 if (surveyUser === surveyAll.surveyID) {
+    //                     console.log('FOUND A MATCH');
+    //                     userSurveys[i++] = surveyAll;
+    //                 }
+    //             });
+    //         });
+    //         // console.log(userSurveys);
+    //         this.resolve(userSurveys);
+    //     });
+    // }
+
 
         // const arr = [];
         // let keyToRemove: string;
@@ -156,26 +212,26 @@ export class UserService {
         // } else {
         //   // did not find group to remove
         // }
-    }
+    // }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     // A method that lets a user create a new group and subscribes them to the new group
-// TODO: Will need checking to verify they have authority to create a group
-    createGroup(name: String) {
-        const newGroupIdKey = firebase.database().ref().child('groups').push().key;
-        return new Promise<any>(resolve => {
-            firebase.database().ref('groups/' + newGroupIdKey).set({
-                groupID: newGroupIdKey,
-                groupName: name,
-                threads: ['temporary1', 'temporary2'],
-                users: [firebase.auth().currentUser.uid]
-            }).then(res => {
-                resolve(res);
-                this.subscribeToGroup(newGroupIdKey);
-            });
-        });
-    }
+// // TODO: Will need checking to verify they have authority to create a group
+//     createGroup(name: String) {
+//         const newGroupIdKey = firebase.database().ref().child('groups').push().key;
+//         return new Promise<any>(resolve => {
+//             firebase.database().ref('groups/' + newGroupIdKey).set({
+//                 groupID: newGroupIdKey,
+//                 groupName: name,
+//                 threads: ['temporary1', 'temporary2'],
+//                 users: [firebase.auth().currentUser.uid]
+//             }).then(res => {
+//                 resolve(res);
+//                 this.subscribeToGroup(newGroupIdKey);
+//             });
+//         });
+//     }
 
     // Work in Progress for userProfile and TrackmyHealth
     updateUserHealthForum(value: String[]) {
