@@ -217,21 +217,23 @@ export class UserService {
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     // A method that lets a user create a new group and subscribes them to the new group
-// // TODO: Will need checking to verify they have authority to create a group
-//     createGroup(name: String) {
-//         const newGroupIdKey = firebase.database().ref().child('groups').push().key;
-//         return new Promise<any>(resolve => {
-//             firebase.database().ref('groups/' + newGroupIdKey).set({
-//                 groupID: newGroupIdKey,
-//                 groupName: name,
-//                 threads: ['temporary1', 'temporary2'],
-//                 users: [firebase.auth().currentUser.uid]
-//             }).then(res => {
-//                 resolve(res);
-//                 this.subscribeToGroup(newGroupIdKey);
-//             });
-//         });
-//     }
+    // TODO: Will need checking to verify they have authority to create a group
+        createGroup(name: String) {
+            return new Promise<any>(resolve => {
+                const newGroupIdKey = firebase.database().ref().child('groups').push().key;
+                firebase.database().ref('groups/' + newGroupIdKey).set({
+                    groupID: newGroupIdKey,
+                    groupName: name,
+                    threads: ['temporary1', 'temporary2'],
+                    users: [firebase.auth().currentUser.uid]
+                });
+                const self = this;
+                this.getUser().then(function(user) {
+                    self.subscribeToGroup(newGroupIdKey, user.myGroups.length);
+                });
+                resolve(newGroupIdKey);
+            });
+        }
 
     // Work in Progress for userProfile and TrackmyHealth
     updateUserHealthForum(value: String[]) {

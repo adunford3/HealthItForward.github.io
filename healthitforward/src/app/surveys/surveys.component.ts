@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {SurveyModel} from '../core/survey.model';
 import {SurveyService} from '../core/survey.service';
+import {GroupService} from '../core/group.service';
 
 @Component({
     selector: 'hif-surveys',
@@ -12,7 +13,12 @@ export class SurveysComponent implements OnInit {
 
     selectedSurvey;
     surveys;
-    form: FormGroup;
+    // form: FormGroup;
+    form = this.formBuilder.group({
+        name: [''],
+        url: [''],
+        groupTags: new FormArray([])
+    });
 
     groupTags = [
         {id: 100, name: 'Parkinsons'},
@@ -22,16 +28,28 @@ export class SurveysComponent implements OnInit {
     ];
 
     constructor(private formBuilder: FormBuilder,
-                public surveyService: SurveyService) {
-        // Create a new array with a form control for each order
-        const controls = this.groupTags.map(c => new FormControl(false));
-        controls[0].setValue(true); // Set the first checkbox to true (checked)
+                public surveyService: SurveyService,
+                public groupService: GroupService) {
+        const self = this;
+        this.groupService.getGroups().then(async function(groups) {
+            let i = 0;
+            groups.forEach(function(group) {
+                // console.log(group.groupName);
+                self.groupTags[i++] = { id: i * 100, name: group.groupName };
+                // console.log(self.groupTags[i - 1]);
+            });
+        }).then(function() {
+            // Create a new array with a form control for each order
+            const controls = self.groupTags.map(c => new FormControl(false));
+            controls[0].setValue(true); // Set the first checkbox to true (checked)
 
-        this.form = this.formBuilder.group({
-            name: [''],
-            url: [''],
-            groupTags: new FormArray(controls)
+            self.form = self.formBuilder.group({
+                name: [''],
+                url: [''],
+                groupTags: new FormArray(controls)
+            });
         });
+
     }
 
     /**
