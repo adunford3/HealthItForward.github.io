@@ -16,33 +16,6 @@ img {
     top: 0px;
 }
 
-.navbar .home {
-    float: left;
-    top: 52.1%;
-    font-size: 30px;
-    color: white;
-    text-align: center;
-    padding: 55px 30px;
-}
-
-.navbar .about {
-    float: left;
-    top: 52.1%;
-    font-size: 30px;
-    color: white;
-    text-align: center;
-    padding: 55px 30px;
-}
-
-.navbar .groups {
-    float: left;
-    top: 52.1%;
-    font-size: 30px;
-    color: white;
-    text-align: center;
-    padding: 55px 30px;
-}
-
 .dropdown {
     float: right;
     overflow: hidden;
@@ -73,28 +46,7 @@ img {
     color: red;
 }
 
-.navbar .home:hover, .surveys:hover, .groups:hover, .about:hover, .dropdown:hover .dropbtn {
-    -webkit-transition-duration: 0.7s; /* Safari */
-    transition-duration: 0.7s;
-}
-
 .navbar .dropdown:hover .dropbtn {
-    background-color: #ffb83b;
-}
-
-.navbar .home:hover {
-    background-color: #ffb83b;
-}
-
-.navbar .surveys:hover {
-    background-color: #ffb83b;
-}
-
-.navbar .groups:hover {
-    background-color: #ffb83b;
-}
-
-.navbar .about:hover {
     background-color: #ffb83b;
 }
 
@@ -108,6 +60,9 @@ img {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 10px;
     z-index: 1;
+    overflow: hidden;
+    transition-delay: 10s;
+    transition-duration: 2s;
 }
 
 input[type=email], input[type=password] {
@@ -133,7 +88,62 @@ input[type=email], input[type=password] {
 }
 
 .dropdown:hover .dropdown-content {
-    /*-webkit-transition-duration: 0.7s;
-    transition-duration: 0.7s;*/
+    -webkit-transition-duration: 0.7s;
+    transition-duration: 0.7s;
     display: block;
 }
+
+/*<div class="dropdown">
+        <button class="dropbtn"><b>Log In</b>
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <form [formGroup]="loginForm">
+                <input type="email" formControlName="email" class="form-control" name="username"
+                       placeholder="email@email.com">
+                <input type="password" name="password" formControlName="password" clas="form-control"
+                       placeholder="password">
+            </form>
+            <label class="error">{{errorMessage}}</label>
+            <button class="login" type="submit" (click)="tryLogin(loginForm.value)">Log In</button>
+            <br>
+            No account yet?
+            <!-- ask about register on button click -->
+            <a href="/register">
+                <button class="create" type="submit" href="/register">Create an account</button>
+            </a>
+        </div>
+    </div>
+
+<nav>
+    <ul id="mainnav">
+        <li><a href="#">a thing</a></li>
+        <li><a href="#">some stuff</a>
+            <ul>
+                <li><a href="###">dropdown1</a></li>
+                <li><a href="###">dropdown2</a></li>
+            </ul>
+        </li>           
+    </ul>
+</nav>
+
+#mainnav li{
+    background: #eee; 
+}
+#mainnav li ul li{
+    background: none; 
+}
+#mainnav li:hover{
+   background: yellow;
+}
+#mainnav li:hover ul{
+    height: 100px;
+    transition-delay: 0s;
+     transition-duration: 1s;
+}
+#mainnav li ul{
+    overflow: hidden;
+    height: 0px;
+    transition-delay: 10s;
+    transition-duration: 2s;
+}*/
