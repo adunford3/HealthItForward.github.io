@@ -29,7 +29,6 @@ export class GroupsPageComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 
     // allows

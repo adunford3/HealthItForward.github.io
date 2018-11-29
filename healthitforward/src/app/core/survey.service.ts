@@ -88,9 +88,8 @@ export class SurveyService {
                 surveyID: surveyId,
                 surveyName: survey.surveyName,
                 surveyURL: survey.surveyURL
-            }).then(res => {
-                resolve(res);
             });
+            resolve(surveyId);
         });
     }
 

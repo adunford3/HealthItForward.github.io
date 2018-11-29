@@ -55,9 +55,9 @@ export class ThreadContainerComponent implements OnInit {
             console.log(threads);
             let tArr = [];
             for (let i = 0; i < threads.length; i++) {
-                tService.getThread(threads[i]).then(function(thread) {
-                    tArr.push(thread);
-                });
+               tService.getThread(threads[i]).then(function(thread) {
+                   tArr.push(thread);
+               });
             }
             return tArr;
         })
@@ -89,7 +89,22 @@ export class ThreadContainerComponent implements OnInit {
 
     addThread(body: string, creatorID: string, replyChain: string[], threadID: string, title: string, upvotes: string) {
         let newThread = new ThreadModel(body, creatorID, replyChain, threadID, title, upvotes);
-        this.threadService.addThread(newThread);
+        let test = this.threadService.addThread(newThread);
+        // console.log(Promise.resolve(test));
+        const self = this;
+        this.threadIds.then(function(ids) {
+            test.then(function(threadId) {
+                self.service.updateThreads(self.paramGroupID, ids.length, threadId);
+                // console.log("Testing here: " + threadId);
+                // console.log('maybewillwork: '+ ids.length);
+                return threadId;
+            })
+            // console.log(ids.length);
+            return ids.length;
+        })
+            .then((length) => { return length; });
+        // this.service.updateThreads(this.paramGroupID, ids);
         console.log("New Thread created");
+        location.reload(true);
     }
 }

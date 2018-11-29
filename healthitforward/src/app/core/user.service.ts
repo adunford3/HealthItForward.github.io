@@ -65,29 +65,27 @@ export class UserService {
         });
     }
 
-    // Return the currently Logged in users ID
-    getUserID() {
-        return firebase.auth().currentUser.uid;
-    }
-
     // Work in progress to get User data
     getUser() {
         return new Promise<UserModel>(resolve => {
-            const userId = this.getUserID();
-            const ref = firebase.database().ref('users/' + userId);
-            ref.once('value').then(function (snapshot) {
-                let user: UserModel;
-                const email = snapshot.child('email').val();
-                const myGroups = snapshot.child('myGroups').val();
-                const mySurveys = snapshot.child('mySurveys').val();
-                const myThreads = snapshot.child('myThreads').val();
-                const password = snapshot.child('password').val();
-                const role = snapshot.child('role').val();
-                const userID = snapshot.child('userID').val();
-                const username = snapshot.child('username').val();
-                user = new UserModel(email, myGroups, mySurveys, myThreads, password, role, userID, username);
+            this.getUserID().then(function(userID) {
+                const userId = userID;
+                const ref = firebase.database().ref('users/' + userId);
+                ref.once('value').then(function (snapshot) {
+                    let user: UserModel;
+                    const email = snapshot.child('email').val();
+                    const myGroups = snapshot.child('myGroups').val();
+                    const mySurveys = snapshot.child('mySurveys').val();
+                    const myThreads = snapshot.child('myThreads').val();
+                    const password = snapshot.child('password').val();
+                    const role = snapshot.child('role').val();
+                    const userID = snapshot.child('userID').val();
+                    const username = snapshot.child('username').val();
+                    user = new UserModel(email, myGroups, mySurveys, myThreads, password, role, userID, username);
 
-                resolve(user);
+                    console.log('might be ooookkkkk: ' + userId);
+                    resolve(user);
+                });
             });
         });
     }
@@ -107,10 +105,21 @@ export class UserService {
                 role: user.role,
                 userID: user.userID,
                 username: user.username
-            }).then(res => {
-                resolve(res);
+            });
+            resolve(userId);
+        });
+    }
+
+    // Return the currently Logged in users ID
+    getUserID() {
+        return new Promise<any>(resolve => {
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    resolve(user.uid);
+                }
             });
         });
+        // return firebase.auth().currentUser.uid;
     }
 
     // Subscribe to Group with group Id Key

@@ -86,9 +86,9 @@ export class ThreadServices {
                 threadID: threadId,
                 title: thread.title,
                 upvotes: thread.upvotes
-            }).then(res => {
-                resolve(res);
             });
+            console.log(threadId);
+            resolve(threadId);
         });
     }
 }
