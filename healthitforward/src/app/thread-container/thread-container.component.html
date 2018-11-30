@@ -31,10 +31,13 @@
     <label>Thread Body:
         <textarea #threadContent class="content-textbox"></textarea>
     </label>
+    <label>Video Link (optional):
+        <input #threadLink type="input" class="title-input">
+    </label>
     <br>
     <div style="float:left;">
         <button class="create-button"
-                (click)="addThread(threadContent.value, 'Alex', '', 'randomTIDASD', threadTitle.value, '3'); threadTitle.value=''; threadContent.value=''">
+                (click)="addThread(threadContent.value, threadLink.value, 'Alex', '', 'randomTIDASD', threadTitle.value, '3'); threadTitle.value=''; threadContent.value=''; threadLink.value=''">
             Create Thread
         </button>
     </div>

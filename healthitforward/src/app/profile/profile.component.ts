@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
     constructor(public userService: UserService) {
         const u = this.userService.getUser().then(function (user) {
             document.getElementById('username').innerHTML = user.username;
+            document.getElementById('health').innerHTML = user.healthForm.toString();
             return user;
         });
         this.user = Promise.resolve(u);

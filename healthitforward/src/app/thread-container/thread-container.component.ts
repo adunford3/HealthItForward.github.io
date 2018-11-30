@@ -32,7 +32,7 @@ export class ThreadContainerComponent implements OnInit {
                 private threadService: ThreadServices) {
         this.route.params.subscribe(params => this.paramGroupID = params["id"]);
         const g = this.service.getGroup(this.paramGroupID).then(function (group) {
-            // console.log(group);
+            console.log(group);
             return group;
         });
         this.group = Promise.resolve(g);
@@ -113,9 +113,10 @@ export class ThreadContainerComponent implements OnInit {
         return this.subscribed;
     }
 
-    addThread(body: string, creatorID: string, replyChain: string[], threadID: string, title: string, upvotes: string) {
+    addThread(body: string, link: string, creatorID: string, replyChain: string[], threadID: string, title: string, upvotes: string) {
         // let newThread = new ThreadModel(body, creatorID, replyChain, threadID, title, upvotes);
         const self = this;
+        body += '~' + this.findURLID(link);
         this.userService.getUser().then(function(user) {
             const newThread = new ThreadModel(body, user.userID, replyChain, threadID, title, '0');
             const test = self.threadService.addThread(newThread);
@@ -135,5 +136,21 @@ export class ThreadContainerComponent implements OnInit {
             // this.service.updateThreads(this.paramGroupID, ids);
             console.log('New Thread created');
         });
+    }
+
+    findURLID(link: string) {
+        let urlID = '';
+        let anID = '';
+        // Get the last bit of the URL to save as the url ID
+        for (let i = link.length - 1; i >= 0; i--) {
+            if (link.charAt(i) === '=' || link.charAt(i) === '/') {
+                break;
+            }
+            anID += link.charAt(i);
+        }
+        for (let i = anID.length - 1; i >= 0; i--) {
+            urlID += anID.charAt(i);
+        }
+        return urlID;
     }
 }
