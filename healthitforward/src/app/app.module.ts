@@ -43,6 +43,7 @@ import {SurveyService} from './core/survey.service';
 import {ThreadServices} from './core/thread.service';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {SearchBarComponent} from './search-bar/search-bar.component';
+import {ThreadPageComponent} from './thread-page/thread-page.component';
 
 // import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database-deprecated';
 
@@ -67,6 +68,7 @@ import {SearchBarComponent} from './search-bar/search-bar.component';
         LandingPageComponent,
         PageNotFoundComponent,
         SearchBarComponent,
+        ThreadPageComponent,
 
     ],
     imports: [

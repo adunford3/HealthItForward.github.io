@@ -5,6 +5,7 @@ import {switchMap} from 'rxjs/operators';
 import {UserService} from '../core/user.service';
 import {ThreadServices} from "../core/thread.service";
 import {ThreadModel} from '../core/thread.model';
+import {GroupModel} from "../core/group.model";
 
 @Component({
     selector: 'hif-thread-container',
@@ -21,6 +22,7 @@ export class ThreadContainerComponent implements OnInit {
     threadIds;
     threads;
     currThread;
+    selectedThread: ThreadModel;
 
 
     constructor(private route: ActivatedRoute,
@@ -78,6 +80,12 @@ export class ThreadContainerComponent implements OnInit {
                 console.log(threads);
                 return threads;
             });
+    }
+
+    onSelect(thread: ThreadModel): void {
+        this.selectedThread = thread;
+        console.log(this.selectedThread);
+        this.router.navigate(['/thread-page', thread.threadID]);
     }
 
     subscribeToGroup() {
