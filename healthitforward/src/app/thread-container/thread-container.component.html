@@ -25,19 +25,20 @@
 </div>
 <div class="new-thread">
     <label> Thread Title:
-        <input #threadTitle class="title-input">
+        <input #threadTitle type="input" class="title-input">
     </label>
     <br>
     <label>Thread Body:
         <textarea #threadContent class="content-textbox"></textarea>
     </label>
-    <div>
-        <br>
-        <button routerLink="/dashboard" class="back-button">Back</button>
+    <br>
+    <div style="float:left;">
         <button class="create-button"
                 (click)="addThread(threadContent.value, 'Alex', '', 'randomTIDASD', threadTitle.value, '3'); threadTitle.value=''; threadContent.value=''">
-            Create
-            Thread
+            Create Thread
         </button>
+    </div>
+    <div>
+        <button routerLink="/dashboard" class="back-button">Back</button>
     </div>
 </div>

@@ -23,6 +23,10 @@
     /*width: 15em;*/
 }
 
+.survey .text {
+    margin-left: 100px;
+}
+
 .survey li {
     cursor: pointer;
     position: relative;
