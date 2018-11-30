@@ -122,6 +122,14 @@ export class UserService {
         // return firebase.auth().currentUser.uid;
     }
 
+    updateThreads(threadId: string) {
+        this.getUser().then(function(user) {
+            const ref = firebase.database().ref();
+            ref.child('users/' + user.userID + '/myThreads/' + user.myThreads.length).set(threadId);
+            location.reload(true);
+        });
+    }
+
     subscribeToSurvey(surveyId: string) {
         this.getUser().then(function(user) {
             let subbed = false;

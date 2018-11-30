@@ -115,6 +115,7 @@ export class ThreadContainerComponent implements OnInit {
             self.threadIds.then(function(ids) {
                 test.then(function(threadId) {
                     self.service.updateThreads(self.paramGroupID, ids.length, threadId);
+                    self.userService.updateThreads(threadId);
                     // console.log("Testing here: " + threadId);
                     // console.log('maybewillwork: '+ ids.length);
                     return threadId;
@@ -125,7 +126,6 @@ export class ThreadContainerComponent implements OnInit {
                 .then((length) => { return length; });
             // this.service.updateThreads(this.paramGroupID, ids);
             console.log('New Thread created');
-            location.reload(true);
         });
     }
 }
