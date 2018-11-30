@@ -87,6 +87,8 @@ export class ThreadContainerComponent implements OnInit {
     onSelect(thread: ThreadModel): void {
         this.selectedThread = thread;
         console.log(this.selectedThread);
+        const self = this;
+        self.userService.updateThreads(this.selectedThread.threadID);
         this.router.navigate(['/thread-page', thread.threadID]);
     }
 
