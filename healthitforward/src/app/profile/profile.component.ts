@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {UserService} from '../core/user.service';
+import {UserModel} from '../core/user.model';
 
 @Component({
     selector: 'hif-profile',
@@ -7,7 +9,15 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-    constructor() {
+    user;
+
+    constructor(public userService: UserService) {
+        const u = this.userService.getUser().then(function (user) {
+            console.log(user.username);
+            return user;
+        });
+        this.user = Promise.resolve(u);
+
     }
 
     ngOnInit() {

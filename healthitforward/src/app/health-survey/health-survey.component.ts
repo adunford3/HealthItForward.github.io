@@ -29,6 +29,6 @@ export class HealthSurveyComponent implements OnInit {
 
     updateUser(value) {
         this.userService.updateUserHealthForum(value);
-        //this.router.navigate([/, 'dashboard']);
+        this.router.navigate(['/', 'dashboard']);
     }
 }
