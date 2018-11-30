@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {UserService} from '../core/user.service';
 import {Router} from '@angular/router';
 
@@ -14,14 +14,17 @@ export class HealthSurveyComponent implements OnInit {
     //routerLink="/dashboard"
 
     myForm: FormGroup;
+    healthSurvey = ['', '', '', '', '', '', ''];
     private userID: any;
 
     constructor(public userService: UserService,
-                private router: Router) {
+                private router: Router,
+                private fb: FormBuilder) {
     }
 
     ngOnInit() {
-        this.myForm = new FormGroup({
+        console.log('Something');
+        this.myForm = this.fb.group({
             height: new FormControl(),
             weight: new FormControl(),
             bloodPressure: new FormControl(),
@@ -30,10 +33,60 @@ export class HealthSurveyComponent implements OnInit {
             medConditions: new FormControl(),
             altTherapies: new FormControl()
         });
+        console.log(this.myForm);
+    }
+
+    getDateToString() {
+        const today = new Date();
+        const dd = today.getDate();
+        const mm = today.getMonth() + 1; // January is 0!
+        const yyyy = today.getFullYear();
+
+        let day = '' + dd;
+        if (dd < 10) {
+            day = '0' + dd;
+        }
+
+        let month = '' + mm;
+        if (mm < 10) {
+            month = '0' + mm;
+        }
+
+        const timeStamp = month + '|' + day + '|' + yyyy;
+        return timeStamp;
     }
 
     updateUser(value) {
-        this.userService.updateUserHealthForum(value);
-        this.router.navigate(['/', 'dashboard']);
+        console.log('Testing Health Forum: ');
+        const height = this.myForm.controls['height'].value;
+        const weight = this.myForm.controls['weight'].value;
+        const bloodPressure = this.myForm.controls['bloodPressure'].value;
+        const doesSmoke = this.myForm.controls['doesSmoke'].value;
+        const doesDrink = this.myForm.controls['doesDrink'].value;
+        const medConditions = this.myForm.controls['medConditions'].value;
+        const altTherapies = this.myForm.controls['altTherapies'].value;
+
+        const date = this.getDateToString();
+        this.healthSurvey = [
+            date,
+            height,
+            weight,
+            bloodPressure,
+            doesSmoke,
+            doesDrink,
+            medConditions,
+            altTherapies
+        ];
+        console.log(this.healthSurvey);
+        this.userService.updateUserHealthForum(this.healthSurvey);
+        const self = this;
+        this.userService.getUser().then(function (user) {
+            if (user.healthForm === null) {
+                self.router.navigate(['/', 'dashboard']);
+            } else {
+                self.router.navigate(['/', 'profile']);
+            }
+        });
+
     }
 }

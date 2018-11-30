@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
         //     this.registerForm.controls['password'].value);
         this.userService.adduser(new UserModel(this.registerForm.controls['email'].value,
             [], [],[], [], this.registerForm.controls['password'].value,
-            "", "", this.registerForm.controls['username'].value));
+            '', '', this.registerForm.controls['username'].value));
         this.router.navigate(['/', 'health-survey']);
     }
 

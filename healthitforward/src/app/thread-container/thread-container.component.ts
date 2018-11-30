@@ -69,10 +69,12 @@ export class ThreadContainerComponent implements OnInit {
         this.threads = gThreads.then((threads) => {
             console.log(threads);
             let tArr = [];
-            for (let i = 0; i < threads.length; i++) {
-               tService.getThread(threads[i]).then(function(thread) {
-                   tArr.push(thread);
-               });
+            if (threads.length != null) {
+                for (let i = 0; i < threads.length; i++) {
+                    tService.getThread(threads[i]).then(function(thread) {
+                        tArr.push(thread);
+                    });
+                }
             }
             return tArr;
         })
@@ -94,10 +96,7 @@ export class ThreadContainerComponent implements OnInit {
         document.getElementById('unsubscribe').style.backgroundColor = '#336699';
         console.log(this.paramGroupID);
         const self = this;
-        this.userService.getUser().then(function(user) {
-           console.log('here: ' + user.myGroups.length);
-            self.userService.subscribeToGroup(self.paramGroupID, user.myGroups.length);
-        });
+        this.userService.subscribeToGroup(self.paramGroupID);
         alert('Subscribed to Parkinson\'s Patient Group!');
     }
 

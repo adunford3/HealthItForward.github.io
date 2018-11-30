@@ -130,38 +130,53 @@ export class UserService {
     updateThreads(threadId: string) {
         this.getUser().then(function(user) {
             const ref = firebase.database().ref();
-            ref.child('users/' + user.userID + '/myThreads/' + user.myThreads.length).set(threadId);
-            location.reload(true);
+            if (user.myThreads === null) {
+                ref.child('users/' + user.userID + '/myThreads/' + 0).set(threadId);
+                location.reload(true);
+            } else {
+                ref.child('users/' + user.userID + '/myThreads/' + user.myThreads.length).set(threadId);
+                location.reload(true);
+            }
         });
     }
 
     subscribeToSurvey(surveyId: string) {
         this.getUser().then(function(user) {
-            let subbed = false;
-            for (let i = 0; i < user.mySurveys.length; i++) {
-                if (user.mySurveys[i] === surveyId) {
-                    subbed = true;
-                    break;
-                } else {
-                    subbed = false;
-                }
-            }
-            if (!subbed) {
-                console.log('should subscribe: ' + surveyId);
-                firebase.database().ref().child('users/' + user.userID + '/mySurveys/' + user.mySurveys.length).set(surveyId);
+            if (user.mySurveys === null) {
+                firebase.database().ref().child('users/' + user.userID + '/mySurveys/' + 0).set(surveyId);
                 location.reload(true);
             } else {
-                console.log('already subbed');
-                location.reload(true);
+                let subbed = false;
+                for (let i = 0; i < user.mySurveys.length; i++) {
+                    if (user.mySurveys[i] === surveyId) {
+                        subbed = true;
+                        break;
+                    } else {
+                        subbed = false;
+                    }
+                }
+                if (!subbed) {
+                    console.log('should subscribe: ' + surveyId);
+                    firebase.database().ref().child('users/' + user.userID + '/mySurveys/' + user.mySurveys.length).set(surveyId);
+                    location.reload(true);
+                } else {
+                    console.log('already subbed');
+                    location.reload(true);
+                }
             }
         });
     }
 
     // Subscribe to Group with group Id Key
-    subscribeToGroup(newGroupIdKey: string, length: number) {
+    subscribeToGroup(newGroupIdKey: string) {
         console.log('newGroupIdKey: ' + newGroupIdKey);
         this.getUser().then(function(user) {
-            firebase.database().ref().child('users/' + user.userID + '/myGroups/' + user.myGroups.length).set(newGroupIdKey);
+            const ref = firebase.database().ref();
+            if (user.myGroups === null) {
+                ref.child('users/' + user.userID + '/myGroups/' + 0).set(newGroupIdKey);
+            } else {
+                ref.child('users/' + user.userID + '/myGroups/' + user.myGroups.length).set(newGroupIdKey);
+            }
         });
     }
 
@@ -170,19 +185,23 @@ export class UserService {
         const self = this;
         this.getUserID().then(function (uID) {
             self.getUser().then(function (user) {
-                let removeRef = null;
-                for (let i = 0; i < user.myGroups.length; i++) {
-                    if (user.myGroups[i] === groupIdKey) {
-                        removeRef = firebase.database().ref('users/' + uID + '/' + 'myGroups/' + i);
-                    }
-                    if (removeRef !== null) {
-                        removeRef.remove()
-                            .then(function () {
-                                // console.log('was unsubscribed');
-                            })
-                            .catch(function (error) {
-                                console.log('error: ' + error);
-                            });
+                if (user.myGroups === null) {
+                    return;
+                } else {
+                    let removeRef = null;
+                    for (let i = 0; i < user.myGroups.length; i++) {
+                        if (user.myGroups[i] === groupIdKey) {
+                            removeRef = firebase.database().ref('users/' + uID + '/' + 'myGroups/' + i);
+                        }
+                        if (removeRef !== null) {
+                            removeRef.remove()
+                                .then(function () {
+                                    // console.log('was unsubscribed');
+                                })
+                                .catch(function (error) {
+                                    console.log('error: ' + error);
+                                });
+                        }
                     }
                 }
             });
@@ -192,16 +211,31 @@ export class UserService {
     userCheckSubscribe(groupID: string) {
         return new Promise<boolean>( resolve => {
             this.getUser().then(function(user) {
-                let sub = false;
-                console.log('UserGROUPS: ' + user.myGroups.length);
-                for (let i = 0; i < user.myGroups.length; i++) {
-                    if (user.myGroups[i] === groupID) {
-                        console.log('is subbed');
-                        sub = true;
+                if (user.myGroups === null) {
+                    return;
+                } else {
+                    let sub = false;
+                    console.log('UserGROUPS: ' + user.myGroups.length);
+                    for (let i = 0; i < user.myGroups.length; i++) {
+                        if (user.myGroups[i] === groupID) {
+                            console.log('is subbed');
+                            sub = true;
+                        }
                     }
+                    resolve(sub);
                 }
-                resolve(sub);
             });
+        });
+    }
+
+    // Work in Progress for userProfile and TrackmyHealth
+    updateUserHealthForum(value: string[]) {
+        this.getUser().then(function(user) {
+            if (user.healthForm === null) {
+                firebase.database().ref().child('users/' + user.userID + '/' + 'healthForm/' + 0).set(value);
+            } else {
+                firebase.database().ref().child('users/' + user.userID + '/' + 'healthForm/' + user.healthForm.length).set(value);
+            }
         });
     }
 
@@ -218,46 +252,32 @@ export class UserService {
                 threads: ['temporary1', 'temporary2'],
                 users: [firebase.auth().currentUser.uid]
             });
-            const self = this;
-            this.getUser().then(function(user) {
-                self.subscribeToGroup(newGroupIdKey, user.myGroups.length);
-            });
+            this.subscribeToGroup(newGroupIdKey);
             resolve(newGroupIdKey);
         });
     }
 
-    // Work in Progress for userProfile and TrackmyHealth
-    updateUserHealthForum(value: String[]) {
-        return new Promise<any>(resolve => {
-            firebase.database().ref('users/' + this.getUserID() + '/' + 'healthForm').set({
-                healthForm: value
-            }).then(res => {
-                resolve(res);
-            });
-        });
-    }
-
-    /**
-     * An older add user Method that writes a new user to the database with hard coded information
-     * @param userName The username of the new user
-     * @param Email The email of the new user
-     * @param Password The password of the new user
-     */
-    // Older add User method used for testing
-    addUser(userName: String, Email: String, Password: String) {
-        const userId = firebase.auth().currentUser.uid;
-        return new Promise<any>(resolve => {
-            firebase.database().ref('users/' + userId).set({
-                userID: firebase.auth().currentUser.uid,
-                // userListID: newUserIdKey,
-                username: userName,
-                email: Email,
-                password: Password,
-                myGroups: ['test1', 'test2'],
-                healthForm: ['height', 'weight']
-            }).then(res => {
-                resolve(res);
-            });
-        });
-    }
+    // /**
+    //  * An older add user Method that writes a new user to the database with hard coded information
+    //  * @param userName The username of the new user
+    //  * @param Email The email of the new user
+    //  * @param Password The password of the new user
+    //  */
+    // // Older add User method used for testing
+    // addUser(userName: String, Email: String, Password: String) {
+    //     const userId = firebase.auth().currentUser.uid;
+    //     return new Promise<any>(resolve => {
+    //         firebase.database().ref('users/' + userId).set({
+    //             userID: firebase.auth().currentUser.uid,
+    //             // userListID: newUserIdKey,
+    //             username: userName,
+    //             email: Email,
+    //             password: Password,
+    //             myGroups: ['test1', 'test2'],
+    //             healthForm: ['height', 'weight']
+    //         }).then(res => {
+    //             resolve(res);
+    //         });
+    //     });
+    // }
 }
