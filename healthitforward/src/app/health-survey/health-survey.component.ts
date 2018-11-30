@@ -23,7 +23,12 @@ export class HealthSurveyComponent implements OnInit {
     ngOnInit() {
         this.myForm = new FormGroup({
             height: new FormControl(),
-            weight: new FormControl()
+            weight: new FormControl(),
+            bloodPressure: new FormControl(),
+            doesSmoke: new FormControl(),
+            doesDrink: new FormControl(),
+            medConditions: new FormControl(),
+            altTherapies: new FormControl()
         });
     }
 

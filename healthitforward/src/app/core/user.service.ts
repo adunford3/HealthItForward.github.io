@@ -8,8 +8,6 @@ import {UserModel} from './user.model';
 @Injectable()
 export class UserService {
 
-    myUID = 0;
-
     constructor(public db: AngularFireDatabase,
                 public afAuth: AngularFireAuth) {
     }
@@ -52,6 +50,7 @@ export class UserService {
                 let i = 0;
                 snapshot.forEach(function (childSnapshot) {
                     const email = childSnapshot.child('email').val();
+                    const healthForm = childSnapshot.child('healthForm').val();
                     const myGroups = childSnapshot.child('myGroups').val();
                     const mySurveys = childSnapshot.child('mySurveys').val();
                     const myThreads = childSnapshot.child('myThreads').val();
@@ -59,7 +58,7 @@ export class UserService {
                     const role = childSnapshot.child('role').val();
                     const userID = childSnapshot.child('userID').val();
                     const username = childSnapshot.child('username').val();
-                    const u = new UserModel(email, myGroups, mySurveys, myThreads, password, role, userID, username);
+                    const u = new UserModel(email, healthForm, myGroups, mySurveys, myThreads, password, role, userID, username);
                     users[i++] = u;
                 });
                 resolve(users);
@@ -67,40 +66,30 @@ export class UserService {
         });
     }
 
-    // Return the currently Logged in users ID
-    getUserID() {
-        return firebase.auth().currentUser.uid;
-    }
-
     // Work in progress to get User data
     getUser() {
         return new Promise<UserModel>(resolve => {
-            const u = this.getCurrentUser().then(function(user) {
-                const ref = firebase.database().ref('users/' + user.uid + '/');
+            this.getUserID().then(function(uID) {
+                const userId = uID;
+                const ref = firebase.database().ref('users/' + userId);
                 ref.once('value').then(function (snapshot) {
                     let user: UserModel;
                     const email = snapshot.child('email').val();
+                    const healthForm = snapshot.child('healthForm').val();
                     const myGroups = snapshot.child('myGroups').val();
+                    const mySurveys = snapshot.child('mySurveys').val();
+                    const myThreads = snapshot.child('myThreads').val();
                     const password = snapshot.child('password').val();
+                    const role = snapshot.child('role').val();
                     const userID = snapshot.child('userID').val();
                     const username = snapshot.child('username').val();
+                    user = new UserModel(email, healthForm, myGroups, mySurveys, myThreads, password, role, userID, username);
 
-                    const role = null;
-                    const mySurveys = null;
-                    const myThreads = null;
-
-                    //const role = snapshot.child('role').val();
-                    //const mySurveys = snapshot.child('mySurveys').val();
-                    //const myThreads = snapshot.child('myThreads').val();
-                    user = new UserModel(email, myGroups, mySurveys, myThreads, password, role, userID, username);
-
+                    console.log('might be ooookkkkk: ' + userId);
                     resolve(user);
                 });
-                return user;
             });
-
         });
-
     }
 
     // takes a UserModel object and creates a new firebase entry with the userid as
@@ -108,74 +97,124 @@ export class UserService {
     adduser(user: UserModel) {
         return new Promise<any>(resolve => {
             // let userId = this.getUserID();
-            const userId = user.username;
-            firebase.database().ref('users/' + userId).set({
-                email: user.email,
-                myGroups: user.myGroups,
-                mySurveys: user.mySurveys,
-                myThreads: user.myThreads,
-                password: user.password,
-                role: user.role,
-                userID: user.userID,
-                username: user.username
-            }).then(res => {
-                resolve(res);
+            this.getUserID().then(function(uID) {
+                firebase.database().ref('users/' + uID).set({
+                    email: user.email,
+                    healthForm: user.healthForm,
+                    myGroups: user.myGroups,
+                    mySurveys: user.mySurveys,
+                    myThreads: user.myThreads,
+                    password: user.password,
+                    role: user.role,
+                    userID: uID,
+                    username: user.username
+                });
+                resolve(uID);
             });
+
+        });
+    }
+
+    // Return the currently Logged in users ID
+    getUserID() {
+        return new Promise<any>(resolve => {
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    resolve(user.uid);
+                }
+            });
+        });
+        // return firebase.auth().currentUser.uid;
+    }
+
+    subscribeToSurvey(surveyId: string) {
+        this.getUser().then(function(user) {
+            let subbed = false;
+            for (let i = 0; i < user.mySurveys.length; i++) {
+                if (user.mySurveys[i] === surveyId) {
+                    subbed = true;
+                    break;
+                } else {
+                    subbed = false;
+                }
+            }
+            if (!subbed) {
+                console.log('should subscribe: ' + surveyId);
+                firebase.database().ref().child('users/' + user.userID + '/mySurveys/' + user.mySurveys.length).set(surveyId);
+                location.reload(true);
+            } else {
+                console.log('already subbed');
+                location.reload(true);
+            }
         });
     }
 
     // Subscribe to Group with group Id Key
-    subscribeToGroup(newGroupIdKey) {
+    subscribeToGroup(newGroupIdKey: string, length: number) {
         console.log('newGroupIdKey: ' + newGroupIdKey);
-        firebase.database().ref('users/' + this.getUserID() + '/' + 'myGroups').push().set(newGroupIdKey);
+        this.getUser().then(function(user) {
+            firebase.database().ref().child('users/' + user.userID + '/myGroups/' + user.myGroups.length).set(newGroupIdKey);
+        });
     }
 
     unsubscribeFromGroup(groupIdKey) {
-        const userPromise = this.getUser().then(function (u) {
-            console.log(u);
-            return u;
+        console.log(groupIdKey);
+        const self = this;
+        this.getUserID().then(function (uID) {
+            self.getUser().then(function (user) {
+                let removeRef = null;
+                for (let i = 0; i < user.myGroups.length; i++) {
+                    if (user.myGroups[i] === groupIdKey) {
+                        removeRef = firebase.database().ref('users/' + uID + '/' + 'myGroups/' + i);
+                    }
+                    if (removeRef !== null) {
+                        removeRef.remove()
+                            .then(function () {
+                                // console.log('was unsubscribed');
+                            })
+                            .catch(function (error) {
+                                console.log('error: ' + error);
+                            });
+                    }
+                }
+            });
         });
+    }
 
-        // const arr = [];
-        // let keyToRemove: string;
-        // const myGroups = firebase.database().ref('users/' + this.getUserID() + '/myGroups');
-        // myGroups.once('value', function(snapshot) {
-        //   snapshot.forEach(function (childSnapshot) {
-        //     const item = childSnapshot.val();
-        //     item.key = childSnapshot.key;
-        //
-        //     arr.push(item);
-        //   });
-        // });
-        // // iterate through arr of groups
-        // for (const group in arr) {
-        //   if (group /* .value */ === groupIdKey) {
-        //     keyToRemove = group/*.key*/;
-        //   }
-        // }
-        // if (keyToRemove != null) {
-        //   firebase.database().ref('users/' + this.getUserID() + '/myGroups/' + keyToRemove).remove();
-        // } else {
-        //   // did not find group to remove
-        // }
+    userCheckSubscribe(groupID: string) {
+        return new Promise<boolean>( resolve => {
+            this.getUser().then(function(user) {
+                let sub = false;
+                console.log('UserGROUPS: ' + user.myGroups.length);
+                for (let i = 0; i < user.myGroups.length; i++) {
+                    if (user.myGroups[i] === groupID) {
+                        console.log('is subbed');
+                        sub = true;
+                    }
+                }
+                resolve(sub);
+            });
+        });
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     // A method that lets a user create a new group and subscribes them to the new group
-// TODO: Will need checking to verify they have authority to create a group
+    // TODO: Will need checking to verify they have authority to create a group
     createGroup(name: String) {
-        const newGroupIdKey = firebase.database().ref().child('groups').push().key;
         return new Promise<any>(resolve => {
+            const newGroupIdKey = firebase.database().ref().child('groups').push().key;
             firebase.database().ref('groups/' + newGroupIdKey).set({
                 groupID: newGroupIdKey,
                 groupName: name,
                 threads: ['temporary1', 'temporary2'],
                 users: [firebase.auth().currentUser.uid]
-            }).then(res => {
-                resolve(res);
-                this.subscribeToGroup(newGroupIdKey);
             });
+            const self = this;
+            this.getUser().then(function(user) {
+                self.subscribeToGroup(newGroupIdKey, user.myGroups.length);
+            });
+            resolve(newGroupIdKey);
         });
     }
 

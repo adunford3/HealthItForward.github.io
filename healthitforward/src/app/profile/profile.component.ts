@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
 
     constructor(public userService: UserService) {
         const u = this.userService.getUser().then(function (user) {
-            console.log(user.username);
+            document.getElementById('username').innerHTML = user.username;
             return user;
         });
         this.user = Promise.resolve(u);
