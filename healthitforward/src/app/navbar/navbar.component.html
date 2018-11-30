@@ -3,18 +3,10 @@
         <a href="/dashboard"><img src="../../assets/images/logo.PNG" alt=""></a>
     </div>
     <div class="text">
-        <div class="home">
-            <a href="/dashboard" style="text-decoration: none;color: white;"><b>Home</b></a>
-        </div>
-        <div class="groups">
-            <a href="/groups-page" style="text-decoration: none;color: white;"><b>Groups</b></a>
-        </div>
-        <div class="surveys">
-            <a href="/surveys" style="text-decoration: none;color: white;"><b>Surveys</b></a>
-        </div>
-        <div class="profile">
-            <a href="/profile" style="text-decoration: none;color: white;"><b>Profile</b></a>
-        </div>
+        <button class="home" onclick="location.href='/dashboard'">Home</button>
+        <button class="groups" onclick="location.href='/groups-page'">Groups</button>
+        <button class="surveys" onclick="location.href='/surveys'">Surveys</button>
+        <button class="profile" onclick="location.href='/profile'">Profile</button>
     </div>
     <div class="logout">
         <button type="submit" (click)="logout()" class="logout-button"><b>Log Out</b></button>

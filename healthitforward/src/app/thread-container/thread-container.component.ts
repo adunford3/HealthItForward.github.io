@@ -5,6 +5,7 @@ import {switchMap} from 'rxjs/operators';
 import {UserService} from '../core/user.service';
 import {ThreadServices} from "../core/thread.service";
 import {ThreadModel} from '../core/thread.model';
+import {GroupModel} from "../core/group.model";
 
 @Component({
     selector: 'hif-thread-container',
@@ -21,6 +22,7 @@ export class ThreadContainerComponent implements OnInit {
     threadIds;
     threads;
     currThread;
+    selectedThread: ThreadModel;
 
 
     constructor(private route: ActivatedRoute,
@@ -80,6 +82,12 @@ export class ThreadContainerComponent implements OnInit {
             });
     }
 
+    onSelect(thread: ThreadModel): void {
+        this.selectedThread = thread;
+        console.log(this.selectedThread);
+        this.router.navigate(['/thread-page', thread.threadID]);
+    }
+
     subscribeToGroup() {
         this.subscribed = true;
         document.getElementById('subscribe').style.backgroundColor = 'gray';
@@ -115,6 +123,7 @@ export class ThreadContainerComponent implements OnInit {
             self.threadIds.then(function(ids) {
                 test.then(function(threadId) {
                     self.service.updateThreads(self.paramGroupID, ids.length, threadId);
+                    self.userService.updateThreads(threadId);
                     // console.log("Testing here: " + threadId);
                     // console.log('maybewillwork: '+ ids.length);
                     return threadId;
@@ -125,7 +134,6 @@ export class ThreadContainerComponent implements OnInit {
                 .then((length) => { return length; });
             // this.service.updateThreads(this.paramGroupID, ids);
             console.log('New Thread created');
-            location.reload(true);
         });
     }
 }

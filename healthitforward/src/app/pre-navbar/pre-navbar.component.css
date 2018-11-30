@@ -2,7 +2,7 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    height: 144px;
+    height: 23.6%;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -27,7 +27,7 @@ img {
     border: none;
     outline: none;
     color: white;
-    padding: 55px 30px;
+    padding: 36.5% 30px;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
@@ -92,58 +92,3 @@ input[type=email], input[type=password] {
     transition-duration: 0.7s;
     display: block;
 }
-
-/*<div class="dropdown">
-        <button class="dropbtn"><b>Log In</b>
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <form [formGroup]="loginForm">
-                <input type="email" formControlName="email" class="form-control" name="username"
-                       placeholder="email@email.com">
-                <input type="password" name="password" formControlName="password" clas="form-control"
-                       placeholder="password">
-            </form>
-            <label class="error">{{errorMessage}}</label>
-            <button class="login" type="submit" (click)="tryLogin(loginForm.value)">Log In</button>
-            <br>
-            No account yet?
-            <!-- ask about register on button click -->
-            <a href="/register">
-                <button class="create" type="submit" href="/register">Create an account</button>
-            </a>
-        </div>
-    </div>
-
-<nav>
-    <ul id="mainnav">
-        <li><a href="#">a thing</a></li>
-        <li><a href="#">some stuff</a>
-            <ul>
-                <li><a href="###">dropdown1</a></li>
-                <li><a href="###">dropdown2</a></li>
-            </ul>
-        </li>           
-    </ul>
-</nav>
-
-#mainnav li{
-    background: #eee; 
-}
-#mainnav li ul li{
-    background: none; 
-}
-#mainnav li:hover{
-   background: yellow;
-}
-#mainnav li:hover ul{
-    height: 100px;
-    transition-delay: 0s;
-     transition-duration: 1s;
-}
-#mainnav li ul{
-    overflow: hidden;
-    height: 0px;
-    transition-delay: 10s;
-    transition-duration: 2s;
-}*/

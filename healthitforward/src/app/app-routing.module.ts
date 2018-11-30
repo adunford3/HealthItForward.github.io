@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ThreadContainerComponent} from './thread-container/thread-container.component';
 import {GroupsPageComponent} from './groups-page/groups-page.component';
+import {ThreadPageComponent} from './thread-page/thread-page.component';
 import {LoginComponent} from './login/login.component';
 import {UserComponent} from './user/user.component';
 import {RegisterComponent} from './register/register.component';
@@ -16,6 +17,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 export const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'group-page/:id', component: ThreadContainerComponent},
+    {path: 'thread-page/:id', component: ThreadPageComponent},
     {path: 'groups-page', component: GroupsPageComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
