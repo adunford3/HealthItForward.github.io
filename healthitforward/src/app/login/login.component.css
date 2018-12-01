@@ -1,48 +1,48 @@
 .row {
-  margin-top: 10px;
-  left: 10px;
+    margin-top: 10px;
+    left: 10px;
 }
 
 .error {
-  color: red;
+    color: red;
 }
 
 /* Full-width input fields */
 input[type=text], input[type=email], input[type=password] {
-  width: 50%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
+    width: 50%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    background: white;
 }
 
 input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+    background-color: white;
+    outline: none;
 }
-
 
 /* Overwrite default styles of hr */
 form-group {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
+    border: 1px solid white;
+    margin-bottom: 25px;
 }
 
 /* Set a style for the submit/register button */
 .login-button {
-  background-color: #607D8B;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 50%;
-  opacity: 0.9;
+    background-color: #1c73a1;
+    color: white;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
 }
 
 .login-button:hover {
-  opacity:1;
+    opacity: 1;
 }
 
 * {
@@ -51,11 +51,11 @@ form-group {
 
 /* Add padding to containers */
 .container {
-  padding: 16px;
+    padding: 16px;
 }
 
 button {
-    font-family : cambria;
+    font-family: cambria;
     font-size: 1em;
 }
 
@@ -65,5 +65,5 @@ label {
 }
 
 input, label {
-    display:block;
+    display: block;
 }

@@ -1,7 +1,27 @@
-<div class="topnav">
-  <a class="active" href="#home" routerLink="/landing-page">HealthItForward</a>
-  <div class="topnav-right">
-    <a href="#login" routerLink="/login">Login</a>
-    <a href="#register" routerLink="/register">Register</a>
-  </div>
+<div class="navbar">
+    <div class="img">
+        <a href="/dashboard"><img src="../../assets/images/logo.PNG" alt=""></a>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn"><b>Log In</b>
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <form [formGroup]="loginForm">
+                <input type="email" formControlName="email" class="form-control" name="username"
+                       placeholder="email@email.com">
+                <input type="password" name="password" formControlName="password" clas="form-control"
+                       placeholder="password">
+            </form>
+            <label class="error">{{errorMessage}}</label>
+            <button class="login" type="submit" (click)="tryLogin(loginForm.value)">Log In</button>
+            <br>
+            No account yet?
+            <!-- ask about register on button click -->
+            <a href="/register">
+                <button class="create" type="submit" href="/register">Create an account</button>
+            </a>
+        </div>
+    </div>
 </div>
+<br><br><br><br><br><br>

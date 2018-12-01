@@ -1,0 +1,13 @@
+<div>
+    <hif-navbar></hif-navbar>
+</div>
+<div>
+    <hif-vertical-navbar></hif-vertical-navbar>
+</div>
+<div *ngIf="loadVideo">
+    <iframe width="560" height="315" [src]=getEmbedURL()
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<label id="title"></label>
+<label id="body"></label>
+

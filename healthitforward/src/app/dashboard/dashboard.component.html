@@ -1,13 +1,22 @@
 <div>
-  <hif-navbar></hif-navbar>
+    <hif-navbar></hif-navbar>
 </div>
 <div>
-  <hif-vertical-navbar></hif-vertical-navbar>
+    <hif-vertical-navbar></hif-vertical-navbar>
 </div>
 <div>
-  <h2>User Dashboard</h2>
+    <h2>User Dashboard</h2>
+</div>
+<div>
+    <ul class="recentThreads">
+        <li *ngFor="let thread of threads | async"
+            [class.selected]="thread === selectedThread"
+            (click)="onSelect(thread)">
+            <span class="badge">{{thread.index}} </span> {{thread.title}}
+        </li>
+    </ul>
 </div>
 <div class="outer-div">
-  <h2>Recently Viewed Threads</h2>
-  <hif-thread></hif-thread>
+    <h2>Recently Viewed Threads</h2>
+    <hif-thread></hif-thread>
 </div>
