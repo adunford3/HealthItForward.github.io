@@ -1,6 +1,6 @@
 # HealthItForward
 
-## Project Prerequisites and Necessary Libraries:
+## Project Prerequisites and Necessary Libraries
 ### NPM - Node Package Manager
    1. Navigate to [NodeJS](https://nodejs.org/en/)
    2. Use the download links provided to get the latest version of NodeJS for your operating system
@@ -24,7 +24,7 @@
    3. Save the zip file in the location of your choosing
    4. Unzip the file
 
-## Running the Project:
+## Running the Project
 ### In the Command Prompt
    1. Navigate to the folder where the project files were cloned or downloaded
    2. Navigate to the internal folder “healthitforward”, eg: <br /> `C:\Users\{yourUsername}\Documents\HealthItForward.github.io\healthitforward`
@@ -32,9 +32,8 @@
    4. After the installation finished, run the project with the following command: `ng serve`
    5. Once the command finished running, the project can be seen by navigating to `http://localhost:4200/` in your browser
 
-# HealthItForward v1.0 Release Notes
-
-## New Software Features in v1.0:
+## HealthItForward v1.0 Release Notes
+### New Software Features in v1.0
    1.Registration
       1. Register with email and password
       2. Fill out an introductory health survey for personal profile information
@@ -56,25 +55,25 @@
    6. Profile
       1. Has information on username and health survey, in order to tack a user’s health
 
-## Bug Fixes:
+### Bug Fixes
    1. Resolved Object Not Found error caused by dummy thread data
    2. Fixed thread titles not appearing correctly from database
    3. New threads now assigned to proper group correctly in database
    4. Fixed error where users could not subscribe to a particular group
 
-## Known Bugs and Defects:
-### Bugs
+### Known Bugs and Defects
+#### Bugs
    1. Resizing window causes the UI to become distorted
    2. Side-navigation-bar does not contain user’s groups
 
-### Missing Functionality
+#### Missing Functionality
    1. Ability to register as a patient, caregiver, or researcher
    2. Ability to reply to threads
    3. Ability to search for groups, threads, or surveys
    4. Ability to subscribe/unsubscribe from threads
    5. Sorting threads
 
-## Upcoming Features in v1.1:
+### Upcoming Features in v1.1
    1. Ability to create a blog posts so that users can interact and share personal stories
    2. Ability to donate money towards the future work of the website
    3. Ability to translate the contents of a page to a different language
