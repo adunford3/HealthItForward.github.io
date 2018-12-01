@@ -1,15 +1,23 @@
 <div class="navbar">
     <div class="img">
-        <a href="/dashboard"><img src="../../assets/images/logo.PNG" alt=""></a>
+        <a
+            href="/dashboard"><img class="logo"
+                                   src="../../assets/images/logo.PNG"
+                                   alt=""></a>
     </div>
     <div class="text">
-        <button class="home" onclick="location.href='/dashboard'">Home</button>
-        <button class="groups" onclick="location.href='/groups-page'">Groups</button>
-        <button class="surveys" onclick="location.href='/surveys'">Surveys</button>
-        <button class="profile" onclick="location.href='/profile'">Profile</button>
-    </div>
-    <div class="logout">
-        <button type="submit" (click)="logout()" class="logout-button"><b>Log Out</b></button>
+        <button class="navButton" id="home"
+                onclick="location.href='/dashboard'">Home
+        </button>
+        <button class="navButton" id="groups"
+                onclick="location.href='/groups-page'">Groups</button>
+        <button class="navButton" id="surveys"
+                onclick="location.href='/surveys'">Surveys</button>
+        <button class="navButton" id="profile"
+                onclick="location.href='/profile'">Profile</button>
+        <button class="navButton" type="submit" (click)="logout()"
+                id="logout-button"><b>Log
+            Out</b></button>
     </div>
 </div>
-<br><br><br><br><br><br>
+<!--<br><br><br><br><br><br>-->

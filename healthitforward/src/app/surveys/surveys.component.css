@@ -9,7 +9,7 @@
 
 .survey-div {
     padding: 0px 10px 10px 10px;
-    width: 85%;
+    width: 95%;
     float: left;
     margin-right: 10px;
     margin-bottom: 20px;
@@ -38,7 +38,7 @@
     border-radius: 4px;
     color: black;
     font-weight: bold;
-    width: 85%;
+    width: 95%;
 }
 
 .survey li.selected:hover {
@@ -76,7 +76,8 @@
     left: -1px;
     top: -1px;
     height: 1.5em;
-    margin-right: .8em;
+    margin-left: .8em;
+    /*margin-right: .8em;*/
     border-radius: 0 0 0 0;
 }
 
@@ -108,28 +109,6 @@ input[type=checkbox] {
 
 .tags {
     display: block;
-}
-
-.submit-button:hover {
-    opacity: 1;
-}
-
-.submit-button {
-    font-size: 20px;
-    font-family: inherit;
-    padding: 10px 10px;
-    width: 15%;
-    margin-top: 15px;
-    color: white;
-    background-color: #1c73a1;
-    text-decoration: none;
-    border: none;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-}
-
-.submit-button:hover {
-    background-color: #ffb83b;
 }
 
 .how-to {
