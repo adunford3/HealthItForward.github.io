@@ -2,6 +2,10 @@
     width: 25%;
 }
 
+.button {
+    display: inline;
+}
+
 .title-input {
     display: block;
     width: 100%;
@@ -14,33 +18,53 @@
 }
 
 .create-button {
-    color: #336699;
-    height: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    float: right;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 10px 10px;
+    color: white;
+    background-color: #1c73a1;
+    text-decoration: none;
+    border: none;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    margin-right: 10px;
+    width: 175px;
 }
 
 .back-button {
-    width: 105px;
-    height: 50px;
-    background: #336699;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 10px 10px;
+    color: white;
+    background-color: #1c73a1;
+    text-decoration: none;
+    border: none;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    width: 100px;
 }
 
 .subscribe-button {
-    width: 80px;
-    height: 50px;
-    background: #336699;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 10px 10px;
+    width: 15%;
+    margin-bottom: 15px;
+    color: white;
+    background-color: #1c73a1;
+    text-decoration: none;
+    border: none;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.subscribe-button:hover, .back-button:hover, .create-button:hover {
+    background-color: #ffb83b;
 }
 
 .threads {
-    padding: 0px 10px 10px 10px;
-    float: left;
-    width: 85%;
+    list-style-type: none;
+    padding: 0px;
 }
 
 .container {
@@ -49,4 +73,66 @@
 
 .disabled {
     color: #999;
+}
+
+.threads li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #c4ebff;
+    margin: .5em;
+    padding: .3em 0;
+    height: 5em;
+    border-radius: 4px;
+    color: black;
+    font-weight: bold;
+    width: 85%;
+}
+
+.threads li.selected:hover {
+    background-color: #585858 !important;
+    color: white;
+}
+
+.threads li.selected:hover {
+    -webkit-transition-duration: 0.7s;
+    transition-duration: 0.7s;
+}
+
+.threads li:hover {
+    color: black;
+    background-color: #ffd791;
+}
+
+.threads li:hover {
+    -webkit-transition-duration: 0.7s;
+    transition-duration: 0.7s;
+}
+
+.threads .text {
+    position: relative;
+    top: -3px;
+}
+
+.threads .badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.85em 0.7em 0 0.7em;
+    background-color: #1c73a1;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -4.8px;
+    height: 6.05em;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+}
+
+input[type=input] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    background: white;
 }

@@ -2,6 +2,11 @@
     display: inline;
 }
 
+.searchText {
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
 .survey-div {
     padding: 0px 10px 10px 10px;
     width: 85%;
@@ -18,32 +23,46 @@
     /*width: 15em;*/
 }
 
+.survey .text {
+    margin-left: 100px;
+}
+
 .survey li {
     cursor: pointer;
     position: relative;
     left: 0;
-    background-color: #EEE;
+    background-color: #c4ebff;
     margin: .5em;
     padding: .3em 0;
-    height: 1.6em;
+    height: 5em;
     border-radius: 4px;
+    color: black;
+    font-weight: bold;
+    width: 85%;
 }
 
 .survey li.selected:hover {
-    background-color: #BBD8DC;
+    background-color: #585858;
     color: white;
 }
 
+.survey li.selected:hover {
+    -webkit-transition-duration: 0.7s;
+    transition-duration: 0.7s;
+}
+
 .survey li:hover {
-    color: #607D8B;
-    background-color: #DDD;
-    left: .1em;
+    color: black;
+    background-color: #ffd791;
+}
+
+.survey li:hover {
+    -webkit-transition-duration: 0.7s;
+    transition-duration: 0.7s;
 }
 
 .survey .text {
-    position: relative;
-    left: -1px;
-    top: -1px;
+    margin-left: 10px;
 }
 
 .survey .badge {
@@ -51,7 +70,7 @@
     font-size: small;
     color: white;
     padding: 0.1em 0.1em 0.1em 0.1em;
-    background-color: #607D8B;
+    background-color: #1c73a1;
     line-height: 1em;
     position: relative;
     left: -1px;
@@ -63,6 +82,7 @@
 
 .survey .counter {
     float: right;
+    margin-right: .5em;
 }
 
 /* Add padding to containers */

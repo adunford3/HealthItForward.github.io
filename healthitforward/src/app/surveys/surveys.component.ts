@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {SurveyModel} from '../core/survey.model';
 import {SurveyService} from '../core/survey.service';
+import {GroupService} from '../core/group.service';
+import {UserService} from '../core/user.service';
 
 @Component({
     selector: 'hif-surveys',
@@ -12,26 +14,39 @@ export class SurveysComponent implements OnInit {
 
     selectedSurvey;
     surveys;
-    form: FormGroup;
+    // form: FormGroup;
+    form = this.formBuilder.group({
+        name: [''],
+        url: [''],
+        groupTags: new FormArray([])
+    });
 
-    groupTags = [
-        {id: 100, name: 'Parkinsons'},
-        {id: 200, name: 'Diabetes'},
-        {id: 300, name: 'Yoga'},
-        {id: 400, name: 'General Health'}
-    ];
+    groupTags = [];
 
     constructor(private formBuilder: FormBuilder,
-                public surveyService: SurveyService) {
-        // Create a new array with a form control for each order
-        const controls = this.groupTags.map(c => new FormControl(false));
-        controls[0].setValue(true); // Set the first checkbox to true (checked)
+                public surveyService: SurveyService,
+                public groupService: GroupService,
+                public userService: UserService) {
+        const self = this;
+        this.groupService.getGroups().then(async function(groups) {
+            let i = 0;
+            groups.forEach(function(group) {
+                // console.log(group.groupName);
+                self.groupTags[i++] = { id: i * 100, name: group.groupName };
+                // console.log(self.groupTags[i - 1]);
+            });
+        }).then(function() {
+            // Create a new array with a form control for each order
+            const controls = self.groupTags.map(c => new FormControl(false));
+            controls[0].setValue(true); // Set the first checkbox to true (checked)
 
-        this.form = this.formBuilder.group({
-            name: [''],
-            url: [''],
-            groupTags: new FormArray(controls)
+            self.form = self.formBuilder.group({
+                name: [''],
+                url: [''],
+                groupTags: new FormArray(controls)
+            });
         });
+
     }
 
     /**
@@ -56,8 +71,10 @@ export class SurveysComponent implements OnInit {
      */
     linkClick(survey: SurveyModel) {
         this.selectedSurvey = survey;
+        window.open(this.selectedSurvey.surveyURL, "_blank");
         this.surveyService.updateClickCount(survey.surveyID, Number(survey.clickCount));
-        location.reload(true);
+        this.userService.subscribeToSurvey(survey.surveyID);
+        // location.reload(true);
     }
 
     onSubmit() {
@@ -66,7 +83,7 @@ export class SurveysComponent implements OnInit {
             .filter(v => v !== null);
         let mySurvey = new SurveyModel('0', selectedOrderIds, '', this.form.value.name, this.form.value.url);
         this.surveyService.addSurvey(mySurvey);
-        location.reload(true);
         alert('Your survey \'' + this.form.value.name + '\' has been posted!');
+        // location.reload(true);
     }
 }

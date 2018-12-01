@@ -97,16 +97,17 @@ export class GroupService {
                 mods: group.mods,
                 threads: group.threads,
                 users: group.users
-            }).then(res => {
-                resolve(res);
-                this.userService.subscribeToGroup(groupId);
             });
+            this.userService.subscribeToGroup(groupId);
+            resolve(groupId);
         });
     }
 
-    updateThreads(group: GroupModel, threadID: string) {
+    updateThreads(groupID: string, length: string, threadId: string) {
         return new Promise<any>(resolve => {
-            const ref = firebase.database().ref;
+            const ref = firebase.database().ref();
+            ref.child('groups/' + groupID + '/threads/' + length).set(threadId);
         });
     }
+
 }

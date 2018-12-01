@@ -2,7 +2,7 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    height: 144px;
+    height: 23.6%;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -16,33 +16,6 @@ img {
     top: 0px;
 }
 
-.navbar .home {
-    float: left;
-    top: 52.1%;
-    font-size: 30px;
-    color: white;
-    text-align: center;
-    padding: 55px 30px;
-}
-
-.navbar .about {
-    float: left;
-    top: 52.1%;
-    font-size: 30px;
-    color: white;
-    text-align: center;
-    padding: 55px 30px;
-}
-
-.navbar .groups {
-    float: left;
-    top: 52.1%;
-    font-size: 30px;
-    color: white;
-    text-align: center;
-    padding: 55px 30px;
-}
-
 .dropdown {
     float: right;
     overflow: hidden;
@@ -54,7 +27,7 @@ img {
     border: none;
     outline: none;
     color: white;
-    padding: 55px 30px;
+    padding: 36.5% 30px;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
@@ -73,28 +46,7 @@ img {
     color: red;
 }
 
-.navbar .home:hover, .surveys:hover, .groups:hover, .about:hover, .dropdown:hover .dropbtn {
-    -webkit-transition-duration: 0.7s; /* Safari */
-    transition-duration: 0.7s;
-}
-
 .navbar .dropdown:hover .dropbtn {
-    background-color: #ffb83b;
-}
-
-.navbar .home:hover {
-    background-color: #ffb83b;
-}
-
-.navbar .surveys:hover {
-    background-color: #ffb83b;
-}
-
-.navbar .groups:hover {
-    background-color: #ffb83b;
-}
-
-.navbar .about:hover {
     background-color: #ffb83b;
 }
 
@@ -108,6 +60,9 @@ img {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 10px;
     z-index: 1;
+    overflow: hidden;
+    transition-delay: 10s;
+    transition-duration: 2s;
 }
 
 input[type=email], input[type=password] {
@@ -133,7 +88,7 @@ input[type=email], input[type=password] {
 }
 
 .dropdown:hover .dropdown-content {
-    /*-webkit-transition-duration: 0.7s;
-    transition-duration: 0.7s;*/
+    -webkit-transition-duration: 0.7s;
+    transition-duration: 0.7s;
     display: block;
 }

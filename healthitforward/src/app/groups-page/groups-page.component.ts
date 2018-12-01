@@ -9,6 +9,8 @@ import {Router} from '@angular/router';
     templateUrl: './groups-page.component.html',
     styleUrls: ['./groups-page.component.css']
 })
+
+//Component for user personal groups page
 export class GroupsPageComponent implements OnInit {
 
     groups;
@@ -27,9 +29,9 @@ export class GroupsPageComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 
+    // allows
     onSelect(group: GroupModel): void {
         this.selectedGroup = group;
         console.log(this.selectedGroup);

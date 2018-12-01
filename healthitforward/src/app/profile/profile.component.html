@@ -1,29 +1,65 @@
 <div>
     <hif-navbar></hif-navbar>
 </div>
+<div>
+    <hif-vertical-navbar></hif-vertical-navbar>
+</div>
 <div class="container">
+
+    <button type="submit" (click)="goToHealthSurvey()" class="submit-button">Post new Health Report</button>
+
     <div class="row">
-        <label>Username: mprouty6</label>
+        <label>Most Recent Health Report for: </label>
+        <div class="field">
+            <label id="username"></label>
+        </div>
     </div>
     <div class="row">
-        <label>Height: 66 inches</label>
+        <label>Date Recorded: </label>
+        <div class="field">
+            <label id="date"></label>
+        </div>
     </div>
     <div class="row">
-        <label>Weight: 110 pounds</label>
+        <label>Height: </label>
+        <div class="field">
+            <label id="height"></label>
+        </div>
     </div>
     <div class="row">
-        <label>Blood pressure: 120/80</label>
+        <label>Weight: </label>
+        <div class="field">
+            <label id="weight"></label>
+        </div>
     </div>
     <div class="row">
-        <label>Smoke: No</label>
+        <label>Blood pressure: </label>
+        <div class="field">
+            <label id="bp"></label>
+        </div>
     </div>
     <div class="row">
-        <label>Alcohol: No</label>
+        <label>Smoke: </label>
+        <div class="field">
+            <label id="smoke"></label>
+        </div>
     </div>
     <div class="row">
-        <label>Medical Conditions: Parkinson's Disease</label>
+        <label>Alcohol: </label>
+        <div class="field">
+            <label id="alcohol"></label>
+        </div>
     </div>
     <div class="row">
-        <label>Alternative Therapies: Yoga</label>
+        <label>Medical Conditions: </label>
+        <div class="field">
+            <label id="mc"></label>
+        </div>
+    </div>
+    <div class="row">
+        <label>Alternative Therapies: </label>
+        <div class="field">
+            <label id="at"></label>
+        </div>
     </div>
 </div>

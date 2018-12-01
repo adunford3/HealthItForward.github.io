@@ -7,54 +7,59 @@
         <label>Thanks for joining HealthItForward! Please fill out an initial health survey so you can track your
             health.</label>
     </div>
-    <form novalidate [formGroup]="myform" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="myForm">
 
-        <div formGroupName="name">
-            <div class="form-group">
-                <label>What is your height? (in inches)</label>
-                <input type="text"
-                       class="form-control"
-                       formControlName="height">
-            </div>
-
-            <div class="form-group">
-                <label>What is your weight? (in pounds)</label>
-                <input type="text"
-                       class="form-control"
-                       formControlName="weight">
-            </div>
-
-            <div class="form-group">
-                <label>What is your blood pressure? (Systolic/Diastolic in mm Hg)</label>
-                <input type="text"
-                       class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label>Do you smoke?</label>
-                <input type="text"
-                       class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label>Do you drink alcohol?</label>
-                <input type="text"
-                       class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label>What medical conditions do you have?</label>
-                <input type="text"
-                       class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label>What alternative therapies have you used?</label>
-                <input type="text"
-                       class="form-control">
-            </div>
-
-            <button type="submit" (click)="updateUser(myForm.value)" class="submit-button">Submit</button>
+        <!-- <div formGroupName="name"> -->
+        <div class="form-group">
+            <label>What is your height? (in inches)</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="height">
         </div>
+
+        <div class="form-group">
+            <label>What is your weight? (in pounds)</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="weight">
+        </div>
+
+        <div class="form-group">
+            <label>What is your blood pressure? (Systolic/Diastolic in mm Hg)</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="bloodPressure">
+        </div>
+
+        <div class="form-group">
+            <label>Do you smoke?</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="doesSmoke">
+        </div>
+
+        <div class="form-group">
+            <label>Do you drink alcohol?</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="doesDrink">
+        </div>
+
+        <div class="form-group">
+            <label>What medical conditions do you have?</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="medConditions">
+        </div>
+
+        <div class="form-group">
+            <label>What alternative therapies have you used?</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="altTherapies">
+        </div>
+
+        <button type="submit" (click)="updateUser(myForm.value)" class="submit-button">Submit</button>
+        <!--</div> -->
     </form>
 </div>

@@ -58,18 +58,14 @@ export class ThreadServices {
         });
     }
 
-    // async getGroupThreads(threadIds: string[]) {
-    //   let threads = [];
-    //   let i = 0;
-    //   const self = this;
-    //   threadIds.forEach(async function(threadId) {
-    //     const threadPromise = await self.getThread((threadId));
-    //     threads[i++] = await Promise.resolve((threadPromise));
-    //     console.log(await Promise.resolve((threadPromise)));
-    //   });
-    //   let newThread = await threads;
-    //   return newThread;
-    // }
+    upVote(threadId: string, oldCount: number) {
+        return new Promise<any>(resolve => {
+            const threadRef = firebase.database().ref('threads/' + threadId + '/upvotes');
+            threadRef.set(oldCount + 1).then(res => {
+                resolve(res);
+            });
+        });
+    }
 
     /**
      * Returns a promise that resolves the firebase call to write a new thread into the database
@@ -86,9 +82,9 @@ export class ThreadServices {
                 threadID: threadId,
                 title: thread.title,
                 upvotes: thread.upvotes
-            }).then(res => {
-                resolve(res);
             });
+            console.log(threadId);
+            resolve(threadId);
         });
     }
 }

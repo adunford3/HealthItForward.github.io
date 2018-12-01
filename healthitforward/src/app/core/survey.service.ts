@@ -66,10 +66,10 @@ export class SurveyService {
      * @param surveyId The ID of the survey that needs its clickCount updated
      * @param oldCount The old number of clicks that will be updated
      */
-    updateClickCount(surveyId: string, oldcount: number) {
+    updateClickCount(surveyId: string, oldCount: number) {
         return new Promise<any>(resolve => {
             const surveyRef = firebase.database().ref('surveys/' + surveyId + '/clickCount');
-            surveyRef.set(oldcount + 1).then(res => {
+            surveyRef.set(oldCount + 1).then(res => {
                 resolve(res);
             });
         });
@@ -88,9 +88,9 @@ export class SurveyService {
                 surveyID: surveyId,
                 surveyName: survey.surveyName,
                 surveyURL: survey.surveyURL
-            }).then(res => {
-                resolve(res);
             });
+            this.userService.subscribeToSurvey(surveyId);
+            resolve(surveyId);
         });
     }
 

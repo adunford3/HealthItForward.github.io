@@ -3,6 +3,7 @@ import {AuthService} from '../core/auth.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../core/user.service';
+import {UserModel} from '../core/user.model';
 
 @Component({
     selector: 'hif-register',
@@ -59,9 +60,12 @@ export class RegisterComponent implements OnInit {
      * Adds the newly registered user to the database.
      */
     registerToDatabase() {
-        this.userService.addUser(this.registerForm.controls['username'].value,
-            this.registerForm.controls['email'].value,
-            this.registerForm.controls['password'].value);
+        // this.userService.addUser(this.registerForm.controls['username'].value,
+        //     this.registerForm.controls['email'].value,
+        //     this.registerForm.controls['password'].value);
+        this.userService.adduser(new UserModel(this.registerForm.controls['email'].value,
+            [], [],[], [], this.registerForm.controls['password'].value,
+            '', '', this.registerForm.controls['username'].value));
         this.router.navigate(['/', 'health-survey']);
     }
 
