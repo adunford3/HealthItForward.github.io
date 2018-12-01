@@ -134,8 +134,22 @@ export class UserService {
                 ref.child('users/' + user.userID + '/myThreads/' + 0).set(threadId);
                 location.reload(true);
             } else {
-                ref.child('users/' + user.userID + '/myThreads/' + user.myThreads.length).set(threadId);
-                location.reload(true);
+                let inMyThreads = false;
+                for (let i = 0; i < user.myThreads.length; i++) {
+                    if (user.myThreads[i] === threadId) {
+                        inMyThreads = true;
+                        break;
+                    } else {
+                        inMyThreads = false;
+                    }
+                }
+                if (!inMyThreads) {
+                    ref.child('users/' + user.userID + '/myThreads/' + user.myThreads.length).set(threadId);
+                    location.reload(true);
+                } else {
+                    console.log('already in My Threads');
+                    location.reload(true);
+                }
             }
         });
     }
