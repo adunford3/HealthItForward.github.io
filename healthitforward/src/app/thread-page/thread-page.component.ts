@@ -42,10 +42,18 @@ export class ThreadPageComponent implements OnInit {
 
     }
 
+    /**
+     * Returns a YouTube link which can be embedded in html.
+     */
     getEmbedURL() {
         return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.urlID);
     }
 
+    /**
+     * Parses the thread body from the database at the "~" characterto separate the body from
+     * the YouTube link id.
+     * @param body The thread body from the database.
+     */
     parseBody(body: string): string {
         let newBody = '';
         let bool = false;

@@ -139,6 +139,10 @@ export class ThreadContainerComponent implements OnInit {
         });
     }
 
+    /**
+     * Finds the id in a YouTube url to later add it to the thread body.
+     * @param link The YouTube link provided by the user.
+     */
     findURLID(link: string) {
         let urlID = '';
         let anID = '';
