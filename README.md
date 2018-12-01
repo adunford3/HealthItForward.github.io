@@ -16,7 +16,7 @@
 ## Download the Project
 ### Using Git
    1. Navigate to [the project GitHub repository](https://github.com/adunford3/HealthItForward.github.io)
-   2. Clone the project by copying the link provided in the green “Clone or Download” dropdown and running the following console                command in the directory of your choosing: `git clone https://github.com/adunford3/HealthItForward.github.io.git`
+   2. Clone the project by copying the link provided in the green “Clone or Download” dropdown and running the following console                command in the directory of your choosing: <br /> `git clone https://github.com/adunford3/HealthItForward.github.io.git`
 
 ### Without Git
    1. Navigate to [the project GitHub repository](https://github.com/adunford3/HealthItForward.github.io)
@@ -27,7 +27,7 @@
 ## Running the Project:
 ### In the Command Prompt
    1. Navigate to the folder where the project files were cloned or downloaded
-   2. Navigate to the internal folder “healthitforward”, eg: `C:\Users\{yourUsername}\Documents\HealthItForward.github.io\healthitforward`
+   2. Navigate to the internal folder “healthitforward”, eg: <br /> `C:\Users\{yourUsername}\Documents\HealthItForward.github.io\healthitforward`
    3. Once in the healthitforward folder, run the following console command: `npm install`
    4. After the installation finished, run the project with the following command: `ng serve`
    5. Once the command finished running, the project can be seen by navigating to `http://localhost:4200/` in your browser
