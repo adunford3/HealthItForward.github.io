@@ -117,6 +117,7 @@ export class ThreadContainerComponent implements OnInit {
     addThread(body: string, link: string, creatorID: string, replyChain: string[], threadID: string, title: string, upvotes: string) {
         // let newThread = new ThreadModel(body, creatorID, replyChain, threadID, title, upvotes);
         const self = this;
+        //Append the thread body with the optional youtube link id
         body += '~' + this.findURLID(link);
         this.userService.getUser().then(function(user) {
             const newThread = new ThreadModel(body, user.userID, replyChain, threadID, title, '0');
@@ -139,6 +140,10 @@ export class ThreadContainerComponent implements OnInit {
         });
     }
 
+    /**
+     * Finds the id in a YouTube url to later add it to the thread body.
+     * @param link The YouTube link provided by the user.
+     */
     findURLID(link: string) {
         let urlID = '';
         let anID = '';
