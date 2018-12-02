@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent {
 
+    user;
     threads;
     selectedThread: ThreadModel;
 
@@ -22,20 +23,36 @@ export class DashboardComponent {
                 public surveyService: SurveyService,
                 public threadService: ThreadServices) {
         const self = this;
-        const t = this.userService.getUser().then(function (user) {
+        this.user = this.userService.getUser().then(function (user) {
+            return user;
         });
-        this.threads = Promise.resolve(t);
+        let gThreads = this.user.then((user: any) => {
+            return user.myThreads;
+        });
+        this.threads = gThreads.then((threads) => {
+            console.log(threads);
+            let tArr = [];
+            if (threads.length != null) {
+                for (let i = 0; i < threads.length; i++) {
+                    threadService.getThread(threads[i]).then(function(thread) {
+                        tArr.push(thread);
+                    });
+                }
+            }
+            return tArr;
+        })
+            .then((threads) => {
+                console.log(threads);
+                return threads;
+            });
     }
 
     ngOnInit() {
-
         console.log('User ID: ' + this.userService.getUserID());
-
         const testGroup = this.groupService.getGroup('-LNbI5b4ST0Ytwldnjky').then(function (g) {
             console.log(g);
             return g;
         });
-
         const thing1 = this.groupService.getGroupThreadIds('GroupID').then(function (v) {
             console.log(v[0]);
         });
