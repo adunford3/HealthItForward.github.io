@@ -32,10 +32,13 @@
         <label>Video Link (optional):
             <input #threadLink type="input" class="title-input">
         </label>
+        <div class="how-to">
+            <label>Please only post YouTube videos in the Video Link field by copying the link in the YouTube "Share a Link" dialog.</label>
+        </div>
         <br>
         <div style="float:left;">
             <button class="create-button"
-                    (click)="addThread(threadContent.value, threadLink.value, 'Alex', '', 'randomTIDASD', threadTitle.value, '3'); threadTitle.value=''; threadContent.value=''; threadLink.value=''">
+                    (click)="addThread(threadContent.value, threadLink.value, 'Alex', [''], 'randomTIDASD', threadTitle.value, '3'); threadTitle.value=''; threadContent.value=''; threadLink.value=''">
                 Create Thread
             </button>
         </div>

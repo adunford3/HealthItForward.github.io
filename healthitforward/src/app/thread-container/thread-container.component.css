@@ -136,3 +136,10 @@ input[type=input] {
     display: inline-block;
     background: white;
 }
+
+.how-to {
+    width: 40%;
+    margin: 5px;
+    display: block;
+    font: italic 12px Arial;
+}
