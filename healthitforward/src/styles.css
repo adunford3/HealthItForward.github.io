@@ -1,13 +1,14 @@
 /* Application-wide Styles */
 h1 {
-  color: #369;
+  color: #1c73a1;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
+  font-weight: bold;
 }
 h2, h3 {
-  color: #444;
+  color: #1c73a1;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: lighter;
+  font-weight: bold;
 }
 body {
   margin: 2em;
