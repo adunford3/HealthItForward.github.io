@@ -63,6 +63,7 @@ export class ThreadContainerComponent implements OnInit {
 
     getGroupThreads() {
         let tService = this.threadService;
+        const self = this;
         let gThreads = this.group.then((group: any) => {
             return group.threads;
         });
@@ -71,6 +72,7 @@ export class ThreadContainerComponent implements OnInit {
             let tArr = [];
             if (threads.length != null) {
                 for (let i = 0; i < threads.length; i++) {
+                    //threads[i].body = self.parseBody(threads[i].body);
                     tService.getThread(threads[i]).then(function(thread) {
                         tArr.push(thread);
                     });
@@ -158,5 +160,25 @@ export class ThreadContainerComponent implements OnInit {
             urlID += anID.charAt(i);
         }
         return urlID;
+    }
+
+    /**
+     * Parses the thread body from the database at the "~" characterto separate the body from
+     * the YouTube link id.
+     * @param body The thread body from the database.
+     */
+    parseBody(body: string): string {
+        if (body === null) {
+            return;
+        }
+        let newBody = '';
+        for (let i = 0; i < body.length; i++) {
+            if (body.charAt(i) === '~') {
+                newBody = body.substring(0, i);
+                break;
+            }
+        }
+        console.log(body);
+        return newBody;
     }
 }
