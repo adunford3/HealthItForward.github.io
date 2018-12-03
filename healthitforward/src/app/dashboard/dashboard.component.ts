@@ -67,4 +67,24 @@ export class DashboardComponent {
         this.router.navigate(['/thread-page', thread.threadID]);
     }
 
+    /**
+     * Parses the thread body from the database at the "~" character to separate the body from
+     * the YouTube link id.
+     * @param body The thread body from the database.
+     */
+    parseBody(body: string): string {
+        if (body === null) {
+            return;
+        }
+        let newBody = '';
+        for (let i = 0; i < body.length; i++) {
+            if (body.charAt(i) === '~') {
+                newBody = body.substring(0, i);
+                break;
+            }
+        }
+        console.log(body);
+        return newBody;
+    }
+
 }

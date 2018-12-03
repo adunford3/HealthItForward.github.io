@@ -22,7 +22,7 @@
                 (click)="onSelect(thread)">
                 <span class="badge">{{thread.upvotes}}<br>Votes</span>
                 <span class="spanTitle>">{{thread.title}}</span>
-                <span class="spanBody">{{thread.body}}</span>
+                <span class="spanBody">{{parseBody(thread.body)}}</span>
             </li>
         </ul>
     </div>

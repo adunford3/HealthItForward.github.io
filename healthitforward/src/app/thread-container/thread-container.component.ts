@@ -163,7 +163,7 @@ export class ThreadContainerComponent implements OnInit {
     }
 
     /**
-     * Parses the thread body from the database at the "~" characterto separate the body from
+     * Parses the thread body from the database at the "~" character to separate the body from
      * the YouTube link id.
      * @param body The thread body from the database.
      */
