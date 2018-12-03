@@ -9,7 +9,10 @@
         <ul class="content-list">
             <li *ngFor="let group of groups | async"
                 [class.selected]="group === selectedGroup"
-                (click)="onSelect(group)"><span class="badge"></span><span  class="spanTitle">{{group.groupName}}</span>
+                (click)="onSelect(group)">
+                    <span class="badge"></span>
+                    <span class="spanTitle">{{group.groupName}}</span>
+                    <span class="spanBody">{{group.groupDescription}}</span>
             </li>
         </ul>
     </div>

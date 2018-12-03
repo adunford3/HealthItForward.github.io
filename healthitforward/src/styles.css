@@ -43,6 +43,11 @@ body, input[text], button {
     padding: 0;
 }
 
+.content-list .text {
+    position: relative;
+    top: -3px;
+}
+
 .content-list li.selected:hover {
     background-color: #585858 !important;
     color: white;
@@ -84,9 +89,20 @@ body, input[text], button {
     bottom: 70px;
 }
 
+.content-list .spanBody {
+    margin-left: 100px;
+    /*line-height: 50%;*/
+    position: relative;
+    bottom: 50px;
+    font-weight: lighter;
+    font-size: smaller;
+    display: block;
+    /*left: 25px;*/
+}
+
 
 .content-list .badge {
-    display: inline-block;
+    display: inline-flex;
     font-size: small;
     color: white;
     padding: 0.85em 0.7em 0 0.7em;

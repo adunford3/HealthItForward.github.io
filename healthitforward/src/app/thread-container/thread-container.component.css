@@ -129,6 +129,23 @@
     border-radius: 4px 0 0 4px;
 }
 
+.threads .spanTitle {
+    margin-left: 10px;
+    /*line-height: 50%;*/
+    position: relative;
+    bottom: 70px;
+}
+.threads .spanBody {
+    margin-left: 50px;
+    /*line-height: 50%;*/
+    position: relative;
+    bottom: 65px;
+    font-weight: lighter;
+    font-size: smaller;
+    display: block;
+    /*left: 25px;*/
+}
+
 input[type=input] {
     width: 90%;
     padding: 15px;

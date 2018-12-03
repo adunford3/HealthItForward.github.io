@@ -19,7 +19,10 @@
         <ul class="content-list">
             <li *ngFor="let thread of threads | async"
                 [class.selected]="thread === selectedThread"
-                (click)="onSelect(thread)"><span class="badge"></span><span class="spanTitle">{{thread.title}}</span>
+                (click)="onSelect(thread)">
+                <span class="badge">{{thread.upvotes}}<br>Votes</span>
+                <span class="spanTitle>">{{thread.title}}</span>
+                <span class="spanBody">{{thread.body}}</span>
             </li>
         </ul>
     </div>
